@@ -47,15 +47,7 @@ test('published article pages are built and their images exist', async () => {
   }
 });
 
-test('the editor is present but requires a real hosted site ID', async () => {
-  const config = await read('admin/config.yml');
-  assert.match(config, /turbo-github/);
-  assert.match(config, /REPLACE_WITH_DECAP_TURBO_SITE_ID/);
-  assert.match(config, /name: editorial_pages/);
-  assert.match(config, /name: site_settings/);
-});
-
-test('page editor safely changes text, images, and search descriptions', async () => {
+test('page content build safely changes text, images, and search descriptions', async () => {
   const fixture = await mkdtemp(join(tmpdir(), 'ojobo-page-test-'));
   try {
     await mkdir(join(fixture, 'content', 'pages'), { recursive: true });
@@ -78,7 +70,7 @@ test('page editor safely changes text, images, and search descriptions', async (
 
 test('deployment package includes public pages but not source material or drafts', async () => {
   await access(join(root, 'dist', 'index.html'));
-  await access(join(root, 'dist', 'admin', 'index.html'));
+  await assert.rejects(access(join(root, 'dist', 'admin', 'index.html')));
   await access(join(root, 'dist', 'content', 'site-content.js'));
   assert.match(await read('dist/index.html'), /window\.siteSettings=/);
   if (process.env.SITE_PREVIEW === 'true') {
@@ -95,8 +87,8 @@ test('deployment package includes public pages but not source material or drafts
 test('a sample publication builds its pages while a draft stays private', async () => {
   const fixture = await mkdtemp(join(tmpdir(), 'ojobo-publish-test-'));
   try {
-    for (const folder of ['scripts', 'content', 'admin', 'assets']) await mkdir(join(fixture, folder));
-    for (const file of ['scripts/build-content.mjs', 'scripts/render-page-content.mjs', 'admin/index.html', 'admin/config.yml', 'site.js', 'content-render.js']) {
+    for (const folder of ['scripts', 'content', 'assets']) await mkdir(join(fixture, folder));
+    for (const file of ['scripts/build-content.mjs', 'scripts/render-page-content.mjs', 'site.js', 'content-render.js']) {
       await copyFile(join(root, file), join(fixture, file));
     }
     const sample = structuredClone(data);

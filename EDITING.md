@@ -1,19 +1,31 @@
-# Editing the website
+# Edit your website with GitHub
 
-The public preview is [ojobo-tech.github.io/website-preview](https://ojobo-tech.github.io/website-preview/). It is separate from ojoboagboeje.com.
+You only need your existing `ojobo-tech` GitHub account. The [website preview](https://ojobo-tech.github.io/website-preview/) is separate from `ojoboagboeje.com` until the domain is switched.
 
-## When the editor is connected
+## Change words on an existing page
 
-Open `/admin/` on the chosen website and sign in. Choose **Pages & sections** to edit a main page's headings, text, images, image descriptions, and search title/description. Choose **Site-wide details** for the header name and footer. Choose **Website content** for articles, projects, research, speaking events, and reading-room entries. Save the entry; the repository change starts an automatic GitHub Pages build. The preview normally updates after the build finishes.
+1. Open the [page-content folder](https://github.com/ojobo-tech/website-preview/tree/main/content/pages) and choose the page, such as `home.json` for the homepage or `about.json` for About.
+2. Click the pencil icon (**Edit this file**).
+3. Find the current wording you want to replace. Change only the words inside its quotation marks; keep the field names, commas, and quotation marks in place.
+4. Click **Commit changes** and save to `main`. GitHub then rebuilds the preview automatically.
 
-Images can be selected from the media library or uploaded. Add a short image description for people using screen readers. For a new article, upload audio in the optional audio field to add a player beside the written version.
+The same files hold each page's image choices (`image_001`, etc.), image descriptions (`_alt`), and search title/description. The current values help you identify the right field. For a larger rewrite, describe the change to Codex in ordinary language and let it edit and test the files.
 
-The editor is not yet connected: `admin/config.yml` still contains a placeholder Decap Turbo site ID. It will not accept sign-in or publish until that account and the GitHub repository are connected. Do not enter passwords or tokens into this repository.
+## Change an image
 
-## Content boundaries
+1. In the repository, open [assets](https://github.com/ojobo-tech/website-preview/tree/main/assets) and use **Add file → Upload files** for the new image. Commit the upload.
+2. In the relevant `content/pages/*.json` file, replace that image field's path with `assets/your-image-name.jpg` (or `.png`/`.webp`). Update its `_alt` description as well. Commit that edit.
 
-Page content and images are editable, but layout, navigation destinations, and some paragraphs containing links are still code changes. The project and article lists come from their collections, not from separately editing the homepage. Only published collection entries appear on the website. Draft entries do not appear on the deployed site, but this repository is public, so their source text is still visible on GitHub. Do not put confidential drafts in it.
+You can reuse an existing image path without uploading anything. Use a web-sized image, and only upload images you have permission to publish. For a new article or project, its cover image field is in the content catalog below.
 
-## Local maintenance
+## Publish writing, work, events, and reading notes
 
-The main-page data is in `content/pages/`, site-wide text is in `content/site-settings.json`, and the collections are in `content/site-content.json`. Run `node scripts/build-content.mjs` and `node --test --test-isolation=none tests/site.test.mjs` to build and check a local copy. The GitHub workflow sets `SITE_PREVIEW=true` so the preview discourages search indexing and does not publish a sitemap for ojoboagboeje.com.
+Open [content/site-content.json](https://github.com/ojobo-tech/website-preview/blob/main/content/site-content.json). It contains `essays`, `projects`, `research`, `events`, and `reading`. Each entry has a `status`: `draft` keeps it off the website; `published` shows it. New articles can have their own page and an optional audio recording. New project and research entries can have detail pages. If adding a whole new entry, ask Codex to prepare and check it—the structure matters more than an ordinary text replacement.
+
+The shared header name and footer wording are in [content/site-settings.json](https://github.com/ojobo-tech/website-preview/blob/main/content/site-settings.json). Layout and navigation destinations still need a site-code change.
+
+## Using VS Code or Codex
+
+You can work on the same repository on your computer. Open the local `.website-preview` checkout, make changes, then **commit and push** to `main`; saving locally alone does not publish. Codex can make the edits and run the checks for you from a plain-language request.
+
+The repository is public. Draft text saved in it is visible on GitHub even when it is hidden from the website, so do not put confidential drafts, passwords, or private client material there. The build publishes only the website files, not this editing guide or the source JSON. While this remains a preview, the site also asks search engines not to index it.

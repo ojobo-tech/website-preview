@@ -134,7 +134,6 @@ try {
   if ((await lstat(publishRoot)).isSymbolicLink()) throw new Error('Refusing to replace a linked publish directory.');
   await rm(publishRoot, { recursive: true });
 } catch (error) { if (error.code !== 'ENOENT') throw error; }
-await mkdir(join(publishRoot, 'admin'), { recursive: true });
 await mkdir(join(publishRoot, 'content'), { recursive: true });
 for (const entry of await readdir(root, { withFileTypes: true })) {
   if (!entry.isFile()) continue;
@@ -147,14 +146,6 @@ for (const entry of await readdir(root, { withFileTypes: true })) {
   }
 }
 for (const name of ['site.js', 'content-render.js']) await copyFile(join(root, name), join(publishRoot, name));
-for (const name of ['index.html', 'config.yml']) {
-  const source = join(root, 'admin', name);
-  const destination = join(publishRoot, 'admin', name);
-  if (name === 'index.html' && preview) {
-    const markup = await readFile(source, 'utf8');
-    await writeFile(destination, markup.replace(/<head>/i, '<head><meta name="robots" content="noindex,nofollow">'), 'utf8');
-  } else await copyFile(source, destination);
-}
 await copyFile(join(root, 'content', 'site-content.js'), join(publishRoot, 'content', 'site-content.js'));
 await cp(join(root, 'assets'), join(publishRoot, 'assets'), { recursive: true });
 const publicPages = ['index.html', 'about.html', 'biography.html', 'leadership.html', 'reading.html', 'framework.html', 'build.html', 'project-chedvi.html', 'research.html', 'writing.html', 'speaking.html', 'contact.html', ...expected.keys()];
