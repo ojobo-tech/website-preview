@@ -1,0 +1,1673 @@
+[
+  {
+    "filename": "index.html",
+    "slug": "home",
+    "label": "Homepage",
+    "fields": [
+      {
+        "key": "seoTitle",
+        "label": "Browser and search title",
+        "widget": "string"
+      },
+      {
+        "key": "seoDescription",
+        "label": "Search description",
+        "widget": "text"
+      },
+      {
+        "key": "heroImage",
+        "label": "Hero background image",
+        "widget": "image"
+      },
+      {
+        "key": "text_001",
+        "label": "H1 heading — Ojobo Agbo Eje",
+        "widget": "string"
+      },
+      {
+        "key": "text_002",
+        "label": "Text — Organizations need to redesign work, not simply automate tasks. I conn",
+        "widget": "text"
+      },
+      {
+        "key": "text_003",
+        "label": "Prompt — The questions I hear most often in conversation",
+        "widget": "string"
+      },
+      {
+        "key": "text_004",
+        "label": "Section label — Latest writing",
+        "widget": "text"
+      },
+      {
+        "key": "text_005",
+        "label": "H2 heading — Ideas for making AI useful",
+        "widget": "string"
+      },
+      {
+        "key": "text_006",
+        "label": "Text — Long-form explanations and practical questions for leaders, teams, and",
+        "widget": "text"
+      },
+      {
+        "key": "text_007",
+        "label": "Link text — View all writing →",
+        "widget": "text"
+      },
+      {
+        "key": "text_008",
+        "label": "Section label — The AI transformation framework",
+        "widget": "text"
+      },
+      {
+        "key": "text_009",
+        "label": "H2 heading — Start with the work. Then decide what AI should do.",
+        "widget": "string"
+      },
+      {
+        "key": "text_010",
+        "label": "Text — A practical sequence for finding real value: define the problem, under",
+        "widget": "text"
+      },
+      {
+        "key": "text_011",
+        "label": "Link text — Explore the framework →",
+        "widget": "text"
+      },
+      {
+        "key": "image_001",
+        "label": "Start with the work. Then decide what AI should do. — image 1",
+        "widget": "image"
+      },
+      {
+        "key": "image_001_alt",
+        "label": "Start with the work. Then decide what AI should do. — image description",
+        "widget": "string"
+      },
+      {
+        "key": "text_012",
+        "label": "Section label — For decision-makers",
+        "widget": "text"
+      },
+      {
+        "key": "text_013",
+        "label": "H2 heading — Where should we begin?",
+        "widget": "string"
+      },
+      {
+        "key": "text_014",
+        "label": "Text — Three practical routes into the questions leaders ask when moving from",
+        "widget": "text"
+      },
+      {
+        "key": "image_002",
+        "label": "Where should we begin? — image 2",
+        "widget": "image"
+      },
+      {
+        "key": "image_002_alt",
+        "label": "Where should we begin? — image description",
+        "widget": "string"
+      },
+      {
+        "key": "text_015",
+        "label": "Section label — The problem",
+        "widget": "text"
+      },
+      {
+        "key": "text_016",
+        "label": "H3 heading — What are we trying to improve?",
+        "widget": "string"
+      },
+      {
+        "key": "text_017",
+        "label": "Text — Frame the outcome before choosing technology.",
+        "widget": "text"
+      },
+      {
+        "key": "image_003",
+        "label": "What are we trying to improve? — image 3",
+        "widget": "image"
+      },
+      {
+        "key": "image_003_alt",
+        "label": "What are we trying to improve? — image description",
+        "widget": "string"
+      },
+      {
+        "key": "text_018",
+        "label": "Section label — The use case",
+        "widget": "text"
+      },
+      {
+        "key": "text_019",
+        "label": "H3 heading — Where can AI actually help?",
+        "widget": "string"
+      },
+      {
+        "key": "text_020",
+        "label": "Text — Connect a specific application to a real process.",
+        "widget": "text"
+      },
+      {
+        "key": "image_004",
+        "label": "Where can AI actually help? — image 4",
+        "widget": "image"
+      },
+      {
+        "key": "image_004_alt",
+        "label": "Where can AI actually help? — image description",
+        "widget": "string"
+      },
+      {
+        "key": "text_021",
+        "label": "Section label — The build",
+        "widget": "text"
+      },
+      {
+        "key": "text_022",
+        "label": "H3 heading — What needs to be built?",
+        "widget": "string"
+      },
+      {
+        "key": "text_023",
+        "label": "Text — Move from analysis to a working platform.",
+        "widget": "text"
+      },
+      {
+        "key": "text_024",
+        "label": "Section label — Selected works",
+        "widget": "text"
+      },
+      {
+        "key": "text_025",
+        "label": "H2 heading — Platforms, analysis, and applied ideas",
+        "widget": "string"
+      },
+      {
+        "key": "text_026",
+        "label": "Text — My work includes developing technical solutions, not just advising on ",
+        "widget": "text"
+      },
+      {
+        "key": "text_027",
+        "label": "Link text — View all builds →",
+        "widget": "text"
+      },
+      {
+        "key": "text_028",
+        "label": "Section label — Research & perspectives",
+        "widget": "text"
+      },
+      {
+        "key": "text_029",
+        "label": "H2 heading — The deeper questions behind adoption",
+        "widget": "string"
+      },
+      {
+        "key": "text_030",
+        "label": "Text — Research and practice meet in questions of readiness, equity, learning",
+        "widget": "text"
+      },
+      {
+        "key": "image_005",
+        "label": "The deeper questions behind adoption — image 5",
+        "widget": "image"
+      },
+      {
+        "key": "image_005_alt",
+        "label": "The deeper questions behind adoption — image description",
+        "widget": "string"
+      },
+      {
+        "key": "text_031",
+        "label": "Section label — Research",
+        "widget": "text"
+      },
+      {
+        "key": "text_032",
+        "label": "H3 heading — AI readiness is more than access to tools",
+        "widget": "string"
+      },
+      {
+        "key": "text_033",
+        "label": "Text — Organizations need the data, governance, workforce capability, infrast",
+        "widget": "text"
+      },
+      {
+        "key": "text_034",
+        "label": "Link text — Explore the research →",
+        "widget": "text"
+      },
+      {
+        "key": "image_006",
+        "label": "AI readiness is more than access to tools — image 6",
+        "widget": "image"
+      },
+      {
+        "key": "image_006_alt",
+        "label": "AI readiness is more than access to tools — image description",
+        "widget": "string"
+      },
+      {
+        "key": "text_035",
+        "label": "Section label — Working thesis",
+        "widget": "text"
+      },
+      {
+        "key": "text_036",
+        "label": "H3 heading — Redesign work before automating it",
+        "widget": "string"
+      },
+      {
+        "key": "text_037",
+        "label": "Text — Automation can make the wrong process faster. Transformation asks what",
+        "widget": "text"
+      },
+      {
+        "key": "text_038",
+        "label": "Link text — Read the framework →",
+        "widget": "text"
+      },
+      {
+        "key": "text_039",
+        "label": "Section label — Speaking & events",
+        "widget": "text"
+      },
+      {
+        "key": "text_040",
+        "label": "H2 heading — Join the conversation",
+        "widget": "string"
+      },
+      {
+        "key": "text_041",
+        "label": "Text — Find my talks, workshops, and upcoming appearances here. Confirmed dat",
+        "widget": "text"
+      },
+      {
+        "key": "text_042",
+        "label": "Link text — View speaking & events →",
+        "widget": "text"
+      },
+      {
+        "key": "text_043",
+        "label": "Section label — A working thesis",
+        "widget": "text"
+      },
+      {
+        "key": "text_044",
+        "label": "Quotation — “Most organizations are adopting AI without transforming. The work beg",
+        "widget": "text"
+      },
+      {
+        "key": "text_045",
+        "label": "Section label — Signals",
+        "widget": "text"
+      },
+      {
+        "key": "text_046",
+        "label": "H2 heading — What I am watching",
+        "widget": "string"
+      },
+      {
+        "key": "text_047",
+        "label": "Text — Shorter observations on the technologies, skills, and institutions sha",
+        "widget": "text"
+      },
+      {
+        "key": "text_048",
+        "label": "Section label — Work",
+        "widget": "text"
+      },
+      {
+        "key": "text_049",
+        "label": "H3 heading — Human judgment",
+        "widget": "string"
+      },
+      {
+        "key": "text_050",
+        "label": "Text — What should remain a human decision when capability is delegated to AI",
+        "widget": "text"
+      },
+      {
+        "key": "text_051",
+        "label": "Section label — Capability",
+        "widget": "text"
+      },
+      {
+        "key": "text_052",
+        "label": "H3 heading — AI literacy",
+        "widget": "string"
+      },
+      {
+        "key": "text_053",
+        "label": "Text — How do teams gain the confidence to use AI critically, not just freque",
+        "widget": "text"
+      },
+      {
+        "key": "text_054",
+        "label": "Section label — Systems",
+        "widget": "text"
+      },
+      {
+        "key": "text_055",
+        "label": "H3 heading — Platform thinking",
+        "widget": "string"
+      },
+      {
+        "key": "text_056",
+        "label": "Text — When should an idea become a reusable product rather than another pilo",
+        "widget": "text"
+      },
+      {
+        "key": "text_057",
+        "label": "Section label — Newsletter",
+        "widget": "text"
+      },
+      {
+        "key": "text_058",
+        "label": "H2 heading — The AI Catalyst Report",
+        "widget": "string"
+      },
+      {
+        "key": "text_059",
+        "label": "Text — Thoughts on understanding, adopting, and using AI responsibly and prof",
+        "widget": "text"
+      },
+      {
+        "key": "text_060",
+        "label": "Link text — Read on Substack ↗",
+        "widget": "text"
+      },
+      {
+        "key": "text_061",
+        "label": "Section label — Audio",
+        "widget": "text"
+      },
+      {
+        "key": "text_062",
+        "label": "H2 heading — Listen to the ideas",
+        "widget": "string"
+      },
+      {
+        "key": "text_063",
+        "label": "Text — Articles can have an audio edition alongside the written version. The ",
+        "widget": "text"
+      },
+      {
+        "key": "text_064",
+        "label": "Link text — See an article →",
+        "widget": "text"
+      },
+      {
+        "key": "text_065",
+        "label": "Section label — Concepts",
+        "widget": "text"
+      },
+      {
+        "key": "text_066",
+        "label": "H2 heading — The ideas that underpin my work",
+        "widget": "string"
+      },
+      {
+        "key": "text_067",
+        "label": "Text — These are the questions I return to across strategy, research, and bui",
+        "widget": "text"
+      },
+      {
+        "key": "image_007",
+        "label": "The ideas that underpin my work — image 7",
+        "widget": "image"
+      },
+      {
+        "key": "image_007_alt",
+        "label": "The ideas that underpin my work — image description",
+        "widget": "string"
+      },
+      {
+        "key": "text_068",
+        "label": "H3 heading — Problem before platform",
+        "widget": "string"
+      },
+      {
+        "key": "text_069",
+        "label": "Text — What are we trying to solve, improve, or make possible?",
+        "widget": "text"
+      },
+      {
+        "key": "image_008",
+        "label": "Problem before platform — image 8",
+        "widget": "image"
+      },
+      {
+        "key": "image_008_alt",
+        "label": "Problem before platform — image description",
+        "widget": "string"
+      },
+      {
+        "key": "text_070",
+        "label": "H3 heading — Capability before scale",
+        "widget": "string"
+      },
+      {
+        "key": "text_071",
+        "label": "Text — Do people and institutions understand, trust, and sustain the change?",
+        "widget": "text"
+      },
+      {
+        "key": "text_072",
+        "label": "Section label — About",
+        "widget": "text"
+      },
+      {
+        "key": "text_073",
+        "label": "H2 heading — Builder, researcher, transformation partner",
+        "widget": "string"
+      },
+      {
+        "key": "text_074",
+        "label": "Text — I work where AI meets organizations and human capability. My practice ",
+        "widget": "text"
+      },
+      {
+        "key": "text_075",
+        "label": "Link text — More about me →",
+        "widget": "text"
+      }
+    ]
+  },
+  {
+    "filename": "about.html",
+    "slug": "about",
+    "label": "About",
+    "fields": [
+      {
+        "key": "seoTitle",
+        "label": "Browser and search title",
+        "widget": "string"
+      },
+      {
+        "key": "seoDescription",
+        "label": "Search description",
+        "widget": "text"
+      },
+      {
+        "key": "heroImage",
+        "label": "Hero background image",
+        "widget": "image"
+      },
+      {
+        "key": "text_001",
+        "label": "Section label — About",
+        "widget": "text"
+      },
+      {
+        "key": "text_002",
+        "label": "H1 heading — Ojobo Agbo Eje",
+        "widget": "string"
+      },
+      {
+        "key": "text_003",
+        "label": "Text — I help organizations make AI transformation real by connecting strateg",
+        "widget": "text"
+      },
+      {
+        "key": "text_004",
+        "label": "Text — AI is not simply another tool to add to existing work. Its promise dep",
+        "widget": "text"
+      },
+      {
+        "key": "text_005",
+        "label": "H2 heading — A career in three parts",
+        "widget": "string"
+      },
+      {
+        "key": "text_006",
+        "label": "Text — My work has moved through analytics and business intelligence, data sc",
+        "widget": "text"
+      },
+      {
+        "key": "text_007",
+        "label": "Text — That has meant working across education, finance, healthcare, public-i",
+        "widget": "text"
+      },
+      {
+        "key": "text_008",
+        "label": "H2 heading — How I work",
+        "widget": "string"
+      },
+      {
+        "key": "text_009",
+        "label": "Text — I begin with the outcome: what needs to be solved, achieved, or improv",
+        "widget": "text"
+      },
+      {
+        "key": "text_010",
+        "label": "Text — Sometimes the right contribution is a framework or a conversation. Som",
+        "widget": "text"
+      },
+      {
+        "key": "text_011",
+        "label": "H2 heading — Finding your way around",
+        "widget": "string"
+      },
+      {
+        "key": "text_012",
+        "label": "Link text — transformation framework",
+        "widget": "text"
+      },
+      {
+        "key": "text_013",
+        "label": "Link text — technical portfolio",
+        "widget": "text"
+      },
+      {
+        "key": "text_014",
+        "label": "Link text — Research",
+        "widget": "text"
+      },
+      {
+        "key": "text_015",
+        "label": "Link text — writing",
+        "widget": "text"
+      },
+      {
+        "key": "text_016",
+        "label": "Link text — reading room",
+        "widget": "text"
+      },
+      {
+        "key": "text_017",
+        "label": "Link text — let's talk",
+        "widget": "text"
+      }
+    ]
+  },
+  {
+    "filename": "biography.html",
+    "slug": "biography",
+    "label": "Biography",
+    "fields": [
+      {
+        "key": "seoTitle",
+        "label": "Browser and search title",
+        "widget": "string"
+      },
+      {
+        "key": "seoDescription",
+        "label": "Search description",
+        "widget": "text"
+      },
+      {
+        "key": "text_001",
+        "label": "Section label — About",
+        "widget": "text"
+      },
+      {
+        "key": "text_002",
+        "label": "H1 heading — Biography",
+        "widget": "string"
+      },
+      {
+        "key": "text_003",
+        "label": "Text — My career connects technical work, applied research, and the organizat",
+        "widget": "text"
+      },
+      {
+        "key": "text_004",
+        "label": "H3 heading — Data",
+        "widget": "string"
+      },
+      {
+        "key": "text_005",
+        "label": "Text — Analytics and business intelligence for clearer decisions.",
+        "widget": "text"
+      },
+      {
+        "key": "text_006",
+        "label": "H3 heading — Research",
+        "widget": "string"
+      },
+      {
+        "key": "text_007",
+        "label": "Text — Applied data science in consequential settings.",
+        "widget": "text"
+      },
+      {
+        "key": "text_008",
+        "label": "H3 heading — Transformation",
+        "widget": "string"
+      },
+      {
+        "key": "text_009",
+        "label": "Text — Strategy, capability, and useful technical systems.",
+        "widget": "text"
+      },
+      {
+        "key": "text_010",
+        "label": "H2 heading — Foundations",
+        "widget": "string"
+      },
+      {
+        "key": "text_011",
+        "label": "Text — I began with engineering, analytics, and business intelligence: buildi",
+        "widget": "text"
+      },
+      {
+        "key": "text_012",
+        "label": "H2 heading — Research and public interest",
+        "widget": "string"
+      },
+      {
+        "key": "text_013",
+        "label": "Text — My work expanded into data science, visualization, and research across",
+        "widget": "text"
+      },
+      {
+        "key": "text_014",
+        "label": "H2 heading — Current work",
+        "widget": "string"
+      },
+      {
+        "key": "text_015",
+        "label": "Link text — CHEDVI",
+        "widget": "text"
+      },
+      {
+        "key": "text_016",
+        "label": "Text — This biography is a working draft. I will continue refining the detail",
+        "widget": "text"
+      }
+    ]
+  },
+  {
+    "filename": "leadership.html",
+    "slug": "leadership",
+    "label": "Leadership & collaboration",
+    "fields": [
+      {
+        "key": "seoTitle",
+        "label": "Browser and search title",
+        "widget": "string"
+      },
+      {
+        "key": "seoDescription",
+        "label": "Search description",
+        "widget": "text"
+      },
+      {
+        "key": "text_001",
+        "label": "Section label — About",
+        "widget": "text"
+      },
+      {
+        "key": "text_002",
+        "label": "H1 heading — Leadership & collaboration",
+        "widget": "string"
+      },
+      {
+        "key": "text_003",
+        "label": "Text — Transformation succeeds when leaders, practitioners, and the people af",
+        "widget": "text"
+      },
+      {
+        "key": "text_004",
+        "label": "H2 heading — With leaders",
+        "widget": "string"
+      },
+      {
+        "key": "text_005",
+        "label": "Text — I help leaders move beyond abstract AI ambition to concrete choices: w",
+        "widget": "text"
+      },
+      {
+        "key": "text_006",
+        "label": "H2 heading — With builders",
+        "widget": "string"
+      },
+      {
+        "key": "text_007",
+        "label": "Text — I work with technical teams to connect models, data, and platforms to ",
+        "widget": "text"
+      },
+      {
+        "key": "text_008",
+        "label": "H2 heading — With partners",
+        "widget": "string"
+      },
+      {
+        "key": "text_009",
+        "label": "Text — Research institutions, community organizations, employers, clients, an",
+        "widget": "text"
+      },
+      {
+        "key": "text_010",
+        "label": "Link text — Start a conversation about a specific problem →",
+        "widget": "text"
+      }
+    ]
+  },
+  {
+    "filename": "framework.html",
+    "slug": "framework",
+    "label": "AI transformation",
+    "fields": [
+      {
+        "key": "seoTitle",
+        "label": "Browser and search title",
+        "widget": "string"
+      },
+      {
+        "key": "seoDescription",
+        "label": "Search description",
+        "widget": "text"
+      },
+      {
+        "key": "heroImage",
+        "label": "Hero background image",
+        "widget": "image"
+      },
+      {
+        "key": "text_001",
+        "label": "Section label — Transformation",
+        "widget": "text"
+      },
+      {
+        "key": "text_002",
+        "label": "H1 heading — A framework for the work ahead",
+        "widget": "string"
+      },
+      {
+        "key": "text_003",
+        "label": "Text — Technology is one part of transformation. The value comes from changin",
+        "widget": "text"
+      },
+      {
+        "key": "text_004",
+        "label": "Text — Organizations need to redesign work, not simply automate tasks. Transf",
+        "widget": "text"
+      },
+      {
+        "key": "image_001",
+        "label": "A framework for the work ahead — image 1",
+        "widget": "image"
+      },
+      {
+        "key": "image_001_alt",
+        "label": "A framework for the work ahead — image description",
+        "widget": "string"
+      },
+      {
+        "key": "text_005",
+        "label": "H2 heading — The sequence",
+        "widget": "string"
+      },
+      {
+        "key": "text_006",
+        "label": "H3 heading — Problem",
+        "widget": "string"
+      },
+      {
+        "key": "text_007",
+        "label": "Text — What are we trying to solve, achieve, or improve?",
+        "widget": "text"
+      },
+      {
+        "key": "text_008",
+        "label": "H3 heading — Process",
+        "widget": "string"
+      },
+      {
+        "key": "text_009",
+        "label": "Text — How does the work happen today?",
+        "widget": "text"
+      },
+      {
+        "key": "text_010",
+        "label": "H3 heading — Use case",
+        "widget": "string"
+      },
+      {
+        "key": "text_011",
+        "label": "Text — Where might AI be specifically useful?",
+        "widget": "text"
+      },
+      {
+        "key": "text_012",
+        "label": "H3 heading — Skills",
+        "widget": "string"
+      },
+      {
+        "key": "text_013",
+        "label": "Text — What training, confidence, and judgment are needed?",
+        "widget": "text"
+      },
+      {
+        "key": "text_014",
+        "label": "H3 heading — Technology",
+        "widget": "string"
+      },
+      {
+        "key": "text_015",
+        "label": "Text — Which data, models, and systems fit the use case?",
+        "widget": "text"
+      },
+      {
+        "key": "text_016",
+        "label": "H3 heading — Culture",
+        "widget": "string"
+      },
+      {
+        "key": "text_017",
+        "label": "Text — What supports learning, experimentation, and change?",
+        "widget": "text"
+      },
+      {
+        "key": "text_018",
+        "label": "H2 heading — Choosing a use case",
+        "widget": "string"
+      },
+      {
+        "key": "text_019",
+        "label": "Text — A use case is not a general desire to “use AI.” It is a specific appli",
+        "widget": "text"
+      },
+      {
+        "key": "text_020",
+        "label": "H2 heading — Making change last",
+        "widget": "string"
+      },
+      {
+        "key": "text_021",
+        "label": "Text — Skills mean more than a one-off training session. People need understa",
+        "widget": "text"
+      },
+      {
+        "key": "text_022",
+        "label": "Link text — a platform build",
+        "widget": "text"
+      },
+      {
+        "key": "text_023",
+        "label": "Link text — bring a problem to discuss",
+        "widget": "text"
+      },
+      {
+        "key": "text_024",
+        "label": "H2 heading — Questions leaders should ask",
+        "widget": "string"
+      },
+      {
+        "key": "text_025",
+        "label": "Question — What outcome would make this worthwhile?",
+        "widget": "text"
+      },
+      {
+        "key": "text_026",
+        "label": "Text — Name a real improvement before choosing a tool.",
+        "widget": "text"
+      },
+      {
+        "key": "text_027",
+        "label": "Question — Where is the current process failing?",
+        "widget": "text"
+      },
+      {
+        "key": "text_028",
+        "label": "Text — Examine the workflow, handoffs, decisions, and constraints before auto",
+        "widget": "text"
+      },
+      {
+        "key": "text_029",
+        "label": "Question — What must people learn for change to last?",
+        "widget": "text"
+      },
+      {
+        "key": "text_030",
+        "label": "Text — Plan for training, critical judgment, and room to experiment.",
+        "widget": "text"
+      },
+      {
+        "key": "text_031",
+        "label": "Section label — Start a conversation",
+        "widget": "text"
+      },
+      {
+        "key": "text_032",
+        "label": "H3 heading — Working through an AI decision?",
+        "widget": "string"
+      },
+      {
+        "key": "text_033",
+        "label": "Text — We can begin with the problem and decide what needs to change.",
+        "widget": "text"
+      },
+      {
+        "key": "text_034",
+        "label": "Link text — Get in touch →",
+        "widget": "text"
+      }
+    ]
+  },
+  {
+    "filename": "build.html",
+    "slug": "build",
+    "label": "Technical projects",
+    "fields": [
+      {
+        "key": "seoTitle",
+        "label": "Browser and search title",
+        "widget": "string"
+      },
+      {
+        "key": "seoDescription",
+        "label": "Search description",
+        "widget": "text"
+      },
+      {
+        "key": "text_001",
+        "label": "Section label — Work",
+        "widget": "text"
+      },
+      {
+        "key": "text_002",
+        "label": "H1 heading — Selected builds",
+        "widget": "string"
+      },
+      {
+        "key": "text_003",
+        "label": "Text — Platform development is part of my practice. I move from an important ",
+        "widget": "text"
+      },
+      {
+        "key": "text_004",
+        "label": "H2 heading — Projects",
+        "widget": "string"
+      },
+      {
+        "key": "text_005",
+        "label": "H2 heading — How I build",
+        "widget": "string"
+      },
+      {
+        "key": "text_006",
+        "label": "Text — Each project should be able to explain the problem it addresses, what ",
+        "widget": "text"
+      },
+      {
+        "key": "text_007",
+        "label": "H2 heading — Questions behind a build",
+        "widget": "string"
+      },
+      {
+        "key": "text_008",
+        "label": "Question — Should this be a tool, workflow, or platform?",
+        "widget": "text"
+      },
+      {
+        "key": "text_009",
+        "label": "Text — It depends on who needs it, how often the problem recurs, and what mus",
+        "widget": "text"
+      },
+      {
+        "key": "text_010",
+        "label": "Question — How will we know the product is useful?",
+        "widget": "text"
+      },
+      {
+        "key": "text_011",
+        "label": "Text — Define the decision or action it should enable before choosing feature",
+        "widget": "text"
+      },
+      {
+        "key": "text_012",
+        "label": "Section label — Explore a live example",
+        "widget": "text"
+      },
+      {
+        "key": "text_013",
+        "label": "H3 heading — See CHEDVI in action",
+        "widget": "string"
+      },
+      {
+        "key": "text_014",
+        "label": "Text — The case study explains the problem and links to the working platform.",
+        "widget": "text"
+      },
+      {
+        "key": "text_015",
+        "label": "Link text — View CHEDVI →",
+        "widget": "text"
+      }
+    ]
+  },
+  {
+    "filename": "research.html",
+    "slug": "research",
+    "label": "Research",
+    "fields": [
+      {
+        "key": "seoTitle",
+        "label": "Browser and search title",
+        "widget": "string"
+      },
+      {
+        "key": "seoDescription",
+        "label": "Search description",
+        "widget": "text"
+      },
+      {
+        "key": "text_001",
+        "label": "Section label — Research",
+        "widget": "text"
+      },
+      {
+        "key": "text_002",
+        "label": "H1 heading — Evidence for better decisions",
+        "widget": "string"
+      },
+      {
+        "key": "text_003",
+        "label": "Text — Research helps me ask sharper questions, test assumptions, and ground ",
+        "widget": "text"
+      },
+      {
+        "key": "image_001",
+        "label": "Evidence for better decisions — image 1",
+        "widget": "image"
+      },
+      {
+        "key": "image_001_alt",
+        "label": "Evidence for better decisions — image description",
+        "widget": "string"
+      },
+      {
+        "key": "text_004",
+        "label": "H2 heading — Research themes",
+        "widget": "string"
+      },
+      {
+        "key": "text_005",
+        "label": "Section label — AI readiness",
+        "widget": "text"
+      },
+      {
+        "key": "text_006",
+        "label": "H3 heading — Conditions for adoption",
+        "widget": "string"
+      },
+      {
+        "key": "text_007",
+        "label": "Text — How governance, data, workforce capability, and infrastructure shape A",
+        "widget": "text"
+      },
+      {
+        "key": "text_008",
+        "label": "Section label — Healthcare",
+        "widget": "text"
+      },
+      {
+        "key": "text_009",
+        "label": "H3 heading — Explainability and trust",
+        "widget": "string"
+      },
+      {
+        "key": "text_010",
+        "label": "Text — How transparent AI can support more responsible decisions in high-stak",
+        "widget": "text"
+      },
+      {
+        "key": "text_011",
+        "label": "Section label — Public interest",
+        "widget": "text"
+      },
+      {
+        "key": "text_012",
+        "label": "H3 heading — Data for communities",
+        "widget": "string"
+      },
+      {
+        "key": "text_013",
+        "label": "Text — How analysis and visualization can make structural conditions legible.",
+        "widget": "text"
+      },
+      {
+        "key": "text_014",
+        "label": "Section label — Organizations",
+        "widget": "text"
+      },
+      {
+        "key": "text_015",
+        "label": "H3 heading — Work redesign",
+        "widget": "string"
+      },
+      {
+        "key": "text_016",
+        "label": "Text — How people, process, technology, and culture interact in transformatio",
+        "widget": "text"
+      },
+      {
+        "key": "text_017",
+        "label": "H2 heading — From inquiry to action",
+        "widget": "string"
+      },
+      {
+        "key": "text_018",
+        "label": "Link text — CHEDVI",
+        "widget": "text"
+      },
+      {
+        "key": "text_019",
+        "label": "H2 heading — Questions I return to",
+        "widget": "string"
+      },
+      {
+        "key": "text_020",
+        "label": "Question — Who can use the evidence?",
+        "widget": "text"
+      },
+      {
+        "key": "text_021",
+        "label": "Text — Evidence matters when it is accessible, understandable, and connected ",
+        "widget": "text"
+      },
+      {
+        "key": "text_022",
+        "label": "Question — What conditions enable responsible AI?",
+        "widget": "text"
+      },
+      {
+        "key": "text_023",
+        "label": "Text — Governance, data quality, capability, and context shape outcomes as mu",
+        "widget": "text"
+      },
+      {
+        "key": "text_024",
+        "label": "Section label — Research in practice",
+        "widget": "text"
+      },
+      {
+        "key": "text_025",
+        "label": "H3 heading — See public-interest data in use",
+        "widget": "string"
+      },
+      {
+        "key": "text_026",
+        "label": "Text — CHEDVI brings complex patterns into an interface people can explore.",
+        "widget": "text"
+      },
+      {
+        "key": "text_027",
+        "label": "Link text — View the case study →",
+        "widget": "text"
+      }
+    ]
+  },
+  {
+    "filename": "writing.html",
+    "slug": "writing",
+    "label": "Writing & audio",
+    "fields": [
+      {
+        "key": "seoTitle",
+        "label": "Browser and search title",
+        "widget": "string"
+      },
+      {
+        "key": "seoDescription",
+        "label": "Search description",
+        "widget": "text"
+      },
+      {
+        "key": "text_001",
+        "label": "Section label — Writing",
+        "widget": "text"
+      },
+      {
+        "key": "text_002",
+        "label": "H1 heading — Articles & audio",
+        "widget": "string"
+      },
+      {
+        "key": "text_003",
+        "label": "Text — I write to make AI more understandable and more useful—especially for ",
+        "widget": "text"
+      },
+      {
+        "key": "text_004",
+        "label": "H2 heading — Articles",
+        "widget": "string"
+      },
+      {
+        "key": "text_005",
+        "label": "H2 heading — The AI Catalyst Report",
+        "widget": "string"
+      },
+      {
+        "key": "text_006",
+        "label": "Link text — Substack ↗",
+        "widget": "text"
+      },
+      {
+        "key": "text_007",
+        "label": "Text — The article template supports an optional audio edition. Audio will ap",
+        "widget": "text"
+      }
+    ]
+  },
+  {
+    "filename": "speaking.html",
+    "slug": "speaking",
+    "label": "Speaking & events",
+    "fields": [
+      {
+        "key": "seoTitle",
+        "label": "Browser and search title",
+        "widget": "string"
+      },
+      {
+        "key": "seoDescription",
+        "label": "Search description",
+        "widget": "text"
+      },
+      {
+        "key": "image_001",
+        "label": "Opening section — image 1",
+        "widget": "image"
+      },
+      {
+        "key": "image_001_alt",
+        "label": "Opening section — image description",
+        "widget": "string"
+      },
+      {
+        "key": "text_001",
+        "label": "Section label — Speaking & events",
+        "widget": "text"
+      },
+      {
+        "key": "text_002",
+        "label": "H1 heading — Ideas worth discussing together",
+        "widget": "string"
+      },
+      {
+        "key": "text_003",
+        "label": "Text — Talks, workshops, and conversations on AI transformation, work redesig",
+        "widget": "text"
+      },
+      {
+        "key": "text_004",
+        "label": "Section label — Upcoming",
+        "widget": "text"
+      },
+      {
+        "key": "text_005",
+        "label": "H2 heading — Where to find me next",
+        "widget": "string"
+      },
+      {
+        "key": "text_006",
+        "label": "Text — Confirmed dates and event details will appear here and in the homepage",
+        "widget": "text"
+      },
+      {
+        "key": "text_007",
+        "label": "Section label — Themes",
+        "widget": "text"
+      },
+      {
+        "key": "text_008",
+        "label": "H2 heading — What I speak about",
+        "widget": "string"
+      },
+      {
+        "key": "text_009",
+        "label": "Text — Each session can be shaped around the audience and the problem they ar",
+        "widget": "text"
+      },
+      {
+        "key": "image_002",
+        "label": "What I speak about — image 2",
+        "widget": "image"
+      },
+      {
+        "key": "image_002_alt",
+        "label": "What I speak about — image description",
+        "widget": "string"
+      },
+      {
+        "key": "text_010",
+        "label": "H3 heading — AI transformation & work redesign",
+        "widget": "string"
+      },
+      {
+        "key": "text_011",
+        "label": "Text — Why meaningful change starts with the work and the conditions around i",
+        "widget": "text"
+      },
+      {
+        "key": "image_003",
+        "label": "AI transformation & work redesign — image 3",
+        "widget": "image"
+      },
+      {
+        "key": "image_003_alt",
+        "label": "AI transformation & work redesign — image description",
+        "widget": "string"
+      },
+      {
+        "key": "text_012",
+        "label": "H3 heading — From use case to working platform",
+        "widget": "string"
+      },
+      {
+        "key": "text_013",
+        "label": "Text — How an idea becomes something people can use, test, and improve.",
+        "widget": "text"
+      },
+      {
+        "key": "text_014",
+        "label": "Section label — Formats",
+        "widget": "text"
+      },
+      {
+        "key": "text_015",
+        "label": "H2 heading — Talks, workshops, and roundtables",
+        "widget": "string"
+      },
+      {
+        "key": "text_016",
+        "label": "Text — I can contribute a keynote or talk, facilitate a practical workshop, o",
+        "widget": "text"
+      },
+      {
+        "key": "text_017",
+        "label": "Link text — Start a speaking conversation →",
+        "widget": "text"
+      },
+      {
+        "key": "text_018",
+        "label": "Section label — Archive",
+        "widget": "text"
+      },
+      {
+        "key": "text_019",
+        "label": "H2 heading — Past appearances",
+        "widget": "string"
+      }
+    ]
+  },
+  {
+    "filename": "reading.html",
+    "slug": "reading",
+    "label": "Reading room",
+    "fields": [
+      {
+        "key": "seoTitle",
+        "label": "Browser and search title",
+        "widget": "string"
+      },
+      {
+        "key": "seoDescription",
+        "label": "Search description",
+        "widget": "text"
+      },
+      {
+        "key": "text_001",
+        "label": "Section label — About",
+        "widget": "text"
+      },
+      {
+        "key": "text_002",
+        "label": "H1 heading — Reading room",
+        "widget": "string"
+      },
+      {
+        "key": "text_003",
+        "label": "Text — A place for books and ideas that inform the way I think about AI, data",
+        "widget": "text"
+      },
+      {
+        "key": "text_004",
+        "label": "Text — This shelf shows the intended format. The books below are examples, no",
+        "widget": "text"
+      },
+      {
+        "key": "text_005",
+        "label": "H2 heading — Featured reference",
+        "widget": "string"
+      },
+      {
+        "key": "text_006",
+        "label": "H2 heading — On the shelf",
+        "widget": "string"
+      }
+    ]
+  },
+  {
+    "filename": "contact.html",
+    "slug": "contact",
+    "label": "Contact",
+    "fields": [
+      {
+        "key": "seoTitle",
+        "label": "Browser and search title",
+        "widget": "string"
+      },
+      {
+        "key": "seoDescription",
+        "label": "Search description",
+        "widget": "text"
+      },
+      {
+        "key": "text_001",
+        "label": "Section label — Contact",
+        "widget": "text"
+      },
+      {
+        "key": "text_002",
+        "label": "H1 heading — Let's work on the right problem",
+        "widget": "string"
+      },
+      {
+        "key": "text_003",
+        "label": "Text — If you are shaping an AI initiative, building a product, investigating",
+        "widget": "text"
+      },
+      {
+        "key": "text_004",
+        "label": "H2 heading — Tell me what you are working on",
+        "widget": "string"
+      },
+      {
+        "key": "text_005",
+        "label": "Text — A useful first note includes the problem, the people affected, what yo",
+        "widget": "text"
+      },
+      {
+        "key": "text_006",
+        "label": "Link text — Email Ojobo ↗",
+        "widget": "text"
+      },
+      {
+        "key": "text_007",
+        "label": "H2 heading — Areas of interest",
+        "widget": "string"
+      },
+      {
+        "key": "text_008",
+        "label": "Text — AI transformation strategy, work redesign, platform development, data ",
+        "widget": "text"
+      }
+    ]
+  },
+  {
+    "filename": "project-chedvi.html",
+    "slug": "project-chedvi",
+    "label": "CHEDVI case study",
+    "fields": [
+      {
+        "key": "seoTitle",
+        "label": "Browser and search title",
+        "widget": "string"
+      },
+      {
+        "key": "seoDescription",
+        "label": "Search description",
+        "widget": "text"
+      },
+      {
+        "key": "text_001",
+        "label": "Section label — Live platform · Camden, New Jersey",
+        "widget": "text"
+      },
+      {
+        "key": "text_002",
+        "label": "H1 heading — CHEDVI",
+        "widget": "string"
+      },
+      {
+        "key": "text_003",
+        "label": "Text — Camden Health Equity Data Visualization Initiative",
+        "widget": "text"
+      },
+      {
+        "key": "text_004",
+        "label": "Text — I conceived and led this public-interest platform to make neighborhood",
+        "widget": "text"
+      },
+      {
+        "key": "text_005",
+        "label": "Link text — Explore the live platform ↗",
+        "widget": "text"
+      },
+      {
+        "key": "text_006",
+        "label": "Link text — Read the case study ↓",
+        "widget": "text"
+      },
+      {
+        "key": "image_001",
+        "label": "CHEDVI — image 1",
+        "widget": "image"
+      },
+      {
+        "key": "image_001_alt",
+        "label": "CHEDVI — image description",
+        "widget": "string"
+      },
+      {
+        "key": "text_007",
+        "label": "Text — Health equity is not just a set of figures. It is a question of how co",
+        "widget": "text"
+      },
+      {
+        "key": "text_008",
+        "label": "H2 heading — The challenge",
+        "widget": "string"
+      },
+      {
+        "key": "text_009",
+        "label": "Text — Health outcomes and the social conditions that shape them are often re",
+        "widget": "text"
+      },
+      {
+        "key": "text_010",
+        "label": "H2 heading — What the platform makes possible",
+        "widget": "string"
+      },
+      {
+        "key": "text_011",
+        "label": "Text — The live site gives visitors several routes into the data rather than ",
+        "widget": "text"
+      },
+      {
+        "key": "text_012",
+        "label": "Link text — Try the interactive dashboard ↗",
+        "widget": "text"
+      },
+      {
+        "key": "text_013",
+        "label": "H2 heading — Data and approach",
+        "widget": "string"
+      },
+      {
+        "key": "text_014",
+        "label": "Text — The platform identifies the 2022 US Census Bureau and CDC PLACES datas",
+        "widget": "text"
+      },
+      {
+        "key": "text_015",
+        "label": "H2 heading — My contribution",
+        "widget": "string"
+      },
+      {
+        "key": "text_016",
+        "label": "Link text — full project team",
+        "widget": "text"
+      },
+      {
+        "key": "text_017",
+        "label": "H2 heading — What exists now",
+        "widget": "string"
+      },
+      {
+        "key": "text_018",
+        "label": "Text — CHEDVI is live. Visitors can open the dashboard, examine neighborhood ",
+        "widget": "text"
+      },
+      {
+        "key": "text_019",
+        "label": "Section label — From question to platform",
+        "widget": "text"
+      },
+      {
+        "key": "text_020",
+        "label": "H3 heading — Have a problem that needs a usable tool?",
+        "widget": "string"
+      },
+      {
+        "key": "text_021",
+        "label": "Text — I work across problem framing, applied research, and technical impleme",
+        "widget": "text"
+      },
+      {
+        "key": "text_022",
+        "label": "Link text — Start a conversation →",
+        "widget": "text"
+      }
+    ]
+  },
+  {
+    "filename": "search.html",
+    "slug": "search",
+    "label": "Search",
+    "fields": [
+      {
+        "key": "seoTitle",
+        "label": "Browser and search title",
+        "widget": "string"
+      },
+      {
+        "key": "seoDescription",
+        "label": "Search description",
+        "widget": "text"
+      },
+      {
+        "key": "text_001",
+        "label": "Section label — Explore",
+        "widget": "text"
+      },
+      {
+        "key": "text_002",
+        "label": "H1 heading — Search the site",
+        "widget": "string"
+      },
+      {
+        "key": "text_003",
+        "label": "Prompt — Search pages",
+        "widget": "string"
+      }
+    ]
+  }
+]

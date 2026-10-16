@@ -127,3 +127,1034 @@ collections:
                 widget: select
                 default: draft
                 options: [draft, published]
+
+  - name: site_settings
+    label: Site-wide details
+    files:
+      - label: Header and footer
+        name: header_footer
+        file: content/site-settings.json
+        format: json
+        fields:
+          - { label: Name in header, name: wordmark, widget: string }
+          - { label: Contact button text, name: contactButton, widget: string }
+          - { label: Footer heading, name: footerHeading, widget: string }
+          - { label: Footer introduction, name: footerBio, widget: text }
+          - { label: Footer tagline, name: footerTagline, widget: string }
+
+  - name: editorial_pages
+    label: Pages & sections
+    files:
+      - label: "Homepage"
+        name: home
+        file: content/pages/home.json
+        format: json
+        fields:
+          - label: "Browser and search title"
+            name: seoTitle
+            widget: string
+          - label: "Search description"
+            name: seoDescription
+            widget: text
+          - label: "Hero background image"
+            name: heroImage
+            widget: image
+          - label: "H1 heading — Ojobo Agbo Eje"
+            name: text_001
+            widget: string
+          - label: "Text — Organizations need to redesign work, not simply automate tasks. I conn"
+            name: text_002
+            widget: text
+          - label: "Prompt — The questions I hear most often in conversation"
+            name: text_003
+            widget: string
+          - label: "Section label — Latest writing"
+            name: text_004
+            widget: text
+          - label: "H2 heading — Ideas for making AI useful"
+            name: text_005
+            widget: string
+          - label: "Text — Long-form explanations and practical questions for leaders, teams, and"
+            name: text_006
+            widget: text
+          - label: "Link text — View all writing →"
+            name: text_007
+            widget: text
+          - label: "Section label — The AI transformation framework"
+            name: text_008
+            widget: text
+          - label: "H2 heading — Start with the work. Then decide what AI should do."
+            name: text_009
+            widget: string
+          - label: "Text — A practical sequence for finding real value: define the problem, under"
+            name: text_010
+            widget: text
+          - label: "Link text — Explore the framework →"
+            name: text_011
+            widget: text
+          - label: "Start with the work. Then decide what AI should do. — image 1"
+            name: image_001
+            widget: image
+          - label: "Start with the work. Then decide what AI should do. — image description"
+            name: image_001_alt
+            widget: string
+          - label: "Section label — For decision-makers"
+            name: text_012
+            widget: text
+          - label: "H2 heading — Where should we begin?"
+            name: text_013
+            widget: string
+          - label: "Text — Three practical routes into the questions leaders ask when moving from"
+            name: text_014
+            widget: text
+          - label: "Where should we begin? — image 2"
+            name: image_002
+            widget: image
+          - label: "Where should we begin? — image description"
+            name: image_002_alt
+            widget: string
+          - label: "Section label — The problem"
+            name: text_015
+            widget: text
+          - label: "H3 heading — What are we trying to improve?"
+            name: text_016
+            widget: string
+          - label: "Text — Frame the outcome before choosing technology."
+            name: text_017
+            widget: text
+          - label: "What are we trying to improve? — image 3"
+            name: image_003
+            widget: image
+          - label: "What are we trying to improve? — image description"
+            name: image_003_alt
+            widget: string
+          - label: "Section label — The use case"
+            name: text_018
+            widget: text
+          - label: "H3 heading — Where can AI actually help?"
+            name: text_019
+            widget: string
+          - label: "Text — Connect a specific application to a real process."
+            name: text_020
+            widget: text
+          - label: "Where can AI actually help? — image 4"
+            name: image_004
+            widget: image
+          - label: "Where can AI actually help? — image description"
+            name: image_004_alt
+            widget: string
+          - label: "Section label — The build"
+            name: text_021
+            widget: text
+          - label: "H3 heading — What needs to be built?"
+            name: text_022
+            widget: string
+          - label: "Text — Move from analysis to a working platform."
+            name: text_023
+            widget: text
+          - label: "Section label — Selected works"
+            name: text_024
+            widget: text
+          - label: "H2 heading — Platforms, analysis, and applied ideas"
+            name: text_025
+            widget: string
+          - label: "Text — My work includes developing technical solutions, not just advising on "
+            name: text_026
+            widget: text
+          - label: "Link text — View all builds →"
+            name: text_027
+            widget: text
+          - label: "Section label — Research & perspectives"
+            name: text_028
+            widget: text
+          - label: "H2 heading — The deeper questions behind adoption"
+            name: text_029
+            widget: string
+          - label: "Text — Research and practice meet in questions of readiness, equity, learning"
+            name: text_030
+            widget: text
+          - label: "The deeper questions behind adoption — image 5"
+            name: image_005
+            widget: image
+          - label: "The deeper questions behind adoption — image description"
+            name: image_005_alt
+            widget: string
+          - label: "Section label — Research"
+            name: text_031
+            widget: text
+          - label: "H3 heading — AI readiness is more than access to tools"
+            name: text_032
+            widget: string
+          - label: "Text — Organizations need the data, governance, workforce capability, infrast"
+            name: text_033
+            widget: text
+          - label: "Link text — Explore the research →"
+            name: text_034
+            widget: text
+          - label: "AI readiness is more than access to tools — image 6"
+            name: image_006
+            widget: image
+          - label: "AI readiness is more than access to tools — image description"
+            name: image_006_alt
+            widget: string
+          - label: "Section label — Working thesis"
+            name: text_035
+            widget: text
+          - label: "H3 heading — Redesign work before automating it"
+            name: text_036
+            widget: string
+          - label: "Text — Automation can make the wrong process faster. Transformation asks what"
+            name: text_037
+            widget: text
+          - label: "Link text — Read the framework →"
+            name: text_038
+            widget: text
+          - label: "Section label — Speaking & events"
+            name: text_039
+            widget: text
+          - label: "H2 heading — Join the conversation"
+            name: text_040
+            widget: string
+          - label: "Text — Find my talks, workshops, and upcoming appearances here. Confirmed dat"
+            name: text_041
+            widget: text
+          - label: "Link text — View speaking & events →"
+            name: text_042
+            widget: text
+          - label: "Section label — A working thesis"
+            name: text_043
+            widget: text
+          - label: "Quotation — “Most organizations are adopting AI without transforming. The work beg"
+            name: text_044
+            widget: text
+          - label: "Section label — Signals"
+            name: text_045
+            widget: text
+          - label: "H2 heading — What I am watching"
+            name: text_046
+            widget: string
+          - label: "Text — Shorter observations on the technologies, skills, and institutions sha"
+            name: text_047
+            widget: text
+          - label: "Section label — Work"
+            name: text_048
+            widget: text
+          - label: "H3 heading — Human judgment"
+            name: text_049
+            widget: string
+          - label: "Text — What should remain a human decision when capability is delegated to AI"
+            name: text_050
+            widget: text
+          - label: "Section label — Capability"
+            name: text_051
+            widget: text
+          - label: "H3 heading — AI literacy"
+            name: text_052
+            widget: string
+          - label: "Text — How do teams gain the confidence to use AI critically, not just freque"
+            name: text_053
+            widget: text
+          - label: "Section label — Systems"
+            name: text_054
+            widget: text
+          - label: "H3 heading — Platform thinking"
+            name: text_055
+            widget: string
+          - label: "Text — When should an idea become a reusable product rather than another pilo"
+            name: text_056
+            widget: text
+          - label: "Section label — Newsletter"
+            name: text_057
+            widget: text
+          - label: "H2 heading — The AI Catalyst Report"
+            name: text_058
+            widget: string
+          - label: "Text — Thoughts on understanding, adopting, and using AI responsibly and prof"
+            name: text_059
+            widget: text
+          - label: "Link text — Read on Substack ↗"
+            name: text_060
+            widget: text
+          - label: "Section label — Audio"
+            name: text_061
+            widget: text
+          - label: "H2 heading — Listen to the ideas"
+            name: text_062
+            widget: string
+          - label: "Text — Articles can have an audio edition alongside the written version. The "
+            name: text_063
+            widget: text
+          - label: "Link text — See an article →"
+            name: text_064
+            widget: text
+          - label: "Section label — Concepts"
+            name: text_065
+            widget: text
+          - label: "H2 heading — The ideas that underpin my work"
+            name: text_066
+            widget: string
+          - label: "Text — These are the questions I return to across strategy, research, and bui"
+            name: text_067
+            widget: text
+          - label: "The ideas that underpin my work — image 7"
+            name: image_007
+            widget: image
+          - label: "The ideas that underpin my work — image description"
+            name: image_007_alt
+            widget: string
+          - label: "H3 heading — Problem before platform"
+            name: text_068
+            widget: string
+          - label: "Text — What are we trying to solve, improve, or make possible?"
+            name: text_069
+            widget: text
+          - label: "Problem before platform — image 8"
+            name: image_008
+            widget: image
+          - label: "Problem before platform — image description"
+            name: image_008_alt
+            widget: string
+          - label: "H3 heading — Capability before scale"
+            name: text_070
+            widget: string
+          - label: "Text — Do people and institutions understand, trust, and sustain the change?"
+            name: text_071
+            widget: text
+          - label: "Section label — About"
+            name: text_072
+            widget: text
+          - label: "H2 heading — Builder, researcher, transformation partner"
+            name: text_073
+            widget: string
+          - label: "Text — I work where AI meets organizations and human capability. My practice "
+            name: text_074
+            widget: text
+          - label: "Link text — More about me →"
+            name: text_075
+            widget: text
+      - label: "About"
+        name: about
+        file: content/pages/about.json
+        format: json
+        fields:
+          - label: "Browser and search title"
+            name: seoTitle
+            widget: string
+          - label: "Search description"
+            name: seoDescription
+            widget: text
+          - label: "Hero background image"
+            name: heroImage
+            widget: image
+          - label: "Section label — About"
+            name: text_001
+            widget: text
+          - label: "H1 heading — Ojobo Agbo Eje"
+            name: text_002
+            widget: string
+          - label: "Text — I help organizations make AI transformation real by connecting strateg"
+            name: text_003
+            widget: text
+          - label: "Text — AI is not simply another tool to add to existing work. Its promise dep"
+            name: text_004
+            widget: text
+          - label: "H2 heading — A career in three parts"
+            name: text_005
+            widget: string
+          - label: "Text — My work has moved through analytics and business intelligence, data sc"
+            name: text_006
+            widget: text
+          - label: "Text — That has meant working across education, finance, healthcare, public-i"
+            name: text_007
+            widget: text
+          - label: "H2 heading — How I work"
+            name: text_008
+            widget: string
+          - label: "Text — I begin with the outcome: what needs to be solved, achieved, or improv"
+            name: text_009
+            widget: text
+          - label: "Text — Sometimes the right contribution is a framework or a conversation. Som"
+            name: text_010
+            widget: text
+          - label: "H2 heading — Finding your way around"
+            name: text_011
+            widget: string
+          - label: "Link text — transformation framework"
+            name: text_012
+            widget: text
+          - label: "Link text — technical portfolio"
+            name: text_013
+            widget: text
+          - label: "Link text — Research"
+            name: text_014
+            widget: text
+          - label: "Link text — writing"
+            name: text_015
+            widget: text
+          - label: "Link text — reading room"
+            name: text_016
+            widget: text
+          - label: "Link text — let's talk"
+            name: text_017
+            widget: text
+      - label: "Biography"
+        name: biography
+        file: content/pages/biography.json
+        format: json
+        fields:
+          - label: "Browser and search title"
+            name: seoTitle
+            widget: string
+          - label: "Search description"
+            name: seoDescription
+            widget: text
+          - label: "Section label — About"
+            name: text_001
+            widget: text
+          - label: "H1 heading — Biography"
+            name: text_002
+            widget: string
+          - label: "Text — My career connects technical work, applied research, and the organizat"
+            name: text_003
+            widget: text
+          - label: "H3 heading — Data"
+            name: text_004
+            widget: string
+          - label: "Text — Analytics and business intelligence for clearer decisions."
+            name: text_005
+            widget: text
+          - label: "H3 heading — Research"
+            name: text_006
+            widget: string
+          - label: "Text — Applied data science in consequential settings."
+            name: text_007
+            widget: text
+          - label: "H3 heading — Transformation"
+            name: text_008
+            widget: string
+          - label: "Text — Strategy, capability, and useful technical systems."
+            name: text_009
+            widget: text
+          - label: "H2 heading — Foundations"
+            name: text_010
+            widget: string
+          - label: "Text — I began with engineering, analytics, and business intelligence: buildi"
+            name: text_011
+            widget: text
+          - label: "H2 heading — Research and public interest"
+            name: text_012
+            widget: string
+          - label: "Text — My work expanded into data science, visualization, and research across"
+            name: text_013
+            widget: text
+          - label: "H2 heading — Current work"
+            name: text_014
+            widget: string
+          - label: "Link text — CHEDVI"
+            name: text_015
+            widget: text
+          - label: "Text — This biography is a working draft. I will continue refining the detail"
+            name: text_016
+            widget: text
+      - label: "Leadership & collaboration"
+        name: leadership
+        file: content/pages/leadership.json
+        format: json
+        fields:
+          - label: "Browser and search title"
+            name: seoTitle
+            widget: string
+          - label: "Search description"
+            name: seoDescription
+            widget: text
+          - label: "Section label — About"
+            name: text_001
+            widget: text
+          - label: "H1 heading — Leadership & collaboration"
+            name: text_002
+            widget: string
+          - label: "Text — Transformation succeeds when leaders, practitioners, and the people af"
+            name: text_003
+            widget: text
+          - label: "H2 heading — With leaders"
+            name: text_004
+            widget: string
+          - label: "Text — I help leaders move beyond abstract AI ambition to concrete choices: w"
+            name: text_005
+            widget: text
+          - label: "H2 heading — With builders"
+            name: text_006
+            widget: string
+          - label: "Text — I work with technical teams to connect models, data, and platforms to "
+            name: text_007
+            widget: text
+          - label: "H2 heading — With partners"
+            name: text_008
+            widget: string
+          - label: "Text — Research institutions, community organizations, employers, clients, an"
+            name: text_009
+            widget: text
+          - label: "Link text — Start a conversation about a specific problem →"
+            name: text_010
+            widget: text
+      - label: "AI transformation"
+        name: framework
+        file: content/pages/framework.json
+        format: json
+        fields:
+          - label: "Browser and search title"
+            name: seoTitle
+            widget: string
+          - label: "Search description"
+            name: seoDescription
+            widget: text
+          - label: "Hero background image"
+            name: heroImage
+            widget: image
+          - label: "Section label — Transformation"
+            name: text_001
+            widget: text
+          - label: "H1 heading — A framework for the work ahead"
+            name: text_002
+            widget: string
+          - label: "Text — Technology is one part of transformation. The value comes from changin"
+            name: text_003
+            widget: text
+          - label: "Text — Organizations need to redesign work, not simply automate tasks. Transf"
+            name: text_004
+            widget: text
+          - label: "A framework for the work ahead — image 1"
+            name: image_001
+            widget: image
+          - label: "A framework for the work ahead — image description"
+            name: image_001_alt
+            widget: string
+          - label: "H2 heading — The sequence"
+            name: text_005
+            widget: string
+          - label: "H3 heading — Problem"
+            name: text_006
+            widget: string
+          - label: "Text — What are we trying to solve, achieve, or improve?"
+            name: text_007
+            widget: text
+          - label: "H3 heading — Process"
+            name: text_008
+            widget: string
+          - label: "Text — How does the work happen today?"
+            name: text_009
+            widget: text
+          - label: "H3 heading — Use case"
+            name: text_010
+            widget: string
+          - label: "Text — Where might AI be specifically useful?"
+            name: text_011
+            widget: text
+          - label: "H3 heading — Skills"
+            name: text_012
+            widget: string
+          - label: "Text — What training, confidence, and judgment are needed?"
+            name: text_013
+            widget: text
+          - label: "H3 heading — Technology"
+            name: text_014
+            widget: string
+          - label: "Text — Which data, models, and systems fit the use case?"
+            name: text_015
+            widget: text
+          - label: "H3 heading — Culture"
+            name: text_016
+            widget: string
+          - label: "Text — What supports learning, experimentation, and change?"
+            name: text_017
+            widget: text
+          - label: "H2 heading — Choosing a use case"
+            name: text_018
+            widget: string
+          - label: "Text — A use case is not a general desire to “use AI.” It is a specific appli"
+            name: text_019
+            widget: text
+          - label: "H2 heading — Making change last"
+            name: text_020
+            widget: string
+          - label: "Text — Skills mean more than a one-off training session. People need understa"
+            name: text_021
+            widget: text
+          - label: "Link text — a platform build"
+            name: text_022
+            widget: text
+          - label: "Link text — bring a problem to discuss"
+            name: text_023
+            widget: text
+          - label: "H2 heading — Questions leaders should ask"
+            name: text_024
+            widget: string
+          - label: "Question — What outcome would make this worthwhile?"
+            name: text_025
+            widget: text
+          - label: "Text — Name a real improvement before choosing a tool."
+            name: text_026
+            widget: text
+          - label: "Question — Where is the current process failing?"
+            name: text_027
+            widget: text
+          - label: "Text — Examine the workflow, handoffs, decisions, and constraints before auto"
+            name: text_028
+            widget: text
+          - label: "Question — What must people learn for change to last?"
+            name: text_029
+            widget: text
+          - label: "Text — Plan for training, critical judgment, and room to experiment."
+            name: text_030
+            widget: text
+          - label: "Section label — Start a conversation"
+            name: text_031
+            widget: text
+          - label: "H3 heading — Working through an AI decision?"
+            name: text_032
+            widget: string
+          - label: "Text — We can begin with the problem and decide what needs to change."
+            name: text_033
+            widget: text
+          - label: "Link text — Get in touch →"
+            name: text_034
+            widget: text
+      - label: "Technical projects"
+        name: build
+        file: content/pages/build.json
+        format: json
+        fields:
+          - label: "Browser and search title"
+            name: seoTitle
+            widget: string
+          - label: "Search description"
+            name: seoDescription
+            widget: text
+          - label: "Section label — Work"
+            name: text_001
+            widget: text
+          - label: "H1 heading — Selected builds"
+            name: text_002
+            widget: string
+          - label: "Text — Platform development is part of my practice. I move from an important "
+            name: text_003
+            widget: text
+          - label: "H2 heading — Projects"
+            name: text_004
+            widget: string
+          - label: "H2 heading — How I build"
+            name: text_005
+            widget: string
+          - label: "Text — Each project should be able to explain the problem it addresses, what "
+            name: text_006
+            widget: text
+          - label: "H2 heading — Questions behind a build"
+            name: text_007
+            widget: string
+          - label: "Question — Should this be a tool, workflow, or platform?"
+            name: text_008
+            widget: text
+          - label: "Text — It depends on who needs it, how often the problem recurs, and what mus"
+            name: text_009
+            widget: text
+          - label: "Question — How will we know the product is useful?"
+            name: text_010
+            widget: text
+          - label: "Text — Define the decision or action it should enable before choosing feature"
+            name: text_011
+            widget: text
+          - label: "Section label — Explore a live example"
+            name: text_012
+            widget: text
+          - label: "H3 heading — See CHEDVI in action"
+            name: text_013
+            widget: string
+          - label: "Text — The case study explains the problem and links to the working platform."
+            name: text_014
+            widget: text
+          - label: "Link text — View CHEDVI →"
+            name: text_015
+            widget: text
+      - label: "Research"
+        name: research
+        file: content/pages/research.json
+        format: json
+        fields:
+          - label: "Browser and search title"
+            name: seoTitle
+            widget: string
+          - label: "Search description"
+            name: seoDescription
+            widget: text
+          - label: "Section label — Research"
+            name: text_001
+            widget: text
+          - label: "H1 heading — Evidence for better decisions"
+            name: text_002
+            widget: string
+          - label: "Text — Research helps me ask sharper questions, test assumptions, and ground "
+            name: text_003
+            widget: text
+          - label: "Evidence for better decisions — image 1"
+            name: image_001
+            widget: image
+          - label: "Evidence for better decisions — image description"
+            name: image_001_alt
+            widget: string
+          - label: "H2 heading — Research themes"
+            name: text_004
+            widget: string
+          - label: "Section label — AI readiness"
+            name: text_005
+            widget: text
+          - label: "H3 heading — Conditions for adoption"
+            name: text_006
+            widget: string
+          - label: "Text — How governance, data, workforce capability, and infrastructure shape A"
+            name: text_007
+            widget: text
+          - label: "Section label — Healthcare"
+            name: text_008
+            widget: text
+          - label: "H3 heading — Explainability and trust"
+            name: text_009
+            widget: string
+          - label: "Text — How transparent AI can support more responsible decisions in high-stak"
+            name: text_010
+            widget: text
+          - label: "Section label — Public interest"
+            name: text_011
+            widget: text
+          - label: "H3 heading — Data for communities"
+            name: text_012
+            widget: string
+          - label: "Text — How analysis and visualization can make structural conditions legible."
+            name: text_013
+            widget: text
+          - label: "Section label — Organizations"
+            name: text_014
+            widget: text
+          - label: "H3 heading — Work redesign"
+            name: text_015
+            widget: string
+          - label: "Text — How people, process, technology, and culture interact in transformatio"
+            name: text_016
+            widget: text
+          - label: "H2 heading — From inquiry to action"
+            name: text_017
+            widget: string
+          - label: "Link text — CHEDVI"
+            name: text_018
+            widget: text
+          - label: "H2 heading — Questions I return to"
+            name: text_019
+            widget: string
+          - label: "Question — Who can use the evidence?"
+            name: text_020
+            widget: text
+          - label: "Text — Evidence matters when it is accessible, understandable, and connected "
+            name: text_021
+            widget: text
+          - label: "Question — What conditions enable responsible AI?"
+            name: text_022
+            widget: text
+          - label: "Text — Governance, data quality, capability, and context shape outcomes as mu"
+            name: text_023
+            widget: text
+          - label: "Section label — Research in practice"
+            name: text_024
+            widget: text
+          - label: "H3 heading — See public-interest data in use"
+            name: text_025
+            widget: string
+          - label: "Text — CHEDVI brings complex patterns into an interface people can explore."
+            name: text_026
+            widget: text
+          - label: "Link text — View the case study →"
+            name: text_027
+            widget: text
+      - label: "Writing & audio"
+        name: writing
+        file: content/pages/writing.json
+        format: json
+        fields:
+          - label: "Browser and search title"
+            name: seoTitle
+            widget: string
+          - label: "Search description"
+            name: seoDescription
+            widget: text
+          - label: "Section label — Writing"
+            name: text_001
+            widget: text
+          - label: "H1 heading — Articles & audio"
+            name: text_002
+            widget: string
+          - label: "Text — I write to make AI more understandable and more useful—especially for "
+            name: text_003
+            widget: text
+          - label: "H2 heading — Articles"
+            name: text_004
+            widget: string
+          - label: "H2 heading — The AI Catalyst Report"
+            name: text_005
+            widget: string
+          - label: "Link text — Substack ↗"
+            name: text_006
+            widget: text
+          - label: "Text — The article template supports an optional audio edition. Audio will ap"
+            name: text_007
+            widget: text
+      - label: "Speaking & events"
+        name: speaking
+        file: content/pages/speaking.json
+        format: json
+        fields:
+          - label: "Browser and search title"
+            name: seoTitle
+            widget: string
+          - label: "Search description"
+            name: seoDescription
+            widget: text
+          - label: "Opening section — image 1"
+            name: image_001
+            widget: image
+          - label: "Opening section — image description"
+            name: image_001_alt
+            widget: string
+          - label: "Section label — Speaking & events"
+            name: text_001
+            widget: text
+          - label: "H1 heading — Ideas worth discussing together"
+            name: text_002
+            widget: string
+          - label: "Text — Talks, workshops, and conversations on AI transformation, work redesig"
+            name: text_003
+            widget: text
+          - label: "Section label — Upcoming"
+            name: text_004
+            widget: text
+          - label: "H2 heading — Where to find me next"
+            name: text_005
+            widget: string
+          - label: "Text — Confirmed dates and event details will appear here and in the homepage"
+            name: text_006
+            widget: text
+          - label: "Section label — Themes"
+            name: text_007
+            widget: text
+          - label: "H2 heading — What I speak about"
+            name: text_008
+            widget: string
+          - label: "Text — Each session can be shaped around the audience and the problem they ar"
+            name: text_009
+            widget: text
+          - label: "What I speak about — image 2"
+            name: image_002
+            widget: image
+          - label: "What I speak about — image description"
+            name: image_002_alt
+            widget: string
+          - label: "H3 heading — AI transformation & work redesign"
+            name: text_010
+            widget: string
+          - label: "Text — Why meaningful change starts with the work and the conditions around i"
+            name: text_011
+            widget: text
+          - label: "AI transformation & work redesign — image 3"
+            name: image_003
+            widget: image
+          - label: "AI transformation & work redesign — image description"
+            name: image_003_alt
+            widget: string
+          - label: "H3 heading — From use case to working platform"
+            name: text_012
+            widget: string
+          - label: "Text — How an idea becomes something people can use, test, and improve."
+            name: text_013
+            widget: text
+          - label: "Section label — Formats"
+            name: text_014
+            widget: text
+          - label: "H2 heading — Talks, workshops, and roundtables"
+            name: text_015
+            widget: string
+          - label: "Text — I can contribute a keynote or talk, facilitate a practical workshop, o"
+            name: text_016
+            widget: text
+          - label: "Link text — Start a speaking conversation →"
+            name: text_017
+            widget: text
+          - label: "Section label — Archive"
+            name: text_018
+            widget: text
+          - label: "H2 heading — Past appearances"
+            name: text_019
+            widget: string
+      - label: "Reading room"
+        name: reading
+        file: content/pages/reading.json
+        format: json
+        fields:
+          - label: "Browser and search title"
+            name: seoTitle
+            widget: string
+          - label: "Search description"
+            name: seoDescription
+            widget: text
+          - label: "Section label — About"
+            name: text_001
+            widget: text
+          - label: "H1 heading — Reading room"
+            name: text_002
+            widget: string
+          - label: "Text — A place for books and ideas that inform the way I think about AI, data"
+            name: text_003
+            widget: text
+          - label: "Text — This shelf shows the intended format. The books below are examples, no"
+            name: text_004
+            widget: text
+          - label: "H2 heading — Featured reference"
+            name: text_005
+            widget: string
+          - label: "H2 heading — On the shelf"
+            name: text_006
+            widget: string
+      - label: "Contact"
+        name: contact
+        file: content/pages/contact.json
+        format: json
+        fields:
+          - label: "Browser and search title"
+            name: seoTitle
+            widget: string
+          - label: "Search description"
+            name: seoDescription
+            widget: text
+          - label: "Section label — Contact"
+            name: text_001
+            widget: text
+          - label: "H1 heading — Let's work on the right problem"
+            name: text_002
+            widget: string
+          - label: "Text — If you are shaping an AI initiative, building a product, investigating"
+            name: text_003
+            widget: text
+          - label: "H2 heading — Tell me what you are working on"
+            name: text_004
+            widget: string
+          - label: "Text — A useful first note includes the problem, the people affected, what yo"
+            name: text_005
+            widget: text
+          - label: "Link text — Email Ojobo ↗"
+            name: text_006
+            widget: text
+          - label: "H2 heading — Areas of interest"
+            name: text_007
+            widget: string
+          - label: "Text — AI transformation strategy, work redesign, platform development, data "
+            name: text_008
+            widget: text
+      - label: "CHEDVI case study"
+        name: project-chedvi
+        file: content/pages/project-chedvi.json
+        format: json
+        fields:
+          - label: "Browser and search title"
+            name: seoTitle
+            widget: string
+          - label: "Search description"
+            name: seoDescription
+            widget: text
+          - label: "Section label — Live platform · Camden, New Jersey"
+            name: text_001
+            widget: text
+          - label: "H1 heading — CHEDVI"
+            name: text_002
+            widget: string
+          - label: "Text — Camden Health Equity Data Visualization Initiative"
+            name: text_003
+            widget: text
+          - label: "Text — I conceived and led this public-interest platform to make neighborhood"
+            name: text_004
+            widget: text
+          - label: "Link text — Explore the live platform ↗"
+            name: text_005
+            widget: text
+          - label: "Link text — Read the case study ↓"
+            name: text_006
+            widget: text
+          - label: "CHEDVI — image 1"
+            name: image_001
+            widget: image
+          - label: "CHEDVI — image description"
+            name: image_001_alt
+            widget: string
+          - label: "Text — Health equity is not just a set of figures. It is a question of how co"
+            name: text_007
+            widget: text
+          - label: "H2 heading — The challenge"
+            name: text_008
+            widget: string
+          - label: "Text — Health outcomes and the social conditions that shape them are often re"
+            name: text_009
+            widget: text
+          - label: "H2 heading — What the platform makes possible"
+            name: text_010
+            widget: string
+          - label: "Text — The live site gives visitors several routes into the data rather than "
+            name: text_011
+            widget: text
+          - label: "Link text — Try the interactive dashboard ↗"
+            name: text_012
+            widget: text
+          - label: "H2 heading — Data and approach"
+            name: text_013
+            widget: string
+          - label: "Text — The platform identifies the 2022 US Census Bureau and CDC PLACES datas"
+            name: text_014
+            widget: text
+          - label: "H2 heading — My contribution"
+            name: text_015
+            widget: string
+          - label: "Link text — full project team"
+            name: text_016
+            widget: text
+          - label: "H2 heading — What exists now"
+            name: text_017
+            widget: string
+          - label: "Text — CHEDVI is live. Visitors can open the dashboard, examine neighborhood "
+            name: text_018
+            widget: text
+          - label: "Section label — From question to platform"
+            name: text_019
+            widget: text
+          - label: "H3 heading — Have a problem that needs a usable tool?"
+            name: text_020
+            widget: string
+          - label: "Text — I work across problem framing, applied research, and technical impleme"
+            name: text_021
+            widget: text
+          - label: "Link text — Start a conversation →"
+            name: text_022
+            widget: text
+      - label: "Search"
+        name: search
+        file: content/pages/search.json
+        format: json
+        fields:
+          - label: "Browser and search title"
+            name: seoTitle
+            widget: string
+          - label: "Search description"
+            name: seoDescription
+            widget: text
+          - label: "Section label — Explore"
+            name: text_001
+            widget: text
+          - label: "H1 heading — Search the site"
+            name: text_002
+            widget: string
+          - label: "Prompt — Search pages"
+            name: text_003
+            widget: string

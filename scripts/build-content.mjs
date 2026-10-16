@@ -1,12 +1,22 @@
 import { copyFile, cp, lstat, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { renderEditablePage } from './render-page-content.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const contentPath = join(root, 'content', 'site-content.json');
 const manifestPath = join(root, 'content', 'generated-pages.json');
 const content = JSON.parse(await readFile(contentPath, 'utf8'));
 const preview = process.env.SITE_PREVIEW === 'true';
+let siteSettings = null;
+try {
+  siteSettings = JSON.parse(await readFile(join(root, 'content', 'site-settings.json'), 'utf8'));
+  for (const key of ['wordmark', 'contactButton', 'footerHeading', 'footerBio', 'footerTagline']) {
+    if (typeof siteSettings[key] !== 'string') throw new Error(`Site setting ${key} is missing.`);
+  }
+} catch (error) { if (error.code !== 'ENOENT') throw error; }
+const siteSettingsScript = siteSettings ? `<script>window.siteSettings=${JSON.stringify(siteSettings).replace(/</g, '\\u003c').replace(/>/g, '\\u003e')};</script>` : '';
+const withSiteSettings = markup => siteSettingsScript ? markup.replace(/<script src="site\.js" defer><\/script>/i, `${siteSettingsScript}<script src="site.js" defer></script>`) : markup;
 const kinds = ['essays', 'projects', 'research', 'events', 'reading'];
 const idPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const esc = value => String(value ?? '').replace(/[&<>"']/g, character => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[character]);
@@ -131,7 +141,9 @@ for (const entry of await readdir(root, { withFileTypes: true })) {
   if (/\.css$/.test(entry.name)) await copyFile(join(root, entry.name), join(publishRoot, entry.name));
   if (/\.html$/.test(entry.name)) {
     const markup = await readFile(join(root, entry.name), 'utf8');
-    await writeFile(join(publishRoot, entry.name), preview ? markup.replace(/<head>/i, '<head><meta name="robots" content="noindex,nofollow">') : markup, 'utf8');
+    const edited = await renderEditablePage(root, entry.name, markup);
+    const ready = withSiteSettings(edited);
+    await writeFile(join(publishRoot, entry.name), preview ? ready.replace(/<head>/i, '<head><meta name="robots" content="noindex,nofollow">') : ready, 'utf8');
   }
 }
 for (const name of ['site.js', 'content-render.js']) await copyFile(join(root, name), join(publishRoot, name));

@@ -5,6 +5,7 @@ import { join, resolve } from 'node:path';
 import { tmpdir } from 'node:os';
 import { pathToFileURL } from 'node:url';
 import { runInNewContext } from 'node:vm';
+import { renderEditablePage } from '../scripts/render-page-content.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const read = file => readFile(join(root, file), 'utf8');
@@ -50,12 +51,36 @@ test('the editor is present but requires a real hosted site ID', async () => {
   const config = await read('admin/config.yml');
   assert.match(config, /turbo-github/);
   assert.match(config, /REPLACE_WITH_DECAP_TURBO_SITE_ID/);
+  assert.match(config, /name: editorial_pages/);
+  assert.match(config, /name: site_settings/);
+});
+
+test('page editor safely changes text, images, and search descriptions', async () => {
+  const fixture = await mkdtemp(join(tmpdir(), 'ojobo-page-test-'));
+  try {
+    await mkdir(join(fixture, 'content', 'pages'), { recursive: true });
+    const fields = ['seoTitle', 'seoDescription', 'text_001', 'image_001', 'image_001_alt', 'heroImage'].map(key => ({ key }));
+    await writeFile(join(fixture, 'content', 'pages', 'manifest.json'), JSON.stringify([{ filename: 'index.html', slug: 'home', fields }]));
+    const data = { seoTitle: 'A & B', seoDescription: 'Quote "this"', text_001: '<script>alert(1)</script>', image_001: 'assets/new-photo.png', image_001_alt: 'A <portrait>', heroImage: 'assets/hero.png' };
+    await writeFile(join(fixture, 'content', 'pages', 'home.json'), JSON.stringify(data));
+    const source = '<head><title>Old</title><meta name="description" content="Old"></head><section data-edit-background="heroImage"><h1 data-edit-text="text_001">Old</h1><img src="assets/old.png" alt="Old" data-edit-image="image_001"></section>';
+    const output = await renderEditablePage(fixture, 'index.html', source);
+    assert.match(output, /<title>A &amp; B<\/title>/);
+    assert.match(output, /content="Quote &quot;this&quot;"/);
+    assert.match(output, /&lt;script&gt;alert\(1\)&lt;\/script&gt;/);
+    assert.match(output, /src="assets\/new-photo.png" alt="A &lt;portrait&gt;"/);
+    assert.match(output, /background-image:url\(&#39;assets\/hero.png&#39;\)/);
+    data.image_001 = "assets/x');alert(1)//";
+    await writeFile(join(fixture, 'content', 'pages', 'home.json'), JSON.stringify(data));
+    await assert.rejects(renderEditablePage(fixture, 'index.html', source), /Unsafe page image path/);
+  } finally { await rm(fixture, { recursive: true, force: true }); }
 });
 
 test('deployment package includes public pages but not source material or drafts', async () => {
   await access(join(root, 'dist', 'index.html'));
   await access(join(root, 'dist', 'admin', 'index.html'));
   await access(join(root, 'dist', 'content', 'site-content.js'));
+  assert.match(await read('dist/index.html'), /window\.siteSettings=/);
   if (process.env.SITE_PREVIEW === 'true') {
     assert.match(await read('dist/index.html'), /<meta name="robots" content="noindex,nofollow">/);
     assert.match(await read('dist/robots.txt'), /Disallow: \//);
@@ -71,7 +96,7 @@ test('a sample publication builds its pages while a draft stays private', async 
   const fixture = await mkdtemp(join(tmpdir(), 'ojobo-publish-test-'));
   try {
     for (const folder of ['scripts', 'content', 'admin', 'assets']) await mkdir(join(fixture, folder));
-    for (const file of ['scripts/build-content.mjs', 'admin/index.html', 'admin/config.yml', 'site.js', 'content-render.js']) {
+    for (const file of ['scripts/build-content.mjs', 'scripts/render-page-content.mjs', 'admin/index.html', 'admin/config.yml', 'site.js', 'content-render.js']) {
       await copyFile(join(root, file), join(fixture, file));
     }
     const sample = structuredClone(data);

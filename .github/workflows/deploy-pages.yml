@@ -1,8 +1,10 @@
-# Manual until the staging site is approved. Add a push trigger after launch so CMS edits publish automatically.
+# Publish the preview automatically whenever editable content is saved to main.
 name: Build and deploy website
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
 
 permissions:
   contents: read

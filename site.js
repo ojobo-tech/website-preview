@@ -1,4 +1,6 @@
 const page = document.body.dataset.page || 'home';
+const siteSettings = window.siteSettings || {};
+const cleanText = value => String(value ?? '').replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
 const links = [
   ['about', 'About', 'about.html'],
   ['framework', 'Transformation', 'framework.html'],
@@ -9,7 +11,7 @@ const links = [
 ];
 const active = { biography:'about', leadership:'about', reading:'about', 'project-chedvi':'build', essay:'writing' }[page] || page;
 const header = document.querySelector('[data-header]');
-if (header) header.innerHTML = `<a class="wordmark" href="index.html">Ojobo Agbo Eje</a><nav id="primary-nav" aria-label="Primary navigation">${links.map(([key,label,url]) => `<a href="${url}" ${active === key ? 'aria-current="page"' : ''}>${label}</a>`).join('')}</nav><div class="nav-tools"><a class="icon-link" href="search.html" aria-label="Search">⌕</a><a class="icon-link" href="contact.html" aria-label="Contact">✉</a><a class="nav-contact" href="contact.html">Get in touch</a><button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">☰</button></div>`;
+if (header) header.innerHTML = `<a class="wordmark" href="index.html">${cleanText(siteSettings.wordmark || 'Ojobo Agbo Eje')}</a><nav id="primary-nav" aria-label="Primary navigation">${links.map(([key,label,url]) => `<a href="${url}" ${active === key ? 'aria-current="page"' : ''}>${label}</a>`).join('')}</nav><div class="nav-tools"><a class="icon-link" href="search.html" aria-label="Search">⌕</a><a class="icon-link" href="contact.html" aria-label="Contact">✉</a><a class="nav-contact" href="contact.html">${cleanText(siteSettings.contactButton || 'Get in touch')}</a><button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">☰</button></div>`;
 const menu = document.querySelector('.menu-toggle');
 const topicMenus = {
   framework: [['My take','#my-take'],['Framework','#sequence'],['Use cases','#use-cases'],['Selected work','build.html'],['Questions','#questions']],
@@ -40,7 +42,7 @@ menu?.addEventListener('click', () => {
   menu.textContent = open ? '×' : '☰';
 });
 const footer = document.querySelector('[data-footer]');
-if (footer) footer.innerHTML = `<div class="container"><div class="footer-grid"><div><h3>About me</h3><p>I work across AI transformation, applied research, and platform development. The aim is to help organizations redesign work around real problems and build the capability to sustain change.</p><a href="about.html">Read about my work →</a></div><div><h4>Explore</h4><a href="framework.html">AI transformation</a><a href="build.html">Technical projects</a><a href="research.html">Research</a><a href="writing.html">Articles & audio</a><a href="speaking.html">Speaking & events</a><a href="reading.html">Reading room</a></div><div><h4>Connect</h4><a href="contact.html">Start a conversation</a><a href="https://ojoboagboeje.substack.com/" target="_blank" rel="noopener noreferrer">The AI Catalyst Report ↗</a><a href="https://chedvi.onrender.com/" target="_blank" rel="noopener noreferrer">Explore CHEDVI ↗</a></div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} Ojobo Agbo Eje</span><span>AI transformation · Research · Applied technology</span><a href="#top">Back to top ↑</a></div></div>`;
+if (footer) footer.innerHTML = `<div class="container"><div class="footer-grid"><div><h3>${cleanText(siteSettings.footerHeading || 'About me')}</h3><p>${cleanText(siteSettings.footerBio || 'I work across AI transformation, applied research, and platform development.')}</p><a href="about.html">Read about my work →</a></div><div><h4>Explore</h4><a href="framework.html">AI transformation</a><a href="build.html">Technical projects</a><a href="research.html">Research</a><a href="writing.html">Articles & audio</a><a href="speaking.html">Speaking & events</a><a href="reading.html">Reading room</a></div><div><h4>Connect</h4><a href="contact.html">Start a conversation</a><a href="https://ojoboagboeje.substack.com/" target="_blank" rel="noopener noreferrer">The AI Catalyst Report ↗</a><a href="https://chedvi.onrender.com/" target="_blank" rel="noopener noreferrer">Explore CHEDVI ↗</a></div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} ${cleanText(siteSettings.wordmark || 'Ojobo Agbo Eje')}</span><span>${cleanText(siteSettings.footerTagline || 'AI transformation · Research · Applied technology')}</span><a href="#top">Back to top ↑</a></div></div>`;
 document.querySelector('[data-question-nav]')?.addEventListener('change', event => {
   if (event.target.value) location.href = event.target.value;
 });
