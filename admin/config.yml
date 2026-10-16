@@ -1,0 +1,129 @@
+# Connect this editor to an owned Git repository before the site goes live.
+# Replace the site ID after creating this site in Decap Turbo.
+backend:
+  name: turbo-github
+  turbo_site_id: REPLACE_WITH_DECAP_TURBO_SITE_ID
+  branch: main
+
+local_backend: true
+media_folder: assets/uploads
+public_folder: assets/uploads
+
+collections:
+  - name: website
+    label: Website content
+    files:
+      - name: catalog
+        label: Articles, projects, research, events & reading
+        file: content/site-content.json
+        format: json
+        fields:
+          - { label: Version, name: version, widget: hidden, default: 1 }
+          - label: Articles
+            name: essays
+            widget: list
+            default: []
+            summary: '{{fields.title}}'
+            collapsed: true
+            fields:
+              - { label: ID, name: id, widget: string, hint: 'Unique lowercase words separated by hyphens; keep unchanged after publishing.' }
+              - { label: Title, name: title, widget: string }
+              - { label: Category, name: category, widget: string, required: false }
+              - { label: Short summary, name: summary, widget: text }
+              - { label: Intro paragraph, name: lead, widget: text, required: false }
+              - { label: Cover image, name: image, widget: image, required: false }
+              - { label: Image description, name: imageAlt, widget: string, required: false }
+              - { label: Audio recording, name: audio, widget: file, required: false, hint: 'Optional MP3 or M4A recording of this article.' }
+              - { label: Read time in minutes, name: readMinutes, widget: string, required: false }
+              - { label: Article, name: body, widget: markdown }
+              - { label: Featured on homepage, name: featured, widget: boolean, default: false }
+              - label: Status
+                name: status
+                widget: select
+                default: draft
+                options: [draft, published]
+          - label: Projects
+            name: projects
+            widget: list
+            default: []
+            summary: '{{fields.title}}'
+            collapsed: true
+            fields:
+              - { label: ID, name: id, widget: string, hint: 'Unique lowercase words separated by hyphens; keep unchanged after publishing.' }
+              - { label: Title, name: title, widget: string }
+              - { label: Category, name: category, widget: string, required: false }
+              - { label: Short summary, name: summary, widget: text }
+              - { label: Cover image, name: image, widget: image, required: false }
+              - { label: Image description, name: imageAlt, widget: string, required: false }
+              - { label: Case study text, name: body, widget: markdown, required: false }
+              - { label: Create case-study page, name: detailReady, widget: boolean, default: false, hint: 'Enable after the case-study text is ready. Existing linked pages are unaffected.' }
+              - { label: Existing page URL, name: url, widget: string, required: false, hint: 'Leave blank for a new case study. Do not change existing CHEDVI URL.' }
+              - { label: Featured on homepage, name: featured, widget: boolean, default: false }
+              - label: Status
+                name: status
+                widget: select
+                default: draft
+                options: [draft, published]
+          - label: Research outputs
+            name: research
+            widget: list
+            default: []
+            summary: '{{fields.title}}'
+            collapsed: true
+            fields:
+              - { label: ID, name: id, widget: string, hint: 'Unique lowercase words separated by hyphens; keep unchanged after publishing.' }
+              - { label: Title, name: title, widget: string }
+              - { label: Category, name: category, widget: string, required: false }
+              - { label: Short summary, name: summary, widget: text }
+              - { label: Image, name: image, widget: image, required: false }
+              - { label: Image description, name: imageAlt, widget: string, required: false }
+              - { label: Research text, name: body, widget: markdown, required: false, hint: 'Adding text creates a detail page.' }
+              - { label: Source or publication URL, name: link, widget: string, required: false }
+              - label: Status
+                name: status
+                widget: select
+                default: draft
+                options: [draft, published]
+          - label: Speaking & events
+            name: events
+            widget: list
+            default: []
+            summary: '{{fields.title}} — {{fields.date}}'
+            collapsed: true
+            fields:
+              - { label: ID, name: id, widget: string, hint: 'Unique lowercase words separated by hyphens.' }
+              - { label: Title, name: title, widget: string }
+              - { label: Date, name: date, widget: date, format: 'YYYY-MM-DD', time: false }
+              - { label: Event or organizer, name: event, widget: string, required: false }
+              - { label: Place, name: place, widget: string, required: false }
+              - { label: Your role, name: role, widget: string, required: false }
+              - { label: Description, name: description, widget: text, required: false }
+              - { label: Event link, name: url, widget: string, required: false }
+              - { label: Image, name: image, widget: image, required: false }
+              - { label: Image description, name: imageAlt, widget: string, required: false }
+              - label: Status
+                name: status
+                widget: select
+                default: draft
+                options: [draft, published]
+          - label: Reading room
+            name: reading
+            widget: list
+            default: []
+            summary: '{{fields.title}}'
+            collapsed: true
+            fields:
+              - { label: ID, name: id, widget: string, hint: 'Unique lowercase words separated by hyphens.' }
+              - { label: Title, name: title, widget: string }
+              - { label: Author or source, name: author, widget: string, required: false }
+              - { label: Category, name: category, widget: string, required: false }
+              - { label: Your note, name: summary, widget: text }
+              - { label: Cover image, name: image, widget: image, required: false }
+              - { label: Image description, name: imageAlt, widget: string, required: false }
+              - { label: Reference link, name: link, widget: string, required: false }
+              - { label: Featured reference, name: featured, widget: boolean, default: false }
+              - label: Status
+                name: status
+                widget: select
+                default: draft
+                options: [draft, published]

@@ -1,0 +1,73 @@
+window.siteContent = {
+  "version": 1,
+  "essays": [
+    {
+      "id": "how-ai-actually-works",
+      "title": "How AI Actually Works",
+      "category": "AI literacy",
+      "summary": "Better mental models for better judgment.",
+      "lead": "Many people do not need more technical vocabulary. They need a reliable mental model of what AI is doing, where it helps, and when its output needs scrutiny.",
+      "image": "assets/editorial-ai-literacy.png",
+      "imageAlt": "Illustrative image of colleagues learning about AI together",
+      "audio": "",
+      "readMinutes": "6",
+      "body": "## Mental models\nOne useful starting point is to think of a language model as a system that has learned patterns from very large amounts of information. It generates responses that fit those learned patterns. This can be remarkably useful, but it is not the same as a person checking facts against the world.\n\n## Limitations\nThe system can be fluent and wrong. It may miss context, reproduce bias, or provide an answer that sounds precise without reliable evidence. The more consequential the decision, the more important it is to verify the output.\n\n## Judgment\nAI literacy helps people ask better questions, notice uncertainty, and decide when human expertise is necessary. That is why skills are part of transformation, not an optional training exercise after technology has already been chosen.",
+      "status": "published",
+      "featured": true,
+      "url": "essay.html"
+    }
+  ],
+  "projects": [
+    {
+      "id": "chedvi",
+      "title": "Camden Health Equity Data Visualization Initiative",
+      "category": "Live platform",
+      "summary": "A live health-equity platform I conceived and led, built to make neighborhood patterns easier to explore.",
+      "image": "assets/chedvi-home-screenshot.png",
+      "imageAlt": "Screenshot of the live CHEDVI homepage",
+      "url": "project-chedvi.html",
+      "body": "",
+      "status": "published",
+      "featured": true
+    },
+    {
+      "id": "state-ai-readiness-index",
+      "title": "State AI Readiness Index",
+      "category": "Measurement concept",
+      "summary": "A framework for understanding governance, workforce, data, and infrastructure foundations.",
+      "image": "assets/editorial-platform-build.png",
+      "imageAlt": "Illustrative image of a data platform in development",
+      "url": "",
+      "body": "A measurement concept for examining the foundations of meaningful AI adoption: governance, workforce capability, data, and infrastructure.",
+      "status": "published",
+      "featured": true
+    },
+    {
+      "id": "property-ownership-networks",
+      "title": "Property Ownership Networks in Camden",
+      "category": "Data intelligence",
+      "summary": "Geospatial analysis to make complex ownership patterns visible.",
+      "image": "assets/editorial-data-research.png",
+      "imageAlt": "Illustrative image of mapping and spatial analysis",
+      "url": "",
+      "body": "An applied analysis exploring how complex property-ownership patterns can be made visible through data and geography.",
+      "status": "published",
+      "featured": false
+    },
+    {
+      "id": "explainable-ai-healthcare",
+      "title": "Explainable AI in Healthcare",
+      "category": "Applied research",
+      "summary": "Research into transparency, trust, and adoption in high-stakes settings.",
+      "image": "assets/editorial-ai-literacy.png",
+      "imageAlt": "Illustrative image of professionals discussing AI",
+      "url": "research.html",
+      "body": "",
+      "status": "published",
+      "featured": true
+    }
+  ],
+  "research": [],
+  "events": [],
+  "reading": []
+};

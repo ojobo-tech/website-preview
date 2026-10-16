@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Website editor — Ojobo Agbo Eje</title>
+  <style>body{margin:0;background:#0c1b2b;color:#fff;font:16px/1.6 Arial,sans-serif}main{max-width:620px;margin:12vh auto;padding:40px}h1{font:700 38px/1.15 Georgia,serif}p{color:#d7e0e9}a{color:#a9baff}</style>
+</head>
+<body>
+  <main id="editor-status"><h1>Website editor</h1><p>This editor will let you publish articles, projects, research, speaking dates, and reading notes from any device. It needs the site's hosting and secure sign-in connected first.</p><p><a href="../index.html">Return to the website →</a></p></main>
+  <script>
+    fetch('config.yml').then(response => response.text()).then(config => {
+      if (config.includes('REPLACE_WITH_DECAP_TURBO_SITE_ID')) return;
+      document.querySelector('#editor-status').remove();
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/decap-cms@^3.0.0/dist/decap-cms.js';
+      document.body.append(script);
+    }).catch(() => {});
+  </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "ojobo-agbo-eje-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-content.mjs",
+    "check": "node --test --test-isolation=none tests/site.test.mjs"
+  }
+}
