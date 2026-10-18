@@ -53,6 +53,26 @@ test('published article pages are built and their images exist', async () => {
   }
 });
 
+test('the four Substack essays retain full text, provenance, and publication dates', async () => {
+  const importedIds = new Set(['five-stages-ai-maturity', 'new-wine-old-wineskins', 'history-ai-investment-roi', 'ai-adoption-paradox']);
+  const imported = data.essays.filter(item => importedIds.has(item.id));
+  assert.equal(imported.length, 4);
+  for (const essay of imported) {
+    assert.match(essay.sourceUrl, /^https:\/\/ojoboagboeje\.substack\.com\/p\//);
+    assert.ok(essay.body.split(/\s+/).length > 1200, `${essay.id} looks incomplete`);
+    assert.match(essay.publishedAt, /^2026-\d{2}-\d{2}$/);
+    assert.match(essay.body, /^## /m);
+    assert.doesNotMatch(essay.body, /Thanks for reading The AI Catalyst Report|Type your email/);
+    assert.doesNotMatch(essay.body, /[.!?][A-Z][a-z]/);
+    const html = await read(`dist/essay-${essay.id}.html`);
+    assert.ok(html.includes(`datetime="${essay.publishedAt}"`));
+    assert.ok(html.includes(`rel="canonical" href="${essay.sourceUrl}"`));
+    assert.match(html, /Originally published in/);
+    assert.match(html, /Related articles/);
+  }
+  assert.match(await read('dist/essay-five-stages-ai-maturity.html'), /<ol>/);
+});
+
 test('reading and event entries are visible in built HTML and their images exist', async () => {
   const home = await read('dist/index.html');
   const reading = await read('dist/reading.html');

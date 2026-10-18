@@ -169,6 +169,9 @@ body[data-page=home] .speaking-band .section-more{display:none}
 .essay-audio .kicker{display:block;margin-bottom:12px}
 .essay-audio audio{display:block;width:100%}
 .essay-body blockquote{border-left:4px solid var(--blue);padding:12px 0 12px 24px;margin:30px 0;font:500 22px/1.45 var(--serif);color:var(--navy)}
+.essay-body ol{padding-left:27px;font:400 18px/1.65 var(--serif)}
+.essay-body li{margin-bottom:8px}
+.essay-origin{border-top:1px solid var(--line);padding-top:20px;margin-top:40px;color:var(--muted);font:14px/1.5 var(--sans)!important}
 .essay-body img{max-width:100%;height:auto}
 .essay-mobile-toc{display:none}
 .essay-questions{margin-top:65px;border-top:1px solid var(--line)}

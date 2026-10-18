@@ -32,6 +32,8 @@ Each published entry in `essays` uses the same image-led article template. Edit 
 
 Optional article fields are `publishedAt` (`YYYY-MM-DD`), `readMinutes` (a number or short text), `location`, `tags` (a list of short labels), and `audio` (an uploaded MP3 path such as `assets/my-article.mp3`). Add `questions` as a list of `{ "question": "...", "answer": "..." }` pairs if the article needs a closing question-and-answer section. Leave any unknown date, location, or recording out; the page will hide that part instead of showing a placeholder. The related-article section fills itself from your other published essays.
 
+For an essay that first appeared on Substack, `sourceUrl` links to the original edition and keeps that edition as the search-engine canonical version. This avoids asking search engines to choose between duplicate copies. If you later decide this website should be the primary home for an essay, have Codex review and change its canonical setting deliberately.
+
 For a new essay, ask Codex to add the entry and check its links. New published essays receive their own page automatically. A draft entry is hidden from the website but, because this repository is public, its text is still visible on GitHub.
 
 The shared header name and footer wording are in [content/site-settings.json](https://github.com/ojobo-tech/website-preview/blob/main/content/site-settings.json). Layout and navigation destinations still need a site-code change.
