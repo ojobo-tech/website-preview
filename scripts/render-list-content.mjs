@@ -22,6 +22,9 @@ const eventImage = item => asset(item.image) || 'assets/editorial-speaking-stage
 const eventMeta = item => [eventDateRange(item), item.event, item.place].filter(Boolean).join(' · ');
 const eventSlide = (item, first) => `<article class="speaking-slide" data-speaking-slide${first ? '' : ' hidden aria-hidden="true"'}><div class="speaking-slide-visual"><img src="${esc(eventImage(item))}" alt="${esc(item.imageAlt || `Image for ${item.title}`)}" loading="lazy"></div><div class="speaking-slide-copy"><span class="kicker">${esc(item.role || 'Upcoming appearance')}</span><h3>${esc(item.title)}</h3><p class="event-meta">${esc(eventMeta(item))}</p>${item.description ? `<p>${esc(item.description)}</p>` : ''}<a class="arrow-link" href="${esc(external(item.url) || 'speaking.html')}"${external(item.url) ? ' target="_blank" rel="noopener noreferrer"' : ''}>${external(item.url) ? 'Event details →' : 'Speaking & events →'}</a></div></article>`;
 const eventCard = item => `<article class="event-list-card"><img src="${esc(eventImage(item))}" alt="${esc(item.imageAlt || `Image for ${item.title}`)}" loading="lazy"${item.imageFit === 'contain' ? ' class="event-image-contain"' : ''}><div><span class="kicker">${esc([item.role || 'Appearance', eventDateRange(item)].filter(Boolean).join(' · '))}</span><h3>${esc(item.title)}</h3><p class="event-meta">${esc([item.event, item.place].filter(Boolean).join(' · '))}</p>${item.description ? `<p>${esc(item.description)}</p>` : ''}${external(item.url) ? `<a class="arrow-link" href="${esc(item.url)}" target="_blank" rel="noopener noreferrer">Event details →</a>` : ''}</div></article>`;
+const essayImage = item => asset(item.image) || 'assets/editorial-ai-literacy.png';
+const essayHref = item => item.id === 'how-ai-actually-works' ? 'essay.html' : `essay-${item.id}.html`;
+const essayCard = item => `<a class="editorial-card" href="${esc(essayHref(item))}"><img src="${esc(essayImage(item))}" alt="${esc(item.imageAlt || `Illustration for ${item.title}`)}" loading="lazy"><div class="editorial-card-copy"><span class="kicker">${esc(item.category || 'Article')}</span><h3>${esc(item.title)}</h3><p>${esc(item.summary || '')}</p><span class="editorial-card-action">Read article →</span></div></a>`;
 const replaceMarker = (markup, marker, replacement) => markup.replace(`<!-- ${marker} -->`, replacement);
 export const renderListContent = (markup, filename, content, today) => {
   if (filename === 'reading.html') {
@@ -34,6 +37,14 @@ export const renderListContent = (markup, filename, content, today) => {
   const upcoming = events.filter(item => (dateIsValid(item.endDate) ? item.endDate : item.date) >= today).sort((a,b) => a.date.localeCompare(b.date));
   const past = events.filter(item => (dateIsValid(item.endDate) ? item.endDate : item.date) < today).sort((a,b) => b.date.localeCompare(a.date));
   if (filename === 'index.html') {
+    const essayOpening = '<div class="editorial-grid" data-content-list="essays-home">';
+    const essayStart = markup.indexOf(essayOpening);
+    const essayEnd = markup.indexOf('<div class="section-more">', essayStart);
+    if (essayStart >= 0) {
+      if (essayEnd < 0) throw new Error('Homepage writing section was not found.');
+      const featured = content.essays.filter(item => item.status === 'published' && item.featured).slice(0, 3);
+      markup = markup.slice(0, essayStart) + essayOpening + featured.map(essayCard).join('') + '</div>' + markup.slice(essayEnd);
+    }
     const opening = '<div class="speaking-track" data-speaking-track aria-live="polite">';
     const start = markup.indexOf(opening);
     const end = markup.indexOf('<div class="speaking-controls"', start);

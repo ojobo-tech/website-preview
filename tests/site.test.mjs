@@ -39,6 +39,17 @@ test('all managed lists load the content renderer', async () => {
   }
 });
 
+test('homepage latest writing shows exactly three article cards', async () => {
+  const html = await read('dist/index.html');
+  const section = html.split('id="latest-writing"')[1].split('class="section-more"')[0];
+  assert.equal((section.match(/class="editorial-card"/g) || []).length, 3);
+  assert.doesNotMatch(section, /href="framework\.html"|href="research\.html"/);
+  for (const essay of data.essays.filter(item => item.status === 'published' && item.featured).slice(0, 3)) {
+    const file = essay.id === 'how-ai-actually-works' ? 'essay.html' : `essay-${essay.id}.html`;
+    assert.ok(section.includes(`href="${file}"`));
+  }
+});
+
 test('published article pages are built and their images exist', async () => {
   for (const essay of data.essays.filter(item => item.status === 'published')) {
     const file = essay.id === 'how-ai-actually-works' ? 'essay.html' : `essay-${essay.id}.html`;

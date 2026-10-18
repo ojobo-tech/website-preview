@@ -49,7 +49,7 @@ const projectItems = live(siteContent.projects);
 for (const container of document.querySelectorAll('[data-content-list]')) {
   const type = container.dataset.contentList;
   if (type === 'essays-home' || type === 'essays') {
-    const evergreen = [...container.children].filter(child => child.matches('a[href="framework.html"],a[href="research.html"]'));
+    const evergreen = type === 'essays-home' ? [] : [...container.children].filter(child => child.matches('a[href="framework.html"],a[href="research.html"]'));
     const selected = type === 'essays-home' ? essayItems.filter(item => item.featured).slice(0, 3) : essayItems;
     container.replaceChildren(...selected.map(essayCard), ...evergreen);
   }
