@@ -50,11 +50,20 @@ const siteEvents = Array.isArray(window.siteContent?.events) ? window.siteConten
 const now = new Date();
 const today = [now.getFullYear(), String(now.getMonth() + 1).padStart(2, '0'), String(now.getDate()).padStart(2, '0')].join('-');
 const eventIsPublished = event => event && event.title && /^\d{4}-\d{2}-\d{2}$/.test(event.date || '') && event.status !== 'draft';
-const upcomingEvents = siteEvents.filter(event => eventIsPublished(event) && (event.status === 'upcoming' || (event.status === 'published' && event.date >= today)));
-const pastEvents = siteEvents.filter(event => eventIsPublished(event) && (event.status === 'past' || (event.status === 'published' && event.date < today)));
+const eventEnd = event => /^\d{4}-\d{2}-\d{2}$/.test(event.endDate || '') && event.endDate > event.date ? event.endDate : event.date;
+const upcomingEvents = siteEvents.filter(event => eventIsPublished(event) && (event.status === 'upcoming' || (event.status === 'published' && eventEnd(event) >= today))).sort((a,b) => a.date.localeCompare(b.date));
+const pastEvents = siteEvents.filter(event => eventIsPublished(event) && (event.status === 'past' || (event.status === 'published' && eventEnd(event) < today))).sort((a,b) => b.date.localeCompare(a.date));
 const eventDate = value => {
   const date = new Date(`${value}T12:00:00`);
   return Number.isNaN(date.getTime()) ? value : date.toLocaleDateString('en-US', { month:'long', day:'numeric', year:'numeric' });
+};
+const eventDateRange = event => {
+  if (eventEnd(event) === event.date) return eventDate(event.date);
+  const start = new Date(`${event.date}T12:00:00`);
+  const end = new Date(`${event.endDate}T12:00:00`);
+  if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) return eventDate(event.date);
+  if (event.date.slice(0, 7) === event.endDate.slice(0, 7)) return `${start.toLocaleDateString('en-US', { month:'long', day:'numeric' })}–${end.getDate()}, ${end.getFullYear()}`;
+  return `${eventDate(event.date)}–${eventDate(event.endDate)}`;
 };
 const eventImage = value => typeof value === 'string' && /^(?:\/?assets\/[-\w./]+|https:\/\/[^\s<>"']+)$/.test(value) && !value.includes('..') ? value : 'assets/editorial-speaking-stage.png';
 const eventUrl = value => typeof value === 'string' && /^https:\/\//.test(value) ? value : 'speaking.html';
@@ -80,7 +89,7 @@ const makeEventSlide = event => {
   copy.className = 'speaking-slide-copy';
   addText(copy, 'span', 'kicker', event.role || 'Upcoming appearance');
   addText(copy, 'h3', '', event.title);
-  addText(copy, 'p', 'event-meta', [eventDate(event.date), event.event, event.place].filter(Boolean).join(' · '));
+  addText(copy, 'p', 'event-meta', [eventDateRange(event), event.event, event.place].filter(Boolean).join(' · '));
   if (event.description) addText(copy, 'p', '', event.description);
   const link = addText(copy, 'a', 'arrow-link', event.url ? 'Event details →' : 'Speaking & events →');
   link.href = eventUrl(event.url);
@@ -130,8 +139,9 @@ for (const status of ['upcoming','past']) {
     img.src = eventImage(event.image);
     img.alt = event.imageAlt || 'Illustrative image for this speaking event';
     img.loading = 'lazy';
+    if (event.imageFit === 'contain') img.className = 'event-image-contain';
     const copy = document.createElement('div');
-    addText(copy, 'span', 'kicker', [event.role || 'Speaking', eventDate(event.date)].join(' · '));
+    addText(copy, 'span', 'kicker', [event.role || 'Appearance', eventDateRange(event)].join(' · '));
     addText(copy, 'h3', '', event.title);
     addText(copy, 'p', 'event-meta', [event.event, event.place].filter(Boolean).join(' · '));
     if (event.description) addText(copy, 'p', '', event.description);

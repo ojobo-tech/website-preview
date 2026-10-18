@@ -69,27 +69,28 @@ for (const container of document.querySelectorAll('[data-content-list]')) {
       add(container, 'p', 'reading-empty', 'No reading-room entries have been published yet.');
       continue;
     }
-    note?.remove();
     const featured = items.find(item => item.featured) || items[0];
     if (feature) {
       const cover = add(feature, 'div', 'book-cover cover-evidence');
       if (safeMedia(featured.image)) { const img = add(cover, 'img'); img.src = featured.image; img.alt = featured.imageAlt || `Cover for ${featured.title}`; }
-      else add(cover, 'span', '', featured.title);
+      else add(cover, 'span', '', featured.coverText || featured.title);
       const copy = add(feature, 'div');
       add(copy, 'span', 'kicker', featured.category || 'Reading note');
       add(copy, 'h3', '', featured.title);
-      add(copy, 'p', '', featured.summary || '');
-      if (safePage(featured.link)) { const link = add(copy, 'a', 'arrow-link', 'Explore reference ↗'); link.href = featured.link; }
+      if (featured.author) add(copy, 'p', 'book-author', featured.author);
+      if (featured.summary) add(copy, 'p', '', featured.summary);
+      if (safePage(featured.link)) { const link = add(copy, 'a', 'arrow-link', 'Explore reference ↗'); link.href = featured.link; if (link.href.startsWith('https://')) { link.target = '_blank'; link.rel = 'noopener noreferrer'; } }
     }
     for (const item of items.filter(item => item !== featured)) {
       const entry = add(container, 'div', 'book-entry');
       const cover = add(entry, 'div', 'book-cover cover-evidence');
       if (safeMedia(item.image)) { const img = add(cover, 'img'); img.src = item.image; img.alt = item.imageAlt || `Cover for ${item.title}`; }
-      else add(cover, 'span', '', item.title);
+      else add(cover, 'span', '', item.coverText || item.title);
       add(entry, 'span', 'kicker', item.category || 'Reading note');
       add(entry, 'h3', '', item.title);
-      add(entry, 'p', '', item.summary || '');
-      if (safePage(item.link)) { const link = add(entry, 'a', 'arrow-link', 'Explore reference ↗'); link.href = item.link; }
+      if (item.author) add(entry, 'p', 'book-author', item.author);
+      if (item.summary) add(entry, 'p', '', item.summary);
+      if (safePage(item.link)) { const link = add(entry, 'a', 'arrow-link', 'Explore reference ↗'); link.href = item.link; if (link.href.startsWith('https://')) { link.target = '_blank'; link.rel = 'noopener noreferrer'; } }
     }
   }
 }

@@ -2,6 +2,7 @@ import { copyFile, cp, lstat, mkdir, readFile, readdir, rm, writeFile } from 'no
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { renderEditablePage } from './render-page-content.mjs';
+import { renderListContent } from './render-list-content.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const contentPath = join(root, 'content', 'site-content.json');
@@ -141,7 +142,8 @@ for (const entry of await readdir(root, { withFileTypes: true })) {
   if (/\.html$/.test(entry.name)) {
     const markup = await readFile(join(root, entry.name), 'utf8');
     const edited = await renderEditablePage(root, entry.name, markup);
-    const ready = withSiteSettings(edited);
+    const today = new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+    const ready = renderListContent(withSiteSettings(edited), entry.name, content, today);
     await writeFile(join(publishRoot, entry.name), preview ? ready.replace(/<head>/i, '<head><meta name="robots" content="noindex,nofollow">') : ready, 'utf8');
   }
 }

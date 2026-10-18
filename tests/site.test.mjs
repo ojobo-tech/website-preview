@@ -6,6 +6,7 @@ import { tmpdir } from 'node:os';
 import { pathToFileURL } from 'node:url';
 import { runInNewContext } from 'node:vm';
 import { renderEditablePage } from '../scripts/render-page-content.mjs';
+import { eventDateRange, renderListContent } from '../scripts/render-list-content.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const read = file => readFile(join(root, file), 'utf8');
@@ -45,6 +46,31 @@ test('published article pages are built and their images exist', async () => {
     assert.ok(html.includes(essay.title));
     if (essay.image?.startsWith('assets/')) await access(join(root, essay.image));
   }
+});
+
+test('reading and event entries are visible in built HTML and their images exist', async () => {
+  const home = await read('dist/index.html');
+  const reading = await read('dist/reading.html');
+  const speaking = await read('dist/speaking.html');
+  for (const item of data.reading.filter(item => item.status === 'published')) assert.ok(reading.includes(item.title));
+  for (const item of data.events.filter(item => item.status === 'published')) {
+    assert.ok(speaking.includes(item.title));
+    if (item.image?.startsWith('assets/')) await access(join(root, item.image));
+  }
+  assert.match(home, /The AI Revolution/);
+  assert.match(home, /University Librarian’s Symposium Series/);
+  assert.match(speaking, /Attending/);
+  assert.match(speaking, /Ethical AI Transformation by Design/);
+  assert.doesNotMatch(reading, /Example book|Personal reading note to add/);
+  assert.doesNotMatch(home, /No dates announced yet/);
+});
+
+test('a two-day event stays upcoming through its final day', () => {
+  const event = data.events.find(item => item.id === 'ai-revolution-2026');
+  assert.equal(eventDateRange(event), 'October 21–22, 2026');
+  const markup = '<div class="speaking-track" data-speaking-track aria-live="polite">old</div><div class="speaking-controls"></div>';
+  assert.match(renderListContent(markup, 'index.html', data, '2026-10-22'), /The AI Revolution/);
+  assert.doesNotMatch(renderListContent(markup, 'index.html', data, '2026-10-23'), /The AI Revolution/);
 });
 
 test('page content build safely changes text, images, and search descriptions', async () => {
@@ -88,7 +114,7 @@ test('a sample publication builds its pages while a draft stays private', async 
   const fixture = await mkdtemp(join(tmpdir(), 'ojobo-publish-test-'));
   try {
     for (const folder of ['scripts', 'content', 'assets']) await mkdir(join(fixture, folder));
-    for (const file of ['scripts/build-content.mjs', 'scripts/render-page-content.mjs', 'site.js', 'content-render.js']) {
+    for (const file of ['scripts/build-content.mjs', 'scripts/render-page-content.mjs', 'scripts/render-list-content.mjs', 'site.js', 'content-render.js']) {
       await copyFile(join(root, file), join(fixture, file));
     }
     const sample = structuredClone(data);

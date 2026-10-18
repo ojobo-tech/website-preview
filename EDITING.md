@@ -22,6 +22,10 @@ You can reuse an existing image path without uploading anything. Use a web-sized
 
 Open [content/site-content.json](https://github.com/ojobo-tech/website-preview/blob/main/content/site-content.json). It contains `essays`, `projects`, `research`, `events`, and `reading`. Each entry has a `status`: `draft` keeps it off the website; `published` shows it. New articles can have their own page and an optional audio recording. New project and research entries can have detail pages. If adding a whole new entry, ask Codex to prepare and check it—the structure matters more than an ordinary text replacement.
 
+For reading-room entries, edit the `title`, `author`, and `category` (for example, `Currently reading` or `Recently read`). An optional `summary` is your own reflection; leave it blank until you have one. Put the current book first and give it `"featured": true`. Do not add an invented personal takeaway.
+
+For events, `date` and optional `endDate` use `YYYY-MM-DD`. Set `role` to `Speaker` or `Attending` so the site distinguishes a talk from an event visit. Add the public event `url` and an image path when available; leave them blank if you do not have them. Past events move to the archive automatically after their final day. The homepage carousel shows upcoming events in date order.
+
 The shared header name and footer wording are in [content/site-settings.json](https://github.com/ojobo-tech/website-preview/blob/main/content/site-settings.json). Layout and navigation destinations still need a site-code change.
 
 ## Using VS Code or Codex

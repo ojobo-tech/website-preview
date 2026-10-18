@@ -37,6 +37,8 @@
 @media(max-width:700px){.topic-nav-inner{width:100%;padding:0 20px;gap:22px}.topic-nav-label{display:none}.editorial-grid{grid-template-columns:1fr}.editorial-card{min-height:350px}.inline-editorial img{height:230px}.shelf-feature{grid-template-columns:120px 1fr;gap:18px}.book-cover{font-size:16px}.book-shelf{gap:18px}.reading-content .lead{font-size:19px}}
 @media(max-width:450px){.shelf-feature{grid-template-columns:1fr}.shelf-feature .book-cover{width:150px}.book-shelf{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.book-cover{padding:12px 9px;font-size:13px}}
 .shelf-feature .book-cover{font-size:15px}
+.shelf-feature .book-author,.book-entry .book-author{margin:7px 0 12px;color:var(--muted);font:600 13px/1.45 var(--sans)}
+.book-cover{overflow:hidden}
 .signals-section .reading-item{background:var(--navy);border:0;border-radius:0;min-height:205px;padding:28px;color:#fff}
 .signals-section .reading-item .kicker{color:#aebaff}
 .signals-section .reading-item h3{color:#fff}
@@ -80,6 +82,7 @@
 .no-events{padding:34px;background:var(--soft);border-top:4px solid var(--blue)}.no-events p{font:20px/1.4 var(--serif);color:var(--navy)}
 .event-list-card{display:grid;grid-template-columns:280px 1fr;gap:28px;padding:22px 0;border-top:1px solid var(--line)}
 .event-list-card img{width:100%;height:180px;object-fit:cover}.event-list-card h3{font-size:27px;margin:12px 0}.event-list-card p{color:var(--muted)}
+.event-list-card img.event-image-contain{object-fit:contain;background:#161038}
 .writing-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.writing-cards .editorial-card{min-height:335px}.writing-cards .editorial-card h3{font-size:27px}
 @media(max-width:700px){.section{padding-top:64px;padding-bottom:64px}.section-heading h2{font-size:clamp(28px,7.5vw,33px)}.speaking-slide{grid-template-columns:1fr}.speaking-slide-visual{min-height:0;height:215px}.speaking-slide-copy{padding:28px 24px 34px}.speaking-slide-copy h3{font-size:30px}.speaking-page-hero{height:450px}.speaking-topic-grid{grid-template-columns:1fr}.speaking-topic-grid img{height:220px}.event-list-card{grid-template-columns:1fr}.event-list-card img{height:210px}}
 @media(max-width:700px){.writing-cards{grid-template-columns:1fr}}

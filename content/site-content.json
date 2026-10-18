@@ -68,6 +68,116 @@
     }
   ],
   "research": [],
-  "events": [],
-  "reading": []
+  "events": [
+    {
+      "id": "ai-revolution-2026",
+      "title": "The AI Revolution",
+      "date": "2026-10-21",
+      "endDate": "2026-10-22",
+      "event": "ACTi",
+      "place": "Park Ridge Marriott, Park Ridge, NJ",
+      "role": "Attending",
+      "description": "11 AM–4 PM ET each day.",
+      "url": "https://airevolution.acti.ai/",
+      "image": "assets/event-ai-revolution-2026.png",
+      "imageAlt": "Promotional image featuring speakers at The AI Revolution",
+      "status": "published"
+    },
+    {
+      "id": "rutgers-librarian-symposium-2026",
+      "title": "University Librarian’s Symposium Series",
+      "date": "2026-11-03",
+      "event": "Rutgers University Libraries",
+      "place": "New Brunswick, NJ",
+      "role": "Speaker",
+      "description": "Upcoming speaking appearance at Rutgers University–New Brunswick.",
+      "url": "",
+      "image": "assets/editorial-speaking-stage.png",
+      "imageAlt": "Illustrative image of a speaking stage",
+      "status": "published"
+    },
+    {
+      "id": "beyond-the-algorithm-2026",
+      "title": "Ethical AI Transformation by Design",
+      "date": "2026-10-16",
+      "event": "Beyond the Algorithm · Chamber of Commerce Southern New Jersey",
+      "place": "Cherry Hill, NJ",
+      "role": "Speaker",
+      "description": "A speaking appearance at Beyond the Algorithm, a conversation about leadership, AI, culture, and work.",
+      "url": "",
+      "image": "assets/event-beyond-the-algorithm-2026.png",
+      "imageAlt": "Beyond the Algorithm event poster for October 16, 2026",
+      "imageFit": "contain",
+      "status": "published"
+    }
+  ],
+  "reading": [
+    {
+      "id": "prediction-machines",
+      "title": "Prediction Machines",
+      "author": "Ajay Agrawal",
+      "category": "Currently reading",
+      "summary": "",
+      "image": "",
+      "link": "",
+      "status": "published",
+      "featured": true
+    },
+    {
+      "id": "great-mental-models",
+      "title": "The Great Mental Models",
+      "author": "Shane Parrish",
+      "category": "Recently read",
+      "summary": "",
+      "image": "",
+      "link": "",
+      "status": "published",
+      "featured": false
+    },
+    {
+      "id": "tipping-point",
+      "title": "The Tipping Point",
+      "author": "Malcolm Gladwell",
+      "category": "Recently read",
+      "summary": "",
+      "image": "",
+      "link": "",
+      "status": "published",
+      "featured": false
+    },
+    {
+      "id": "thinking-in-systems",
+      "title": "Thinking in Systems",
+      "author": "Donella Meadows",
+      "category": "Recently read",
+      "summary": "",
+      "image": "",
+      "link": "",
+      "status": "published",
+      "featured": false
+    },
+    {
+      "id": "culture-communication-delegation-triad",
+      "title": "The Culture-Communication-Delegation Triad: A Theoretical Model for Agentic Organizations",
+      "author": "Daron Yondem, PhD",
+      "category": "Recently read · Paper",
+      "summary": "",
+      "coverText": "The CCD Triad",
+      "image": "",
+      "link": "",
+      "status": "published",
+      "featured": false
+    },
+    {
+      "id": "superforecasting",
+      "title": "Superforecasting",
+      "author": "Philip Tetlock",
+      "category": "Recently read",
+      "summary": "",
+      "image": "",
+      "link": "",
+      "status": "published",
+      "featured": false
+    }
+  ]
 }
