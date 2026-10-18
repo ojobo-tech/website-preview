@@ -483,6 +483,126 @@
         "key": "image_009_alt",
         "label": "About portrait description",
         "widget": "string"
+      },
+      {
+        "key": "text_076",
+        "label": "Text — AI transformation · Platform development · Capability building",
+        "widget": "text"
+      },
+      {
+        "key": "text_077",
+        "label": "Text — Explore ways to work together →",
+        "widget": "text"
+      },
+      {
+        "key": "text_078",
+        "label": "Text — See a working platform →",
+        "widget": "text"
+      },
+      {
+        "key": "text_079",
+        "label": "Text — Work with me",
+        "widget": "text"
+      },
+      {
+        "key": "text_080",
+        "label": "Text — Different ways to make AI useful",
+        "widget": "text"
+      },
+      {
+        "key": "text_081",
+        "label": "Text — Whether you need to decide what to change, make something work, ",
+        "widget": "text"
+      },
+      {
+        "key": "text_082",
+        "label": "Text — Transform",
+        "widget": "text"
+      },
+      {
+        "key": "text_083",
+        "label": "Text — Find the right problem and use case, redesign the work around it",
+        "widget": "text"
+      },
+      {
+        "key": "text_084",
+        "label": "Text — Explore transformation →",
+        "widget": "text"
+      },
+      {
+        "key": "text_085",
+        "label": "Text — Build",
+        "widget": "text"
+      },
+      {
+        "key": "text_086",
+        "label": "Text — Move from an important question to a usable data product, tool, ",
+        "widget": "text"
+      },
+      {
+        "key": "text_087",
+        "label": "Text — Explore building →",
+        "widget": "text"
+      },
+      {
+        "key": "text_088",
+        "label": "Text — Train",
+        "widget": "text"
+      },
+      {
+        "key": "text_089",
+        "label": "Text — Build AI literacy, practical judgment, and confidence through ta",
+        "widget": "text"
+      },
+      {
+        "key": "text_090",
+        "label": "Text — Explore training →",
+        "widget": "text"
+      },
+      {
+        "key": "text_091",
+        "label": "Text — Speak",
+        "widget": "text"
+      },
+      {
+        "key": "text_092",
+        "label": "Text — Bring a grounded perspective on AI, work, and human capability t",
+        "widget": "text"
+      },
+      {
+        "key": "text_093",
+        "label": "Text — Explore speaking →",
+        "widget": "text"
+      },
+      {
+        "key": "text_094",
+        "label": "Text — Proof in practice",
+        "widget": "text"
+      },
+      {
+        "key": "text_095",
+        "label": "Text — From a public-interest question to a live platform",
+        "widget": "text"
+      },
+      {
+        "key": "text_096",
+        "label": "Text — I conceived and led CHEDVI, a Camden health-equity data platform",
+        "widget": "text"
+      },
+      {
+        "key": "text_097",
+        "label": "Text — See the CHEDVI case study →",
+        "widget": "text"
+      },
+      {
+        "key": "image_010",
+        "label": "CHEDVI proof image",
+        "widget": "image"
+      },
+      {
+        "key": "image_010_alt",
+        "label": "CHEDVI proof image description",
+        "widget": "string"
       }
     ]
   },
@@ -1414,6 +1534,66 @@
         "key": "text_019",
         "label": "H2 heading — Past appearances",
         "widget": "string"
+      },
+      {
+        "key": "text_020",
+        "label": "Text — AI literacy & human judgment",
+        "widget": "text"
+      },
+      {
+        "key": "text_021",
+        "label": "Text — How people develop the understanding and confidence to use AI crit",
+        "widget": "text"
+      },
+      {
+        "key": "text_022",
+        "label": "Text — For event organizers",
+        "widget": "text"
+      },
+      {
+        "key": "text_023",
+        "label": "Text — A talk shaped for your audience",
+        "widget": "text"
+      },
+      {
+        "key": "text_024",
+        "label": "Text — The strongest session starts with the question your audience is fa",
+        "widget": "text"
+      },
+      {
+        "key": "text_025",
+        "label": "Text — Short speaker biography",
+        "widget": "text"
+      },
+      {
+        "key": "text_026",
+        "label": "Text — Ojobo Agbo Eje works across AI transformation, adoption, and platf",
+        "widget": "text"
+      },
+      {
+        "key": "text_027",
+        "label": "Text — What to include in an invitation",
+        "widget": "text"
+      },
+      {
+        "key": "text_028",
+        "label": "Text — Your audience, event purpose, proposed date, format, theme, and wh",
+        "widget": "text"
+      },
+      {
+        "key": "text_029",
+        "label": "Text — Invite me to speak →",
+        "widget": "text"
+      },
+      {
+        "key": "image_004",
+        "label": "Speaking theme image",
+        "widget": "image"
+      },
+      {
+        "key": "image_004_alt",
+        "label": "Speaking theme image description",
+        "widget": "string"
       }
     ]
   },
@@ -1517,6 +1697,71 @@
       {
         "key": "text_008",
         "label": "Text — AI transformation strategy, work redesign, platform development, data ",
+        "widget": "text"
+      },
+      {
+        "key": "text_009",
+        "label": "Text — Choose the conversation",
+        "widget": "text"
+      },
+      {
+        "key": "text_010",
+        "label": "Text — Transform",
+        "widget": "text"
+      },
+      {
+        "key": "text_011",
+        "label": "Text — Tell me about the work you want to redesign and the outcome you ne",
+        "widget": "text"
+      },
+      {
+        "key": "text_012",
+        "label": "Text — Discuss transformation →",
+        "widget": "text"
+      },
+      {
+        "key": "text_013",
+        "label": "Text — Build",
+        "widget": "text"
+      },
+      {
+        "key": "text_014",
+        "label": "Text — Share the problem, intended users, data, and what a useful solutio",
+        "widget": "text"
+      },
+      {
+        "key": "text_015",
+        "label": "Text — Discuss a build →",
+        "widget": "text"
+      },
+      {
+        "key": "text_016",
+        "label": "Text — Train",
+        "widget": "text"
+      },
+      {
+        "key": "text_017",
+        "label": "Text — Tell me who the learners are and what they should be able to do di",
+        "widget": "text"
+      },
+      {
+        "key": "text_018",
+        "label": "Text — Discuss training →",
+        "widget": "text"
+      },
+      {
+        "key": "text_019",
+        "label": "Text — Speak",
+        "widget": "text"
+      },
+      {
+        "key": "text_020",
+        "label": "Text — Include the event, audience, date, format, and the question you wa",
+        "widget": "text"
+      },
+      {
+        "key": "text_021",
+        "label": "Text — Send a speaking invitation →",
         "widget": "text"
       }
     ]
@@ -1686,6 +1931,400 @@
       {
         "key": "text_003",
         "label": "Prompt — Search pages",
+        "widget": "string"
+      }
+    ]
+  },
+  {
+    "filename": "work-with-me.html",
+    "slug": "work",
+    "label": "Work with me",
+    "fields": [
+      {
+        "key": "seoTitle",
+        "label": "Browser and search title",
+        "widget": "string"
+      },
+      {
+        "key": "seoDescription",
+        "label": "Search description",
+        "widget": "text"
+      },
+      {
+        "key": "text_001",
+        "label": "Text — Work with me",
+        "widget": "text"
+      },
+      {
+        "key": "text_002",
+        "label": "Text — Turn an important AI question into useful change",
+        "widget": "text"
+      },
+      {
+        "key": "text_003",
+        "label": "Text — I work with organizations that want more than an AI demonstration",
+        "widget": "text"
+      },
+      {
+        "key": "text_004",
+        "label": "Text — Start a conversation →",
+        "widget": "text"
+      },
+      {
+        "key": "text_005",
+        "label": "Text — The engagement",
+        "widget": "text"
+      },
+      {
+        "key": "text_006",
+        "label": "Text — Start with your outcome, not a predefined tool",
+        "widget": "text"
+      },
+      {
+        "key": "text_007",
+        "label": "Text — These are routes into a project, not fixed packages. Scope and de",
+        "widget": "text"
+      },
+      {
+        "key": "text_008",
+        "label": "Text — 01 · Transformation",
+        "widget": "text"
+      },
+      {
+        "key": "text_009",
+        "label": "Text — Find where AI can create real value",
+        "widget": "text"
+      },
+      {
+        "key": "text_010",
+        "label": "Text — For leaders who need to move from broad AI ambition to a specific",
+        "widget": "text"
+      },
+      {
+        "key": "text_011",
+        "label": "Text — We can examine the problem and current process, prioritize use ca",
+        "widget": "text"
+      },
+      {
+        "key": "text_012",
+        "label": "Text — Possible outputs",
+        "widget": "text"
+      },
+      {
+        "key": "text_013",
+        "label": "Text — A clearer problem definition, use-case priorities, a pilot plan, ",
+        "widget": "text"
+      },
+      {
+        "key": "text_014",
+        "label": "Text — Discuss transformation →",
+        "widget": "text"
+      },
+      {
+        "key": "text_015",
+        "label": "Text — 02 · Build",
+        "widget": "text"
+      },
+      {
+        "key": "text_016",
+        "label": "Text — Make the solution tangible",
+        "widget": "text"
+      },
+      {
+        "key": "text_017",
+        "label": "Text — For teams with a real problem that needs a usable interface, data",
+        "widget": "text"
+      },
+      {
+        "key": "text_018",
+        "label": "Text — I can help frame the product, work through the data and user need",
+        "widget": "text"
+      },
+      {
+        "key": "text_019",
+        "label": "Text — A live example",
+        "widget": "text"
+      },
+      {
+        "key": "text_020",
+        "label": "Text — I conceived and led CHEDVI, a public-facing platform for explorin",
+        "widget": "text"
+      },
+      {
+        "key": "text_021",
+        "label": "Text — Explore the CHEDVI case study →",
+        "widget": "text"
+      },
+      {
+        "key": "text_022",
+        "label": "Text — Discuss a build →",
+        "widget": "text"
+      },
+      {
+        "key": "text_023",
+        "label": "Text — 03 · Capability",
+        "widget": "text"
+      },
+      {
+        "key": "text_024",
+        "label": "Text — Help people learn to use AI well",
+        "widget": "text"
+      },
+      {
+        "key": "text_025",
+        "label": "Text — For organizations that need more than tool demonstrations: shared",
+        "widget": "text"
+      },
+      {
+        "key": "text_026",
+        "label": "Text — Briefings and workshops can be shaped around your leaders, teams,",
+        "widget": "text"
+      },
+      {
+        "key": "text_027",
+        "label": "Text — Explore training →",
+        "widget": "text"
+      },
+      {
+        "key": "text_028",
+        "label": "Text — 04 · Speaking",
+        "widget": "text"
+      },
+      {
+        "key": "text_029",
+        "label": "Text — Create a better conversation about AI and work",
+        "widget": "text"
+      },
+      {
+        "key": "text_030",
+        "label": "Text — For events, leadership groups, and professional communities seeki",
+        "widget": "text"
+      },
+      {
+        "key": "text_031",
+        "label": "Text — Explore speaking →",
+        "widget": "text"
+      },
+      {
+        "key": "text_032",
+        "label": "Text — The first step",
+        "widget": "text"
+      },
+      {
+        "key": "text_033",
+        "label": "Text — Tell me what you are trying to change",
+        "widget": "text"
+      },
+      {
+        "key": "text_034",
+        "label": "Text — A useful first note explains the outcome you want, who the work a",
+        "widget": "text"
+      },
+      {
+        "key": "text_035",
+        "label": "Text — Choose a conversation →",
+        "widget": "text"
+      },
+      {
+        "key": "image_001",
+        "label": "Page image",
+        "widget": "image"
+      },
+      {
+        "key": "image_001_alt",
+        "label": "Image description",
+        "widget": "string"
+      }
+    ]
+  },
+  {
+    "filename": "training.html",
+    "slug": "training",
+    "label": "Training & capability",
+    "fields": [
+      {
+        "key": "seoTitle",
+        "label": "Browser and search title",
+        "widget": "string"
+      },
+      {
+        "key": "seoDescription",
+        "label": "Search description",
+        "widget": "text"
+      },
+      {
+        "key": "text_001",
+        "label": "Text — Training & capability",
+        "widget": "text"
+      },
+      {
+        "key": "text_002",
+        "label": "Text — AI literacy that changes how people decide and work",
+        "widget": "text"
+      },
+      {
+        "key": "text_003",
+        "label": "Text — Learning should help people understand AI, evaluate its fit for a",
+        "widget": "text"
+      },
+      {
+        "key": "text_004",
+        "label": "Text — Discuss training →",
+        "widget": "text"
+      },
+      {
+        "key": "text_005",
+        "label": "Text — What learning is for",
+        "widget": "text"
+      },
+      {
+        "key": "text_006",
+        "label": "Text — From awareness to capability",
+        "widget": "text"
+      },
+      {
+        "key": "text_007",
+        "label": "Text — The goal is not to make every person an AI specialist. It is to g",
+        "widget": "text"
+      },
+      {
+        "key": "text_008",
+        "label": "Text — Understand",
+        "widget": "text"
+      },
+      {
+        "key": "text_009",
+        "label": "Text — Build a shared mental model",
+        "widget": "text"
+      },
+      {
+        "key": "text_010",
+        "label": "Text — What AI can do, what it cannot reliably do, and where human judgm",
+        "widget": "text"
+      },
+      {
+        "key": "text_011",
+        "label": "Text — Apply",
+        "widget": "text"
+      },
+      {
+        "key": "text_012",
+        "label": "Text — Work with real use cases",
+        "widget": "text"
+      },
+      {
+        "key": "text_013",
+        "label": "Text — Connect a specific problem and process to a responsible applicati",
+        "widget": "text"
+      },
+      {
+        "key": "text_014",
+        "label": "Text — Sustain",
+        "widget": "text"
+      },
+      {
+        "key": "text_015",
+        "label": "Text — Support change over time",
+        "widget": "text"
+      },
+      {
+        "key": "text_016",
+        "label": "Text — Identify the skills, practices, and culture needed beyond a singl",
+        "widget": "text"
+      },
+      {
+        "key": "text_017",
+        "label": "Text — Possible formats",
+        "widget": "text"
+      },
+      {
+        "key": "text_018",
+        "label": "Text — Designed for your audience",
+        "widget": "text"
+      },
+      {
+        "key": "text_019",
+        "label": "Text — Sessions are scoped to your people, priorities, and stage of adop",
+        "widget": "text"
+      },
+      {
+        "key": "text_020",
+        "label": "Text — Leadership briefing",
+        "widget": "text"
+      },
+      {
+        "key": "text_021",
+        "label": "Text — A focused discussion of AI opportunities, work redesign, organiza",
+        "widget": "text"
+      },
+      {
+        "key": "text_022",
+        "label": "Text — Team workshop",
+        "widget": "text"
+      },
+      {
+        "key": "text_023",
+        "label": "Text — A working session to map a process, test use-case ideas, and iden",
+        "widget": "text"
+      },
+      {
+        "key": "text_024",
+        "label": "Text — Capability series",
+        "widget": "text"
+      },
+      {
+        "key": "text_025",
+        "label": "Text — A sequence of learning and practice for teams that need to develo",
+        "widget": "text"
+      },
+      {
+        "key": "text_026",
+        "label": "Text — The perspective behind the training",
+        "widget": "text"
+      },
+      {
+        "key": "text_027",
+        "label": "Text — Teach the system, not just the tool",
+        "widget": "text"
+      },
+      {
+        "key": "text_028",
+        "label": "Text — My framework links problem, process, use case, skills, technology",
+        "widget": "text"
+      },
+      {
+        "key": "text_029",
+        "label": "Text — Explore the transformation framework →",
+        "widget": "text"
+      },
+      {
+        "key": "text_030",
+        "label": "Text — Let's talk",
+        "widget": "text"
+      },
+      {
+        "key": "text_031",
+        "label": "Text — What should your people be able to do differently?",
+        "widget": "text"
+      },
+      {
+        "key": "text_032",
+        "label": "Text — Tell me who the audience is, what they already know, and the deci",
+        "widget": "text"
+      },
+      {
+        "key": "text_033",
+        "label": "Text — Enquire about training →",
+        "widget": "text"
+      },
+      {
+        "key": "image_001",
+        "label": "Page image",
+        "widget": "image"
+      },
+      {
+        "key": "image_001_alt",
+        "label": "Image description",
         "widget": "string"
       }
     ]

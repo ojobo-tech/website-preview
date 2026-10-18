@@ -163,7 +163,7 @@ try {
   await rm(publishRoot, { recursive: true });
 } catch (error) { if (error.code !== 'ENOENT') throw error; }
 await mkdir(join(publishRoot, 'content'), { recursive: true });
-const cssVersion = createHash('sha256').update(await readFile(join(root, 'site.css'))).digest('hex').slice(0, 10);
+const cssVersion = createHash('sha256').update(await readFile(join(root, 'site.css'))).update(await readFile(join(root, 'site-conversion.css'))).digest('hex').slice(0, 10);
 for (const entry of await readdir(root, { withFileTypes: true })) {
   if (!entry.isFile()) continue;
   if (/\.css$/.test(entry.name)) await copyFile(join(root, entry.name), join(publishRoot, entry.name));
@@ -179,7 +179,7 @@ for (const entry of await readdir(root, { withFileTypes: true })) {
 for (const name of ['site.js', 'content-render.js', 'article.js']) await copyFile(join(root, name), join(publishRoot, name));
 await copyFile(join(root, 'content', 'site-content.js'), join(publishRoot, 'content', 'site-content.js'));
 await cp(join(root, 'assets'), join(publishRoot, 'assets'), { recursive: true });
-const publicPages = ['index.html', 'about.html', 'biography.html', 'leadership.html', 'reading.html', 'framework.html', 'build.html', 'project-chedvi.html', 'research.html', 'writing.html', 'speaking.html', 'contact.html', ...expected.keys()];
+const publicPages = ['index.html', 'about.html', 'biography.html', 'leadership.html', 'reading.html', 'framework.html', 'build.html', 'project-chedvi.html', 'research.html', 'writing.html', 'speaking.html', 'work-with-me.html', 'training.html', 'contact.html', ...expected.keys()];
 if (preview) {
   await writeFile(join(publishRoot, 'robots.txt'), 'User-agent: *\nDisallow: /\n', 'utf8');
 } else {

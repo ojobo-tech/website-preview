@@ -11,6 +11,8 @@ You only need your existing `ojobo-tech` GitHub account. The [website preview](h
 
 The same files hold each page's image choices (`image_001`, etc.), image descriptions (`_alt`), and search title/description. The current values help you identify the right field. For a larger rewrite, describe the change to Codex in ordinary language and let it edit and test the files.
 
+The main enquiry pages are `work.json` (Work with me), `training.json` (Training), `speaking.json` (Speaking), and `contact.json` (Contact). The homepage's Transform, Build, Train, and Speak cards are in `home.json`. Edit their text there; the links and four email-subject choices need a site-code change. Keep CHEDVI as a live example, and do not describe exploratory projects or possible training formats as completed client engagements.
+
 ## Change an image
 
 1. In the repository, open [assets](https://github.com/ojobo-tech/website-preview/tree/main/assets) and use **Add file → Upload files** for the new image. Commit the upload.
@@ -26,6 +28,9 @@ The personal photos currently appear here:
 | About page banner | `content/pages/about.json` | `heroImage` |
 | Biography page | `content/pages/biography.json` | `image_001` and `image_001_alt` |
 | Speaking page theme card | `content/pages/speaking.json` | `image_002` and `image_002_alt` |
+| Homepage CHEDVI proof image | `content/pages/home.json` | `image_010` and `image_010_alt` |
+| Work with me portrait | `content/pages/work.json` | `image_001` and `image_001_alt` |
+| Training hero | `content/pages/training.json` | `image_001` and `image_001_alt` |
 
 The small author portrait at the end of articles is shared by the article template. Ask Codex to change that image across articles; it is not yet a page-content field.
 

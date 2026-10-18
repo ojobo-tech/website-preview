@@ -41,7 +41,8 @@ const projectCard = (item, home = false) => {
   add(copy, 'span', 'card-type', item.category || 'Project');
   add(copy, 'h3', '', item.title);
   add(copy, 'p', '', item.summary || '');
-  add(copy, 'span', 'arrow-link', href ? 'View project →' : 'More details to come');
+  if (href) add(copy, 'span', 'arrow-link', 'View project →');
+  else add(copy, 'span', 'project-status', 'Exploratory work');
   return card;
 };
 const essayItems = live(siteContent.essays);

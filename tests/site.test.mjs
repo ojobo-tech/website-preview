@@ -50,6 +50,29 @@ test('homepage latest writing shows exactly three article cards', async () => {
   }
 });
 
+test('engagement paths lead to evidence and a specific enquiry', async () => {
+  const home = await read('dist/index.html');
+  const routes = ['work-with-me.html#transformation', 'work-with-me.html#build', 'training.html', 'speaking.html'];
+  for (const route of routes) assert.ok(home.includes(`href="${route}"`));
+  assert.ok(home.indexOf('id="work-with-me"') < home.indexOf('id="latest-writing"'));
+  assert.ok(home.indexOf('Proof in practice') < home.indexOf('id="latest-writing"'));
+  const work = await read('dist/work-with-me.html');
+  for (const id of ['transformation', 'build', 'training', 'speaking']) assert.ok(work.includes(`id="${id}"`));
+  assert.match(work, /I conceived and led CHEDVI/);
+  const training = await read('dist/training.html');
+  assert.match(training, /Leadership briefing/);
+  assert.match(training, /Team workshop/);
+  const speaking = await read('dist/speaking.html');
+  assert.match(speaking, /For event organizers/);
+  assert.match(speaking, /Short speaker biography/);
+  const contact = await read('dist/contact.html');
+  for (const subject of ['AI%20transformation%20enquiry', 'Platform%20build%20enquiry', 'AI%20training%20enquiry', 'Speaking%20invitation']) assert.ok(contact.includes(subject));
+  for (const page of ['work-with-me.html', 'training.html']) {
+    await access(join(root, 'dist', page));
+    assert.match(await read(`dist/${page}`), /href="site\.css\?v=[a-f0-9]{10}"/);
+  }
+});
+
 test('personal photos are present on the intended pages and editable', async () => {
   const pages = [
     ['index.html', 'ojobo-portrait-pink.jpg'],
@@ -191,7 +214,7 @@ test('a sample publication builds its pages while a draft stays private', async 
   const fixture = await mkdtemp(join(tmpdir(), 'ojobo-publish-test-'));
   try {
     for (const folder of ['scripts', 'content', 'assets']) await mkdir(join(fixture, folder));
-    for (const file of ['scripts/build-content.mjs', 'scripts/render-page-content.mjs', 'scripts/render-list-content.mjs', 'site.css', 'site.js', 'content-render.js', 'article.js']) {
+    for (const file of ['scripts/build-content.mjs', 'scripts/render-page-content.mjs', 'scripts/render-list-content.mjs', 'site.css', 'site-conversion.css', 'site.js', 'content-render.js', 'article.js']) {
       await copyFile(join(root, file), join(fixture, file));
     }
     const sample = structuredClone(data);
