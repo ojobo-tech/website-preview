@@ -1,4 +1,5 @@
 import { copyFile, cp, lstat, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { renderEditablePage } from './render-page-content.mjs';
@@ -162,6 +163,7 @@ try {
   await rm(publishRoot, { recursive: true });
 } catch (error) { if (error.code !== 'ENOENT') throw error; }
 await mkdir(join(publishRoot, 'content'), { recursive: true });
+const cssVersion = createHash('sha256').update(await readFile(join(root, 'site.css'))).digest('hex').slice(0, 10);
 for (const entry of await readdir(root, { withFileTypes: true })) {
   if (!entry.isFile()) continue;
   if (/\.css$/.test(entry.name)) await copyFile(join(root, entry.name), join(publishRoot, entry.name));
@@ -169,7 +171,8 @@ for (const entry of await readdir(root, { withFileTypes: true })) {
     const markup = await readFile(join(root, entry.name), 'utf8');
     const edited = await renderEditablePage(root, entry.name, markup);
     const today = new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
-    const ready = renderListContent(withSiteSettings(edited), entry.name, content, today);
+    const ready = renderListContent(withSiteSettings(edited), entry.name, content, today)
+      .replace(/href="site\.css"/g, `href="site.css?v=${cssVersion}"`);
     await writeFile(join(publishRoot, entry.name), preview ? ready.replace(/<head>/i, '<head><meta name="robots" content="noindex,nofollow">') : ready, 'utf8');
   }
 }

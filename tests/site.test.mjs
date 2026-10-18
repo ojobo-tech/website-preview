@@ -60,7 +60,9 @@ test('personal photos are present on the intended pages and editable', async () 
   ];
   for (const [page, filename] of pages) {
     await access(join(root, 'dist', 'assets', filename));
-    assert.ok((await read(`dist/${page}`)).includes(`assets/${filename}`), `${page} does not show ${filename}`);
+    const html = await read(`dist/${page}`);
+    assert.ok(html.includes(`assets/${filename}`), `${page} does not show ${filename}`);
+    assert.match(html, /href="site\.css\?v=[a-f0-9]{10}"/);
   }
   assert.match(await read('index.html'), /data-edit-image="image_009"/);
   assert.match(await read('biography.html'), /data-edit-image="image_001"/);
@@ -170,7 +172,7 @@ test('a sample publication builds its pages while a draft stays private', async 
   const fixture = await mkdtemp(join(tmpdir(), 'ojobo-publish-test-'));
   try {
     for (const folder of ['scripts', 'content', 'assets']) await mkdir(join(fixture, folder));
-    for (const file of ['scripts/build-content.mjs', 'scripts/render-page-content.mjs', 'scripts/render-list-content.mjs', 'site.js', 'content-render.js', 'article.js']) {
+    for (const file of ['scripts/build-content.mjs', 'scripts/render-page-content.mjs', 'scripts/render-list-content.mjs', 'site.css', 'site.js', 'content-render.js', 'article.js']) {
       await copyFile(join(root, file), join(fixture, file));
     }
     const sample = structuredClone(data);
