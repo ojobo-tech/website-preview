@@ -199,21 +199,23 @@ window.siteContent = {
     {
       "id": "prediction-machines",
       "title": "Prediction Machines",
-      "author": "Ajay Agrawal",
+      "author": "Ajay Agrawal, Joshua Gans & Avi Goldfarb",
       "category": "Currently reading",
       "summary": "",
-      "image": "",
+      "image": "assets/book-prediction-machines.jpg",
+      "imageAlt": "Cover of Prediction Machines by Ajay Agrawal, Joshua Gans, and Avi Goldfarb",
       "link": "",
       "status": "published",
       "featured": true
     },
     {
       "id": "great-mental-models",
-      "title": "The Great Mental Models",
+      "title": "The Great Mental Models, Vol. 1",
       "author": "Shane Parrish",
       "category": "Recently read",
       "summary": "",
-      "image": "",
+      "image": "assets/book-great-mental-models.jpg",
+      "imageAlt": "Red cover of The Great Mental Models, Volume 1, by Shane Parrish",
       "link": "",
       "status": "published",
       "featured": false
@@ -224,7 +226,8 @@ window.siteContent = {
       "author": "Malcolm Gladwell",
       "category": "Recently read",
       "summary": "",
-      "image": "",
+      "image": "assets/book-tipping-point.webp",
+      "imageAlt": "Cover of The Tipping Point by Malcolm Gladwell",
       "link": "",
       "status": "published",
       "featured": false
@@ -235,7 +238,8 @@ window.siteContent = {
       "author": "Donella Meadows",
       "category": "Recently read",
       "summary": "",
-      "image": "",
+      "image": "assets/book-thinking-in-systems.jpg",
+      "imageAlt": "Cover of Thinking in Systems by Donella H. Meadows",
       "link": "",
       "status": "published",
       "featured": false
@@ -255,10 +259,11 @@ window.siteContent = {
     {
       "id": "superforecasting",
       "title": "Superforecasting",
-      "author": "Philip Tetlock",
+      "author": "Philip E. Tetlock & Dan Gardner",
       "category": "Recently read",
       "summary": "",
-      "image": "",
+      "image": "assets/book-superforecasting.jpg",
+      "imageAlt": "Black cover of Superforecasting by Philip E. Tetlock and Dan Gardner",
       "link": "",
       "status": "published",
       "featured": false

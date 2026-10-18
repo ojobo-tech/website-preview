@@ -123,6 +123,25 @@ test('reading and event entries are visible in built HTML and their images exist
   assert.doesNotMatch(home, /No dates announced yet/);
 });
 
+test('the reading room uses the five supplied book covers', async () => {
+  const reading = await read('dist/reading.html');
+  const expected = new Map([
+    ['prediction-machines', 'book-prediction-machines.jpg'],
+    ['great-mental-models', 'book-great-mental-models.jpg'],
+    ['tipping-point', 'book-tipping-point.webp'],
+    ['thinking-in-systems', 'book-thinking-in-systems.jpg'],
+    ['superforecasting', 'book-superforecasting.jpg'],
+  ]);
+  for (const [id, filename] of expected) {
+    const item = data.reading.find(entry => entry.id === id);
+    assert.equal(item?.image, `assets/${filename}`);
+    assert.ok(item.imageAlt);
+    await access(join(root, 'dist', 'assets', filename));
+    assert.ok(reading.includes(`src="assets/${filename}"`));
+  }
+  assert.equal(data.reading.find(entry => entry.id === 'culture-communication-delegation-triad')?.image, '');
+});
+
 test('a two-day event stays upcoming through its final day', () => {
   const event = data.events.find(item => item.id === 'ai-revolution-2026');
   assert.equal(eventDateRange(event), 'October 21–22, 2026');
