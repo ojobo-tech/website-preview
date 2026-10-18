@@ -473,6 +473,16 @@
         "key": "text_075",
         "label": "Link text — More about me →",
         "widget": "text"
+      },
+      {
+        "key": "image_009",
+        "label": "About portrait",
+        "widget": "image"
+      },
+      {
+        "key": "image_009_alt",
+        "label": "About portrait description",
+        "widget": "string"
       }
     ]
   },
@@ -677,6 +687,16 @@
         "key": "text_016",
         "label": "Text — This biography is a working draft. I will continue refining the detail",
         "widget": "text"
+      },
+      {
+        "key": "image_001",
+        "label": "Biography portrait",
+        "widget": "image"
+      },
+      {
+        "key": "image_001_alt",
+        "label": "Biography portrait description",
+        "widget": "string"
       }
     ]
   },

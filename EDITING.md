@@ -18,6 +18,17 @@ The same files hold each page's image choices (`image_001`, etc.), image descrip
 
 You can reuse an existing image path without uploading anything. Use a web-sized image, and only upload images you have permission to publish. For a new article or project, its cover image field is in the content catalog below.
 
+The personal photos currently appear here:
+
+| Location | File to edit | Field |
+| --- | --- | --- |
+| Homepage About section | `content/pages/home.json` | `image_009` and `image_009_alt` |
+| About page banner | `content/pages/about.json` | `heroImage` |
+| Biography page | `content/pages/biography.json` | `image_001` and `image_001_alt` |
+| Speaking page theme card | `content/pages/speaking.json` | `image_002` and `image_002_alt` |
+
+The small author portrait at the end of articles is shared by the article template. Ask Codex to change that image across articles; it is not yet a page-content field.
+
 ## Publish writing, work, events, and reading notes
 
 Open [content/site-content.json](https://github.com/ojobo-tech/website-preview/blob/main/content/site-content.json). It contains `essays`, `projects`, `research`, `events`, and `reading`. Each entry has a `status`: `draft` keeps it off the website; `published` shows it. New articles can have their own page and an optional audio recording. New project and research entries can have detail pages. If adding a whole new entry, ask Codex to prepare and check it—the structure matters more than an ordinary text replacement.

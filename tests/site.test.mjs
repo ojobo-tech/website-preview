@@ -50,6 +50,26 @@ test('homepage latest writing shows exactly three article cards', async () => {
   }
 });
 
+test('personal photos are present on the intended pages and editable', async () => {
+  const pages = [
+    ['index.html', 'ojobo-portrait-pink.jpg'],
+    ['about.html', 'ojobo-portrait-pink.jpg'],
+    ['biography.html', 'ojobo-portrait-formal.jpg'],
+    ['speaking.html', 'ojobo-innovate-100.jpg'],
+    ['essay-five-stages-ai-maturity.html', 'ojobo-portrait-formal.jpg'],
+  ];
+  for (const [page, filename] of pages) {
+    await access(join(root, 'dist', 'assets', filename));
+    assert.ok((await read(`dist/${page}`)).includes(`assets/${filename}`), `${page} does not show ${filename}`);
+  }
+  assert.match(await read('index.html'), /data-edit-image="image_009"/);
+  assert.match(await read('biography.html'), /data-edit-image="image_001"/);
+  const manifest = JSON.parse(await read('content/pages/manifest.json'));
+  for (const [slug, key] of [['home', 'image_009'], ['biography', 'image_001']]) {
+    assert.ok(manifest.find(page => page.slug === slug)?.fields.some(field => field.key === key));
+  }
+});
+
 test('published article pages are built and their images exist', async () => {
   for (const essay of data.essays.filter(item => item.status === 'published')) {
     const file = essay.id === 'how-ai-actually-works' ? 'essay.html' : `essay-${essay.id}.html`;

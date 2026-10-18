@@ -210,5 +210,22 @@ body[data-page=home] .speaking-band .section-more{display:none}
 .essay-author p{max-width:650px;color:var(--muted)}
 .essay-author-links{display:grid;gap:11px}
 .essay-author-links a{color:var(--blue);font-weight:700}
+.home-about-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,400px);gap:72px;align-items:center}
+.home-about .section-heading{margin:0!important}
+.home-about-photo{margin:0;max-width:400px}
+.home-about-photo img{width:100%;height:440px;object-fit:cover;object-position:center 28%}
+body[data-page=about] .image-banner{height:440px;background-color:#e99cab;background-size:auto 100%;background-position:85% center;background-repeat:no-repeat;color:var(--navy)}
+body[data-page=about] .image-banner:before{display:none}
+body[data-page=about] .image-banner h1{color:var(--navy);max-width:720px}
+body[data-page=about] .image-banner p{max-width:580px;color:var(--navy)}
+body[data-page=about] .image-banner .eyebrow{color:var(--blue)}
+.biography-intro{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:30px;align-items:start;margin-bottom:38px}
+.biography-intro .lead{margin:0}
+.biography-intro img{width:220px;height:290px;object-fit:cover;object-position:center 20%}
+.speaking-topic-grid article:first-child img{object-position:center 22%}
+.essay-author-portrait{width:125px;height:145px;object-fit:cover;object-position:center 18%}
+.essay-author .container:has(.essay-author-portrait){grid-template-columns:125px minmax(0,1fr) 250px;gap:38px}
+@media(max-width:900px){.home-about-grid{grid-template-columns:minmax(0,1fr) 310px;gap:35px}.home-about-photo img{height:370px}.essay-author .container:has(.essay-author-portrait){grid-template-columns:110px minmax(0,1fr);gap:25px}.essay-author-links{grid-column:2}}
+@media(max-width:700px){.home-about-grid{grid-template-columns:1fr;gap:28px}.home-about-photo{max-width:300px}.home-about-photo img{height:360px}body[data-page=about] .image-banner{height:560px;align-items:flex-start;background-size:auto 310px;background-position:right -10px bottom}body[data-page=about] .image-banner .container{padding-top:38px;padding-bottom:0}body[data-page=about] .image-banner h1{font-size:44px}body[data-page=about] .image-banner p{max-width:29ch;font-size:17px}.biography-intro{grid-template-columns:1fr}.biography-intro img{width:220px;height:280px}.essay-author .container:has(.essay-author-portrait){grid-template-columns:1fr}.essay-author-links{grid-column:auto}}
 @media(max-width:900px){.essay-layout{grid-template-columns:180px minmax(0,1fr);gap:35px}.essay-related-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.essay-hero{min-height:500px}.essay-hero-inner{padding-top:105px;padding-bottom:42px}.essay-hero h1{font-size:clamp(42px,10vw,60px)}.essay-deck{font-size:20px}.essay-layout{display:block;padding-top:38px;padding-bottom:60px}.essay-sidebar{display:none}.essay-mobile-toc{display:block;border:1px solid var(--line);padding:14px 18px;margin:0 0 35px;font:15px/1.5 var(--sans)}.essay-mobile-toc summary{cursor:pointer;font-weight:700}.essay-mobile-toc a{display:block;margin:12px 0}.essay-brief{padding:24px}.essay-body .essay-brief p{font-size:18px}.essay-related{padding-top:45px;padding-bottom:60px}.essay-related-grid{grid-template-columns:1fr}.essay-author .container{grid-template-columns:1fr;gap:25px}.essay-conversation{padding:26px}.essay-conversation h2{font-size:28px}}
