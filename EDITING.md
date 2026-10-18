@@ -26,6 +26,14 @@ For reading-room entries, edit the `title`, `author`, and `category` (for exampl
 
 For events, `date` and optional `endDate` use `YYYY-MM-DD`. Set `role` to `Speaker` or `Attending` so the site distinguishes a talk from an event visit. Add the public event `url` and an image path when available; leave them blank if you do not have them. Past events move to the archive automatically after their final day. The homepage carousel shows upcoming events in date order.
 
+### Articles
+
+Each published entry in `essays` uses the same image-led article template. Edit `title`, `category`, `summary` (the short line on the cover), `lead` (the **In brief** introduction), `image` and `imageAlt`, and `body`. Write the body with `## Section heading` lines; these automatically become links in the article contents. Paragraphs, `-` bullet points, links, and simple emphasis are supported.
+
+Optional article fields are `publishedAt` (`YYYY-MM-DD`), `readMinutes` (a number or short text), `location`, `tags` (a list of short labels), and `audio` (an uploaded MP3 path such as `assets/my-article.mp3`). Add `questions` as a list of `{ "question": "...", "answer": "..." }` pairs if the article needs a closing question-and-answer section. Leave any unknown date, location, or recording out; the page will hide that part instead of showing a placeholder. The related-article section fills itself from your other published essays.
+
+For a new essay, ask Codex to add the entry and check its links. New published essays receive their own page automatically. A draft entry is hidden from the website but, because this repository is public, its text is still visible on GitHub.
+
 The shared header name and footer wording are in [content/site-settings.json](https://github.com/ojobo-tech/website-preview/blob/main/content/site-settings.json). Layout and navigation destinations still need a site-code change.
 
 ## Using VS Code or Codex

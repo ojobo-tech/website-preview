@@ -83,17 +83,33 @@ const markdown = source => {
 };
 const sideLinks = body => [...String(body ?? '').matchAll(/^##\s+(.+)$/gm)].map(([, label]) => `<a href="#${esc(headingId(label))}">${esc(label)}</a>`).join('');
 const image = (item, fallback) => safeUrl(item.image) || fallback;
-const html = (title, description, page, main) => `<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="${esc(description)}"><title>${esc(title)} — Ojobo Agbo Eje</title><link rel="stylesheet" href="site.css"><script src="site.js" defer></script></head>
+const html = (title, description, page, main, headExtra = '') => `<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="${esc(description)}"><title>${esc(title)} — Ojobo Agbo Eje</title><link rel="stylesheet" href="site.css">${headExtra}<script src="site.js" defer></script></head>
 <body id="top" data-page="${page}"><header class="site-header" data-header></header><main>${main}</main><footer class="footer-main" data-footer></footer></body></html>
 `;
 const articlePage = essay => {
-  const name = esc(essay.title);
-  const body = markdown(essay.body);
-  const audio = safeUrl(essay.audio);
-  const lead = essay.lead || essay.summary;
+  const file = fileForEssay(essay);
+  const canonical = `https://ojoboagboeje.com/${file}`;
   const cover = image(essay, 'assets/editorial-ai-literacy.png');
-  return html(essay.title, essay.summary || essay.title, 'essay', `<section class="plain-banner"><div class="container"><span class="eyebrow">Article</span><h1>${name}</h1></div></section><div class="breadcrumb-wrap"><div class="container breadcrumb"><a href="index.html">Home</a><span>/</span><a href="writing.html">Writing</a><span>/</span>${name}</div></div><div class="container inner-layout"><aside class="side-rail"><div class="side-block"><span class="side-title">Writing</span><a href="writing.html">All articles</a><a href="https://ojoboagboeje.substack.com/">Newsletter ↗</a></div>${sideLinks(essay.body) ? `<div class="side-block"><span class="side-title">On this page</span>${sideLinks(essay.body)}</div>` : ''}</aside><article class="article-content"><div class="meta-line"><span>Ojobo Agbo Eje</span><span>${esc(essay.category)}</span>${essay.readMinutes ? `<span>${esc(essay.readMinutes)} min read</span>` : ''}</div><p class="lead">${esc(lead)}</p><figure class="inline-editorial"><img src="${esc(cover)}" alt="${esc(essay.imageAlt || `Illustration for ${essay.title}`)}" loading="lazy"></figure>${audio ? `<div class="article-audio"><span class="kicker">Listen to this article</span><audio controls preload="none" src="${esc(audio)}">Your browser does not support audio playback.</audio></div>` : ''}${body}</article></div>`);
+  const publishedAt = /^\d{4}-\d{2}-\d{2}$/.test(essay.publishedAt || '') ? essay.publishedAt : '';
+  const publishedLabel = publishedAt ? new Date(`${publishedAt}T12:00:00Z`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }) : '';
+  const tags = Array.isArray(essay.tags) ? essay.tags.filter(tag => typeof tag === 'string' && tag.trim()).slice(0, 8) : [];
+  const questions = Array.isArray(essay.questions) ? essay.questions.filter(item => item?.question && item?.answer) : [];
+  const otherEssays = content.essays.filter(item => published(item) && item.id !== essay.id).slice(0, 3);
+  const outline = sideLinks(essay.body);
+  const audio = safeUrl(essay.audio);
+  const metadata = [publishedAt ? `<time datetime="${publishedAt}">${esc(publishedLabel)}</time>` : '', essay.readMinutes ? `<span>${esc(essay.readMinutes)} min read</span>` : '', essay.location ? `<span>${esc(essay.location)}</span>` : ''].filter(Boolean).join('');
+  const shareLinks = '<a data-share="linkedin" href="#share">LinkedIn</a><a data-share="x" href="#share">X</a><a data-share="email" href="#share">Email</a>';
+  const relatedSide = otherEssays.length ? `<div class="essay-rail-block"><h2>Related articles</h2>${otherEssays.map(item => `<a href="${esc(fileForEssay(item))}">${esc(item.title)}</a>`).join('')}</div>` : `<div class="essay-rail-block"><h2>Explore more</h2><a href="writing.html">All articles</a><a href="framework.html">AI transformation framework</a></div>`;
+  const faq = questions.length ? `<section class="essay-questions" id="questions-considered"><h2>The questions considered</h2>${questions.map(item => `<details><summary>${esc(item.question)}</summary><p>${esc(item.answer)}</p></details>`).join('')}</section>` : '';
+  const relatedCards = otherEssays.length ? `<section class="essay-related container"><h2>Related articles</h2><div class="essay-related-grid">${otherEssays.map(item => `<a class="essay-related-card" href="${esc(fileForEssay(item))}"><img src="${esc(image(item, 'assets/editorial-ai-literacy.png'))}" alt="${esc(item.imageAlt || `Illustration for ${item.title}`)}" loading="lazy"><span class="kicker">${esc(item.category || 'Article')}</span><h3>${esc(item.title)}</h3><p>${esc(item.summary || '')}</p></a>`).join('')}</div></section>` : '<section class="essay-related container"><h2>Continue exploring</h2><div class="essay-related-links"><a href="writing.html">More articles →</a><a href="framework.html">The transformation framework →</a></div></section>';
+  const schema = { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: essay.title, description: essay.summary || essay.title, image: `https://ojoboagboeje.com/${cover}`, author: { '@type': 'Person', name: 'Ojobo Agbo Eje' }, mainEntityOfPage: canonical };
+  if (publishedAt) schema.datePublished = publishedAt;
+  const headExtra = `<link rel="canonical" href="${esc(canonical)}"><meta property="og:type" content="article"><meta property="og:title" content="${esc(essay.title)}"><meta property="og:description" content="${esc(essay.summary || essay.title)}"><meta property="og:image" content="https://ojoboagboeje.com/${esc(cover)}"><script type="application/ld+json">${JSON.stringify(schema).replace(/</g, '\\u003c')}</script><script src="article.js" defer></script>`;
+  const main = `<section class="essay-hero"><img class="essay-hero-image" src="${esc(cover)}" alt="${esc(essay.imageAlt || `Illustration for ${essay.title}`)}"><div class="container essay-hero-inner"><span class="essay-category">${esc(essay.category || 'Article')}</span><h1>${esc(essay.title)}</h1>${essay.summary ? `<p class="essay-deck">${esc(essay.summary)}</p>` : ''}<div class="essay-meta"><span>Ojobo Agbo Eje</span>${metadata}</div>${tags.length ? `<div class="essay-tags">${tags.map(tag => `<span>${esc(tag)}</span>`).join('')}</div>` : ''}</div></section>
+  <nav class="breadcrumb-wrap" aria-label="Breadcrumb"><div class="container breadcrumb"><a href="index.html">Home</a><span>/</span><a href="writing.html">Articles</a><span>/</span>${esc(essay.title)}</div></nav>
+  <div class="container essay-layout"><aside class="essay-sidebar" aria-label="Article navigation">${outline ? `<div class="essay-rail-block essay-toc"><h2>Contents</h2>${outline}</div>` : ''}${relatedSide}<div class="essay-rail-block"><h2>Share</h2>${shareLinks}</div></aside><article class="article-content essay-body">${essay.lead ? `<div class="essay-brief"><span class="kicker">In brief</span><p>${esc(essay.lead)}</p></div>` : ''}${audio ? `<div class="essay-audio"><span class="kicker">Listen to this article</span><audio controls preload="none" src="${esc(audio)}">Your browser does not support audio playback.</audio></div>` : ''}${outline ? `<details class="essay-mobile-toc"><summary>In this article</summary>${outline}</details>` : ''}${markdown(essay.body)}${faq}<section class="essay-conversation"><span class="kicker">Continue the conversation</span><h2>What does this question mean for your organization?</h2><p>If it connects to a problem you are working through, I would be glad to hear from you.</p><a class="button" href="contact.html">Start a conversation →</a></section></article></div>${relatedCards}<section class="essay-author"><div class="container"><div><span class="kicker">About the author</span><h2>Ojobo Agbo Eje</h2><p>${esc(siteSettings?.footerBio || 'I work across AI transformation, applied research, and platform development.')}</p><a class="arrow-link" href="about.html">More about me →</a></div><div class="essay-author-links"><a href="reading.html">What I am reading →</a><a href="https://ojoboagboeje.substack.com/" target="_blank" rel="noopener noreferrer">The AI Catalyst Report ↗</a></div></div></section>`;
+  return html(essay.title, essay.summary || essay.title, 'essay', main, headExtra);
 };
 const projectPage = project => {
   const name = esc(project.title);
@@ -147,7 +163,7 @@ for (const entry of await readdir(root, { withFileTypes: true })) {
     await writeFile(join(publishRoot, entry.name), preview ? ready.replace(/<head>/i, '<head><meta name="robots" content="noindex,nofollow">') : ready, 'utf8');
   }
 }
-for (const name of ['site.js', 'content-render.js']) await copyFile(join(root, name), join(publishRoot, name));
+for (const name of ['site.js', 'content-render.js', 'article.js']) await copyFile(join(root, name), join(publishRoot, name));
 await copyFile(join(root, 'content', 'site-content.js'), join(publishRoot, 'content', 'site-content.js'));
 await cp(join(root, 'assets'), join(publishRoot, 'assets'), { recursive: true });
 const publicPages = ['index.html', 'about.html', 'biography.html', 'leadership.html', 'reading.html', 'framework.html', 'build.html', 'project-chedvi.html', 'research.html', 'writing.html', 'speaking.html', 'contact.html', ...expected.keys()];

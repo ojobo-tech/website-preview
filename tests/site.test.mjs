@@ -44,6 +44,11 @@ test('published article pages are built and their images exist', async () => {
     const file = essay.id === 'how-ai-actually-works' ? 'essay.html' : `essay-${essay.id}.html`;
     const html = await read(file);
     assert.ok(html.includes(essay.title));
+    assert.match(html, /class="essay-hero"/);
+    assert.match(html, /class="essay-brief"/);
+    assert.match(html, /class="essay-sidebar"/);
+    assert.match(html, /class="essay-conversation"/);
+    assert.match(html, /application\/ld\+json/);
     if (essay.image?.startsWith('assets/')) await access(join(root, essay.image));
   }
 });
@@ -114,17 +119,23 @@ test('a sample publication builds its pages while a draft stays private', async 
   const fixture = await mkdtemp(join(tmpdir(), 'ojobo-publish-test-'));
   try {
     for (const folder of ['scripts', 'content', 'assets']) await mkdir(join(fixture, folder));
-    for (const file of ['scripts/build-content.mjs', 'scripts/render-page-content.mjs', 'scripts/render-list-content.mjs', 'site.js', 'content-render.js']) {
+    for (const file of ['scripts/build-content.mjs', 'scripts/render-page-content.mjs', 'scripts/render-list-content.mjs', 'site.js', 'content-render.js', 'article.js']) {
       await copyFile(join(root, file), join(fixture, file));
     }
     const sample = structuredClone(data);
-    sample.essays.push({ ...sample.essays[0], id: 'sample-essay', title: 'Sample Essay', body: '## A section\nA **bold** idea and a [source](https://example.com).', status: 'published' });
+    sample.essays.push({ ...sample.essays[0], id: 'sample-essay', title: 'Sample Essay', body: '## A section\nA **bold** idea and a [source](https://example.com).', publishedAt: '2026-10-18', tags: ['Systems'], audio: 'assets/sample.mp3', questions: [{ question: 'What changes?', answer: 'The example changes.' }], status: 'published' });
     sample.essays.push({ ...sample.essays[0], id: 'private-draft', title: 'Private Draft', status: 'draft' });
     sample.projects.push({ id: 'sample-build', title: 'Sample Build', summary: 'A build.', body: '## The problem\nA useful tool.', detailReady: true, status: 'published' });
     sample.research.push({ id: 'sample-research', title: 'Sample Research', summary: 'An inquiry.', body: '## Finding\nA useful insight.', status: 'published' });
     await writeFile(join(fixture, 'content', 'site-content.json'), JSON.stringify(sample));
     await import(pathToFileURL(join(fixture, 'scripts', 'build-content.mjs')).href);
-    assert.match(await readFile(join(fixture, 'dist', 'essay-sample-essay.html'), 'utf8'), /<strong>bold<\/strong>/);
+    const sampleArticle = await readFile(join(fixture, 'dist', 'essay-sample-essay.html'), 'utf8');
+    assert.match(sampleArticle, /<strong>bold<\/strong>/);
+    assert.match(sampleArticle, /datetime="2026-10-18"/);
+    assert.match(sampleArticle, /href="#a-section"/);
+    assert.match(sampleArticle, /Listen to this article/);
+    assert.match(sampleArticle, /The questions considered/);
+    assert.match(sampleArticle, /Related articles/);
     assert.match(await readFile(join(fixture, 'dist', 'project-sample-build.html'), 'utf8'), /Sample Build/);
     assert.match(await readFile(join(fixture, 'dist', 'research-sample-research.html'), 'utf8'), /Sample Research/);
     await assert.rejects(access(join(fixture, 'dist', 'essay-private-draft.html')));
