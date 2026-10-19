@@ -230,3 +230,15 @@ body[data-page=about] .image-banner .eyebrow{color:var(--blue)}
 @media(max-width:700px){.home-about-grid{grid-template-columns:1fr;gap:28px}.home-about-photo{max-width:300px}.home-about-photo img{height:360px}body[data-page=about] .image-banner{height:560px;align-items:flex-start;background-size:auto 310px;background-position:right -10px bottom}body[data-page=about] .image-banner .container{padding-top:38px;padding-bottom:0}body[data-page=about] .image-banner h1{font-size:44px}body[data-page=about] .image-banner p{max-width:29ch;font-size:17px}.biography-intro{grid-template-columns:1fr}.biography-intro img{width:220px;height:280px}.essay-author .container:has(.essay-author-portrait){grid-template-columns:1fr}.essay-author-links{grid-column:auto}}
 @media(max-width:900px){.essay-layout{grid-template-columns:180px minmax(0,1fr);gap:35px}.essay-related-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.essay-hero{min-height:500px}.essay-hero-inner{padding-top:105px;padding-bottom:42px}.essay-hero h1{font-size:clamp(42px,10vw,60px)}.essay-deck{font-size:20px}.essay-layout{display:block;padding-top:38px;padding-bottom:60px}.essay-sidebar{display:none}.essay-mobile-toc{display:block;border:1px solid var(--line);padding:14px 18px;margin:0 0 35px;font:15px/1.5 var(--sans)}.essay-mobile-toc summary{cursor:pointer;font-weight:700}.essay-mobile-toc a{display:block;margin:12px 0}.essay-brief{padding:24px}.essay-body .essay-brief p{font-size:18px}.essay-related{padding-top:45px;padding-bottom:60px}.essay-related-grid{grid-template-columns:1fr}.essay-author .container{grid-template-columns:1fr;gap:25px}.essay-conversation{padding:26px}.essay-conversation h2{font-size:28px}}
+.evidence-section{border-top:1px solid var(--line)}
+.evidence-section .section-heading h2{font-size:clamp(30px,3vw,42px)}
+.evidence-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.evidence-card{display:flex;flex-direction:column;align-items:flex-start;min-height:275px;padding:28px;background:var(--soft);border-top:3px solid var(--blue)}
+.evidence-card h3{font-size:clamp(23px,2vw,29px);margin:16px 0 12px}
+.evidence-card p{color:var(--muted);font-size:15px;line-height:1.55}
+.evidence-card .arrow-link{margin-top:auto}
+.evidence-card:hover{background:#eef2fa}
+.evidence-list .reading-item p{font:15px/1.6 var(--sans)}
+.research-outputs{margin:45px 0}
+.research-outputs>h2{font-size:clamp(29px,3vw,38px)}
+@media(max-width:800px){.evidence-grid{grid-template-columns:1fr}.evidence-card{min-height:0}}

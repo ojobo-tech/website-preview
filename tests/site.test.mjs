@@ -73,6 +73,39 @@ test('engagement paths lead to evidence and a specific enquiry', async () => {
   }
 });
 
+test('career proof and publications are visible with source links', async () => {
+  const home = await read('dist/index.html');
+  for (const page of ['research-state-ai-readiness.html', 'research-explainable-ai-healthcare-review.html', 'project-chedvi.html']) {
+    assert.ok(home.includes(`href="${page}"`));
+    await access(join(root, 'dist', page));
+  }
+  const bio = await read('dist/biography.html');
+  for (const fact of ['MS in Data Science', 'Bachelor of Engineering', 'AAAS Annual Meeting', 'B0CCDYJF87', '10.3390/a19060488']) assert.ok(bio.includes(fact));
+  assert.doesNotMatch(bio, /working draft/i);
+  const research = await read('dist/research.html');
+  assert.match(research, /Published research/);
+  assert.match(research, /The State AI Preparedness Project/);
+  assert.match(research, /Explainable AI Applications in Healthcare/);
+  const speaking = await read('dist/speaking.html');
+  assert.match(speaking, /AAAS Annual Meeting/);
+  assert.match(speaking, /Rutgers–Camden School of Business Symposium/);
+  await access(join(root, 'dist/assets/event-rutgers-business-symposium-2024.webp'));
+});
+
+test('search metadata distinguishes preview and production', async () => {
+  const home = await read('dist/index.html');
+  assert.match(home, /rel="canonical"/);
+  assert.match(home, /property="og:description"/);
+  assert.match(home, /"@type":"ProfilePage"/);
+  if (process.env.SITE_PREVIEW === 'true') {
+    assert.match(home, /noindex,nofollow/);
+    assert.match(home, /ojobo-tech\.github\.io\/website-preview\/index\.html/);
+  } else {
+    assert.doesNotMatch(home, /noindex,nofollow/);
+    assert.match(home, /https:\/\/ojoboagboeje\.com\/index\.html/);
+  }
+});
+
 test('personal photos are present on the intended pages and editable', async () => {
   const pages = [
     ['index.html', 'ojobo-portrait-pink.jpg'],

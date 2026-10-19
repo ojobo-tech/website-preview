@@ -97,7 +97,7 @@ for (const container of document.querySelectorAll('[data-content-list]')) {
 }
 const researchItems = live(siteContent.research);
 const themes = document.querySelector('#themes');
-if (themes && researchItems.length) {
+if (themes && researchItems.length && !document.querySelector('[data-research-outputs]')) {
   const list = themes.nextElementSibling;
   if (list) {
     const section = document.createElement('section');

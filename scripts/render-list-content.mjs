@@ -25,12 +25,17 @@ const eventCard = item => `<article class="event-list-card"><img src="${esc(even
 const essayImage = item => asset(item.image) || 'assets/editorial-ai-literacy.png';
 const essayHref = item => item.id === 'how-ai-actually-works' ? 'essay.html' : `essay-${item.id}.html`;
 const essayCard = item => `<a class="editorial-card" href="${esc(essayHref(item))}"><img src="${esc(essayImage(item))}" alt="${esc(item.imageAlt || `Illustration for ${item.title}`)}" loading="lazy"><div class="editorial-card-copy"><span class="kicker">${esc(item.category || 'Article')}</span><h3>${esc(item.title)}</h3><p>${esc(item.summary || '')}</p><span class="editorial-card-action">Read article →</span></div></a>`;
+const researchCard = item => `<article class="reading-item">${asset(item.image) ? `<img class="research-thumb" src="${esc(item.image)}" alt="${esc(item.imageAlt || `Illustration for ${item.title}`)}" loading="lazy">` : ''}<span class="kicker">${esc(item.category || 'Research')}</span><h3>${esc(item.title)}</h3><p>${esc(item.summary || '')}</p><a class="arrow-link" href="${esc(item.body ? `research-${item.id}.html` : external(item.link) || 'research.html')}">Read the research →</a></article>`;
 const replaceMarker = (markup, marker, replacement) => markup.replace(`<!-- ${marker} -->`, replacement);
 export const renderListContent = (markup, filename, content, today) => {
   if (filename === 'reading.html') {
     const items = content.reading.filter(item => item.status === 'published');
     const featured = items.find(item => item.featured) || items[0];
     return replaceMarker(replaceMarker(markup, 'reading-feature', readingFeature(featured)), 'reading-shelf', readingShelf(items.filter(item => item !== featured)));
+  }
+  if (filename === 'research.html') {
+    const items = content.research.filter(item => item.status === 'published');
+    return replaceMarker(markup, 'research-outputs', items.map(researchCard).join(''));
   }
   if (filename !== 'index.html' && filename !== 'speaking.html') return markup;
   const events = content.events.filter(item => item.status === 'published' && dateIsValid(item.date));

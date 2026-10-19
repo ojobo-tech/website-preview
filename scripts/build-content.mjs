@@ -19,6 +19,26 @@ try {
 } catch (error) { if (error.code !== 'ENOENT') throw error; }
 const siteSettingsScript = siteSettings ? `<script>window.siteSettings=${JSON.stringify(siteSettings).replace(/</g, '\\u003c').replace(/>/g, '\\u003e')};</script>` : '';
 const withSiteSettings = markup => siteSettingsScript ? markup.replace(/<script src="site\.js" defer><\/script>/i, `${siteSettingsScript}<script src="site.js" defer></script>`) : markup;
+const publicBase = preview ? 'https://ojobo-tech.github.io/website-preview/' : 'https://ojoboagboeje.com/';
+const withDiscoveryMetadata = (markup, filename) => {
+  if (markup.includes('rel="canonical"') || markup.includes('name="robots" content="noindex"')) return markup;
+  const title = markup.match(/<title>([^<]*)<\/title>/i)?.[1] || 'Ojobo Agbo Eje';
+  const description = markup.match(/<meta name="description" content="([^"]*)"/i)?.[1] || '';
+  const url = `${publicBase}${filename}`;
+  const imageUrl = `${publicBase}assets/ojobo-portrait-formal.jpg`;
+  const person = {
+    '@type': 'Person', '@id': `${publicBase}#ojobo-agbo-eje`, name: 'Ojobo Agbo Eje', url: `${publicBase}index.html`,
+    image: imageUrl, description: 'AI transformation and adoption practitioner, data scientist, researcher, and platform builder.',
+    knowsAbout: ['AI transformation', 'AI adoption', 'AI literacy', 'work redesign', 'data science', 'explainable AI', 'AI readiness'],
+    alumniOf: { '@type': 'CollegeOrUniversity', name: 'Rutgers University' },
+    sameAs: ['https://ojoboagboeje.substack.com/', 'https://policylab.rutgers.edu/publication/the-state-ai-preparedness-project/', 'https://www.mdpi.com/1999-4893/19/6/488']
+  };
+  const structured = ['index.html', 'about.html', 'biography.html'].includes(filename)
+    ? { '@context': 'https://schema.org', '@type': 'ProfilePage', '@id': `${url}#profile`, url, mainEntity: person }
+    : { '@context': 'https://schema.org', '@type': 'WebPage', url, name: title, description };
+  const metadata = `<link rel="canonical" href="${url}"><meta property="og:type" content="website"><meta property="og:title" content="${title}"><meta property="og:description" content="${description}"><meta property="og:url" content="${url}"><meta property="og:image" content="${imageUrl}"><meta name="twitter:card" content="summary_large_image"><script type="application/ld+json">${JSON.stringify(structured).replace(/</g, '\\u003c')}</script>`;
+  return markup.replace(/<\/head>/i, `${metadata}</head>`);
+};
 const kinds = ['essays', 'projects', 'research', 'events', 'reading'];
 const idPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const esc = value => String(value ?? '').replace(/[&<>"']/g, character => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[character]);
@@ -171,8 +191,8 @@ for (const entry of await readdir(root, { withFileTypes: true })) {
     const markup = await readFile(join(root, entry.name), 'utf8');
     const edited = await renderEditablePage(root, entry.name, markup);
     const today = new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
-    const ready = renderListContent(withSiteSettings(edited), entry.name, content, today)
-      .replace(/href="site\.css"/g, `href="site.css?v=${cssVersion}"`);
+    const ready = withDiscoveryMetadata(renderListContent(withSiteSettings(edited), entry.name, content, today)
+      .replace(/href="site\.css"/g, `href="site.css?v=${cssVersion}"`), entry.name);
     await writeFile(join(publishRoot, entry.name), preview ? ready.replace(/<head>/i, '<head><meta name="robots" content="noindex,nofollow">') : ready, 'utf8');
   }
 }

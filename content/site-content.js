@@ -117,12 +117,12 @@ window.siteContent = {
     {
       "id": "state-ai-readiness-index",
       "title": "State AI Readiness Index",
-      "category": "Measurement concept",
-      "summary": "A framework for understanding governance, workforce, data, and infrastructure foundations.",
+      "category": "Rutgers research project",
+      "summary": "Co-authored Rutgers research on how governance, AI workforce, data, and infrastructure shape states' preparedness for AI in public services.",
       "image": "assets/editorial-platform-build.png",
       "imageAlt": "Illustrative image of a data platform in development",
-      "url": "",
-      "body": "A measurement concept for examining the foundations of meaningful AI adoption: governance, workforce capability, data, and infrastructure.",
+      "url": "research-state-ai-readiness.html",
+      "body": "The State AI Preparedness Project is a funded Rutgers research effort. The team developed a four-pillar approach to evaluating state-level preparedness for AI in public services. I co-authored the published project updates and presented the research at the 2025 AAAS Annual Meeting in Boston. The published sources describe ongoing development and preliminary findings, rather than a completed, deployed index.",
       "status": "published",
       "featured": true
     },
@@ -141,18 +141,71 @@ window.siteContent = {
     {
       "id": "explainable-ai-healthcare",
       "title": "Explainable AI in Healthcare",
-      "category": "Applied research",
-      "summary": "Research into transparency, trust, and adoption in high-stakes settings.",
+      "category": "Peer-reviewed research",
+      "summary": "Co-authored a 2026 systematic review of 76 studies on explainable AI in healthcare, clinical trust, and barriers to real-world adoption.",
       "image": "assets/editorial-ai-literacy.png",
       "imageAlt": "Illustrative image of professionals discussing AI",
-      "url": "research.html",
+      "url": "research-explainable-ai-healthcare-review.html",
       "body": "",
       "status": "published",
       "featured": true
     }
   ],
-  "research": [],
+  "research": [
+    {
+      "id": "state-ai-readiness",
+      "title": "The State AI Preparedness Project",
+      "category": "AI readiness · Rutgers research",
+      "summary": "A co-authored research project examining how ready U.S. states are to integrate AI into public services.",
+      "image": "assets/editorial-data-research.png",
+      "imageAlt": "Editorial illustration of data research; not a project screenshot",
+      "link": "https://policylab.rutgers.edu/publication/the-state-ai-readiness-index-progress-insights-and-next-steps/",
+      "body": "## The question\nWhat makes a state ready to use AI responsibly in public services? The Rutgers State AI Preparedness Project examines this question through four pillars: government, AI workforce, data, and infrastructure.\n\n## My contribution\nI co-authored the [project introduction](https://policylab.rutgers.edu/publication/the-state-ai-preparedness-project/) and [progress report](https://policylab.rutgers.edu/publication/the-state-ai-readiness-index-progress-insights-and-next-steps/) with Michael Akinwumi, Itzhak Yanovitzky, and Kristoffer Shields. I presented the team's research at the 2025 American Association for the Advancement of Science (AAAS) Annual Meeting in Boston.\n\n## Why it matters\nAI readiness is not a single technology purchase. Public institutions need to consider policy and governance, workforce capability, usable data, and infrastructure together. The published progress report discusses the methodology and preliminary findings while the team continued refining the index.\n\n## Explore the evidence\n- [Rutgers project introduction](https://policylab.rutgers.edu/publication/the-state-ai-preparedness-project/)\n- [Rutgers progress report and AAAS presentation](https://policylab.rutgers.edu/publication/the-state-ai-readiness-index-progress-insights-and-next-steps/)\n- [Eagleton project page](https://eagleton.rutgers.edu/responsible-ai-governance/)",
+      "status": "published",
+      "featured": true
+    },
+    {
+      "id": "explainable-ai-healthcare-review",
+      "title": "Explainable AI Applications in Healthcare: A Systematic Review",
+      "category": "Peer-reviewed paper · Algorithms (2026)",
+      "summary": "A co-authored systematic review of 76 studies examining explainability methods, clinical trust, evaluation, and barriers to deployment.",
+      "image": "assets/editorial-ai-literacy.png",
+      "imageAlt": "Editorial illustration of people discussing AI; not a clinical image",
+      "link": "https://www.mdpi.com/1999-4893/19/6/488",
+      "body": "## The research\nPublished in *Algorithms* in 2026, this systematic review was written with Sayed Mehedi Azim and Iman Dehzangi. It examines 76 studies published between 2020 and 2025 on explainable AI (XAI) in healthcare.\n\n## What the review found\nDifferent data types tend to call for different explanation methods. The review also highlights uneven evaluation of whether explanations are faithful and useful in clinical settings, limited real-world validation, and gaps between technical explanations and regulatory needs.\n\n## Why it matters for adoption\nA model can be accurate yet difficult to scrutinize or trust. Responsible adoption depends on the people making consequential decisions being able to understand when and how an AI output should be used.\n\n## Publication\nOjobo Agbo Eje, Sayed Mehedi Azim, and Iman Dehzangi. *Explainable AI Applications in Healthcare: A Systematic Review*. Algorithms 19(6), 488 (2026). [Read the open-access paper](https://doi.org/10.3390/a19060488).",
+      "status": "published",
+      "featured": true
+    }
+  ],
   "events": [
+    {
+      "id": "aaas-annual-meeting-2025",
+      "title": "State AI Readiness Index research presentation",
+      "date": "2025-02-13",
+      "endDate": "2025-02-15",
+      "event": "AAAS Annual Meeting",
+      "place": "Boston, MA",
+      "role": "Research presenter",
+      "description": "Presented the Rutgers team's State AI Readiness Index research during the February 13–15 meeting. Rutgers confirms the appearance; the precise presentation day is not specified.",
+      "url": "https://policylab.rutgers.edu/publication/the-state-ai-readiness-index-progress-insights-and-next-steps/",
+      "image": "assets/editorial-data-research.png",
+      "imageAlt": "Editorial image of research materials, not a photograph of the AAAS presentation",
+      "status": "published"
+    },
+    {
+      "id": "rutgers-business-symposium-2024",
+      "title": "Exploring Artificial Intelligence",
+      "date": "2024-04-10",
+      "event": "Rutgers–Camden School of Business Symposium",
+      "place": "Camden, NJ",
+      "role": "Panelist",
+      "description": "Discussed ethical AI and the human implications of AI adoption at the fifth annual business symposium.",
+      "url": "https://gleaner.rutgers.edu/2024/04/26/navigating-ethical-ai/",
+      "image": "assets/event-rutgers-business-symposium-2024.webp",
+      "imageAlt": "Rutgers–Camden 2024 Business Symposium event flyer featuring Ojobo Agbo Eje",
+      "imageFit": "contain",
+      "status": "published"
+    },
     {
       "id": "ai-revolution-2026",
       "title": "The AI Revolution",
