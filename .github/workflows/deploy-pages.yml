@@ -1,4 +1,4 @@
-# Publish the preview automatically whenever editable content is saved to main.
+# Publish the live website automatically whenever editable content is saved to main.
 name: Build and deploy website
 
 on:
@@ -17,7 +17,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      SITE_PREVIEW: ${{ vars.SITE_PREVIEW }}
+      SITE_PREVIEW: 'false'
     steps:
       - name: Check out website source
         uses: actions/checkout@v4

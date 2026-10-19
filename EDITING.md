@@ -1,6 +1,6 @@
 # Edit your website with GitHub
 
-You only need your existing `ojobo-tech` GitHub account. The [website preview](https://ojobo-tech.github.io/website-preview/) is separate from `ojoboagboeje.com` until the domain is switched.
+You only need your existing `ojobo-tech` GitHub account. Changes committed to `main` publish to [ojoboagboeje.com](https://ojoboagboeje.com/) after the automatic build completes.
 
 ## Visitor analytics and Google search reporting
 
@@ -17,7 +17,7 @@ If you do not yet have either account, leave its value empty. An empty Cloudflar
 1. Open the [page-content folder](https://github.com/ojobo-tech/website-preview/tree/main/content/pages) and choose the page, such as `home.json` for the homepage or `about.json` for About.
 2. Click the pencil icon (**Edit this file**).
 3. Find the current wording you want to replace. Change only the words inside its quotation marks; keep the field names, commas, and quotation marks in place.
-4. Click **Commit changes** and save to `main`. GitHub then rebuilds the preview automatically.
+4. Click **Commit changes** and save to `main`. GitHub then rebuilds the live website automatically.
 
 The same files hold each page's image choices (`image_001`, etc.), image descriptions (`_alt`), and search title/description. The current values help you identify the right field. For a larger rewrite, describe the change to Codex in ordinary language and let it edit and test the files.
 
@@ -68,4 +68,4 @@ The shared header name and footer wording are in [content/site-settings.json](ht
 
 You can work on the same repository on your computer. Open the local `.website-preview` checkout, make changes, then **commit and push** to `main`; saving locally alone does not publish. Codex can make the edits and run the checks for you from a plain-language request.
 
-The repository is public. Draft text saved in it is visible on GitHub even when it is hidden from the website, so do not put confidential drafts, passwords, or private client material there. The build publishes only the website files, not this editing guide or the source JSON. While this remains a preview, the site also asks search engines not to index it.
+The repository is public. Draft text saved in it is visible on GitHub even when it is hidden from the website, so do not put confidential drafts, passwords, or private client material there. The build publishes only the website files, not this editing guide or the source JSON.
