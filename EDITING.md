@@ -2,6 +2,16 @@
 
 You only need your existing `ojobo-tech` GitHub account. The [website preview](https://ojobo-tech.github.io/website-preview/) is separate from `ojoboagboeje.com` until the domain is switched.
 
+## Visitor analytics and Google search reporting
+
+The website is ready for [Cloudflare Web Analytics](https://developers.cloudflare.com/web-analytics/get-started/) and [Google Search Console](https://search.google.com/search-console/). Neither is active just because this code is present: you must create or use accounts that **you** own and add their verification values. Do not share your account password or an API secret.
+
+For Cloudflare Web Analytics, add `ojoboagboeje.com` as a site in your Cloudflare account, choose the manual JavaScript snippet, and copy only the value of its `token`. Open [`content/analytics.json`](https://github.com/ojobo-tech/website-preview/blob/main/content/analytics.json) in GitHub and put that value between the quotes for `cloudflareToken`. Commit the change. The production build then places the tracking beacon on every public page. Preview builds deliberately omit it, so your test visits do not inflate the live-domain report. You do **not** need to move your DNS to Cloudflare.
+
+For Google Search Console, add the domain property `ojoboagboeje.com` and follow Google's DNS TXT verification steps in GoDaddy. That checks ownership of both the main domain and `www` and does not require a code change. If you instead choose a URL-prefix property and Google's HTML-tag method, copy only the tag's `content` value into `googleSiteVerification` in `content/analytics.json`; the production build adds the tag to the page head. After the live domain works, submit `https://ojoboagboeje.com/sitemap.xml` in Search Console. Do not remove an existing verification record or tag for another owner.
+
+If you do not yet have either account, leave its value empty. An empty Cloudflare token means no visitor tracking. Search Console reports search visibility, not all site visits; Cloudflare reports aggregate visitor activity, not visitor names. Neither tool recovers historical traffic from before setup. Recheck your privacy notice when activating analytics.
+
 ## Change words on an existing page
 
 1. Open the [page-content folder](https://github.com/ojobo-tech/website-preview/tree/main/content/pages) and choose the page, such as `home.json` for the homepage or `about.json` for About.

@@ -10,6 +10,11 @@ const contentPath = join(root, 'content', 'site-content.json');
 const manifestPath = join(root, 'content', 'generated-pages.json');
 const content = JSON.parse(await readFile(contentPath, 'utf8'));
 const preview = process.env.SITE_PREVIEW === 'true';
+const analyticsSettings = JSON.parse(await readFile(join(root, 'content', 'analytics.json'), 'utf8'));
+const cloudflareToken = String(process.env.CLOUDFLARE_WEB_ANALYTICS_TOKEN || analyticsSettings.cloudflareToken || '').trim();
+const googleVerification = String(process.env.GOOGLE_SITE_VERIFICATION || analyticsSettings.googleSiteVerification || '').trim();
+if (cloudflareToken && !/^[A-Za-z0-9_-]{16,128}$/.test(cloudflareToken)) throw new Error('Invalid Cloudflare Web Analytics token.');
+if (googleVerification && !/^[A-Za-z0-9_-]{8,200}$/.test(googleVerification)) throw new Error('Invalid Google Search Console verification token.');
 let siteSettings = null;
 try {
   siteSettings = JSON.parse(await readFile(join(root, 'content', 'site-settings.json'), 'utf8'));
@@ -20,6 +25,11 @@ try {
 const siteSettingsScript = siteSettings ? `<script>window.siteSettings=${JSON.stringify(siteSettings).replace(/</g, '\\u003c').replace(/>/g, '\\u003e')};</script>` : '';
 const withSiteSettings = markup => siteSettingsScript ? markup.replace(/<script src="site\.js" defer><\/script>/i, `${siteSettingsScript}<script src="site.js" defer></script>`) : markup;
 const publicBase = preview ? 'https://ojobo-tech.github.io/website-preview/' : 'https://ojoboagboeje.com/';
+const withMeasurement = markup => {
+  if (preview) return markup;
+  const verified = googleVerification ? markup.replace(/<\/head>/i, `<meta name="google-site-verification" content="${googleVerification}"></head>`) : markup;
+  return cloudflareToken ? verified.replace(/<\/body>/i, `<script type="module" defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='${JSON.stringify({ token: cloudflareToken })}'></script></body>`) : verified;
+};
 const withDiscoveryMetadata = (markup, filename) => {
   if (markup.includes('rel="canonical"') || markup.includes('name="robots" content="noindex"')) return markup;
   const title = markup.match(/<title>([^<]*)<\/title>/i)?.[1] || 'Ojobo Agbo Eje';
@@ -193,7 +203,7 @@ for (const entry of await readdir(root, { withFileTypes: true })) {
     const today = new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
     const ready = withDiscoveryMetadata(renderListContent(withSiteSettings(edited), entry.name, content, today)
       .replace(/href="site\.css"/g, `href="site.css?v=${cssVersion}"`), entry.name);
-    await writeFile(join(publishRoot, entry.name), preview ? ready.replace(/<head>/i, '<head><meta name="robots" content="noindex,nofollow">') : ready, 'utf8');
+    await writeFile(join(publishRoot, entry.name), preview ? ready.replace(/<head>/i, '<head><meta name="robots" content="noindex,nofollow">') : withMeasurement(ready), 'utf8');
   }
 }
 for (const name of ['site.js', 'content-render.js', 'article.js']) await copyFile(join(root, name), join(publishRoot, name));

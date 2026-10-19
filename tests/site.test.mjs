@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile, access, copyFile, mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
+import { readFile, access, copyFile, mkdir, mkdtemp, readdir, rm, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { tmpdir } from 'node:os';
 import { pathToFileURL } from 'node:url';
@@ -103,6 +103,28 @@ test('search metadata distinguishes preview and production', async () => {
   } else {
     assert.doesNotMatch(home, /noindex,nofollow/);
     assert.match(home, /https:\/\/ojoboagboeje\.com\/index\.html/);
+  }
+});
+
+test('analytics stays off in preview and uses only configured production IDs', async () => {
+  const settings = JSON.parse(await read('content/analytics.json'));
+  assert.equal(typeof settings.cloudflareToken, 'string');
+  assert.equal(typeof settings.googleSiteVerification, 'string');
+  const cloudflareToken = process.env.CLOUDFLARE_WEB_ANALYTICS_TOKEN || settings.cloudflareToken;
+  const googleVerification = process.env.GOOGLE_SITE_VERIFICATION || settings.googleSiteVerification;
+  for (const file of (await readdir(join(root, 'dist'))).filter(name => name.endsWith('.html'))) {
+    const page = await read(`dist/${file}`);
+    if (process.env.SITE_PREVIEW === 'true' || !cloudflareToken) {
+      assert.doesNotMatch(page, /static\.cloudflareinsights\.com\/beacon\.min\.js/, file);
+    } else {
+      assert.match(page, /static\.cloudflareinsights\.com\/beacon\.min\.js/, file);
+      assert.ok(page.includes(`data-cf-beacon='{"token":"${cloudflareToken}"}'`), file);
+    }
+    if (process.env.SITE_PREVIEW === 'true' || !googleVerification) {
+      assert.doesNotMatch(page, /name="google-site-verification"/, file);
+    } else {
+      assert.ok(page.includes(`name="google-site-verification" content="${googleVerification}"`), file);
+    }
   }
 });
 
@@ -250,6 +272,7 @@ test('a sample publication builds its pages while a draft stays private', async 
     for (const file of ['scripts/build-content.mjs', 'scripts/render-page-content.mjs', 'scripts/render-list-content.mjs', 'site.css', 'site-conversion.css', 'site.js', 'content-render.js', 'article.js']) {
       await copyFile(join(root, file), join(fixture, file));
     }
+    await copyFile(join(root, 'content', 'analytics.json'), join(fixture, 'content', 'analytics.json'));
     const sample = structuredClone(data);
     sample.essays.push({ ...sample.essays[0], id: 'sample-essay', title: 'Sample Essay', body: '## A section\nA **bold** idea and a [source](https://example.com).', publishedAt: '2026-10-18', tags: ['Systems'], audio: 'assets/sample.mp3', questions: [{ question: 'What changes?', answer: 'The example changes.' }], status: 'published' });
     sample.essays.push({ ...sample.essays[0], id: 'private-draft', title: 'Private Draft', status: 'draft' });
