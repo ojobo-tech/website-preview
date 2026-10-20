@@ -34,10 +34,10 @@ const withDiscoveryMetadata = (markup, filename) => {
   if (markup.includes('rel="canonical"') || markup.includes('name="robots" content="noindex"')) return markup;
   const title = markup.match(/<title>([^<]*)<\/title>/i)?.[1] || 'Ojobo Agbo Eje';
   const description = markup.match(/<meta name="description" content="([^"]*)"/i)?.[1] || '';
-  const url = `${publicBase}${filename}`;
+  const url = filename === 'index.html' ? publicBase : `${publicBase}${filename}`;
   const imageUrl = `${publicBase}assets/ojobo-portrait-formal.jpg`;
   const person = {
-    '@type': 'Person', '@id': `${publicBase}#ojobo-agbo-eje`, name: 'Ojobo Agbo Eje', url: `${publicBase}index.html`,
+    '@type': 'Person', '@id': `${publicBase}#ojobo-agbo-eje`, name: 'Ojobo Agbo Eje', url: publicBase,
     image: imageUrl, description: 'AI transformation and adoption practitioner, data scientist, researcher, and platform builder.',
     knowsAbout: ['AI transformation', 'AI adoption', 'AI literacy', 'work redesign', 'data science', 'explainable AI', 'AI readiness'],
     alumniOf: { '@type': 'CollegeOrUniversity', name: 'Rutgers University' },
@@ -202,7 +202,8 @@ for (const entry of await readdir(root, { withFileTypes: true })) {
     const edited = await renderEditablePage(root, entry.name, markup);
     const today = new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
     const ready = withDiscoveryMetadata(renderListContent(withSiteSettings(edited), entry.name, content, today)
-      .replace(/href="site\.css"/g, `href="site.css?v=${cssVersion}"`), entry.name);
+      .replace(/href="site\.css"/g, `href="site.css?v=${cssVersion}"`)
+      .replace(/href="index\.html(?=[#"])/g, 'href="./'), entry.name);
     await writeFile(join(publishRoot, entry.name), preview ? ready.replace(/<head>/i, '<head><meta name="robots" content="noindex,nofollow">') : withMeasurement(ready), 'utf8');
   }
 }
@@ -213,7 +214,7 @@ const publicPages = ['index.html', 'about.html', 'biography.html', 'leadership.h
 if (preview) {
   await writeFile(join(publishRoot, 'robots.txt'), 'User-agent: *\nDisallow: /\n', 'utf8');
 } else {
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${[...new Set(publicPages)].map(name => `  <url><loc>https://ojoboagboeje.com/${esc(name)}</loc></url>`).join('\n')}\n</urlset>\n`;
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${[...new Set(publicPages)].map(name => `  <url><loc>https://ojoboagboeje.com/${name === 'index.html' ? '' : esc(name)}</loc></url>`).join('\n')}\n</urlset>\n`;
   await writeFile(join(publishRoot, 'sitemap.xml'), sitemap, 'utf8');
   await writeFile(join(publishRoot, 'robots.txt'), 'User-agent: *\nAllow: /\nSitemap: https://ojoboagboeje.com/sitemap.xml\n', 'utf8');
 }

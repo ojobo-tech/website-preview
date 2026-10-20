@@ -99,11 +99,14 @@ test('search metadata distinguishes preview and production', async () => {
   assert.match(home, /"@type":"ProfilePage"/);
   if (process.env.SITE_PREVIEW === 'true') {
     assert.match(home, /noindex,nofollow/);
-    assert.match(home, /ojobo-tech\.github\.io\/website-preview\/index\.html/);
+    assert.match(home, /rel="canonical" href="https:\/\/ojobo-tech\.github\.io\/website-preview\/"/);
   } else {
     assert.doesNotMatch(home, /noindex,nofollow/);
-    assert.match(home, /https:\/\/ojoboagboeje\.com\/index\.html/);
+    assert.match(home, /rel="canonical" href="https:\/\/ojoboagboeje\.com\/"/);
+    assert.match(await read('dist/sitemap.xml'), /<loc>https:\/\/ojoboagboeje\.com\/<\/loc>/);
   }
+  assert.doesNotMatch(await read('dist/about.html'), /href="index\.html"/);
+  assert.match(await read('dist/about.html'), /href="\.\/">Home<\/a>/);
 });
 
 test('analytics stays off in preview and uses only configured production IDs', async () => {
