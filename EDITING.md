@@ -58,7 +58,9 @@ Each published entry in `essays` uses the same image-led article template. Edit 
 
 Optional article fields are `publishedAt` (`YYYY-MM-DD`), `readMinutes` (a number or short text), `location`, `tags` (a list of short labels), and `audio` (an uploaded MP3 path such as `assets/my-article.mp3`). Add `questions` as a list of `{ "question": "...", "answer": "..." }` pairs if the article needs a closing question-and-answer section. Leave any unknown date, location, or recording out; the page will hide that part instead of showing a placeholder. The related-article section fills itself from your other published essays.
 
-For an essay that first appeared on Substack, `sourceUrl` links to the original edition and keeps that edition as the search-engine canonical version. This avoids asking search engines to choose between duplicate copies. If you later decide this website should be the primary home for an essay, have Codex review and change its canonical setting deliberately.
+For an essay that first appeared on Substack, `sourceUrl` links to the original edition. `canonicalPreference: "website"` marks the full article on this website as the preferred search version. Search engines may still choose the Substack page, especially if it was published there first.
+
+New long-form Substack posts (at least 1,000 words) published from October 20, 2026 onward are copied automatically into this catalog and given a full article page. The site checks the public feed four times a day; GitHub Actions can also run the deployment workflow manually. Short updates and announcements are skipped. Existing articles are not overwritten, so you can edit their text and images here after import. Embedded images in a post use Substack-hosted URLs, while the cover image is copied into `assets/` when available. A post must be public and have its full body in the feed; subscriber-only content is not copied.
 
 For a new essay, ask Codex to add the entry and check its links. New published essays receive their own page automatically. A draft entry is hidden from the website but, because this repository is public, its text is still visible on GitHub.
 

@@ -182,7 +182,7 @@ test('the four Substack essays retain full text, provenance, and publication dat
     assert.doesNotMatch(essay.body, /[.!?][A-Z][a-z]/);
     const html = await read(`dist/essay-${essay.id}.html`);
     assert.ok(html.includes(`datetime="${essay.publishedAt}"`));
-    assert.ok(html.includes(`rel="canonical" href="${essay.sourceUrl}"`));
+    assert.ok(html.includes(`rel="canonical" href="${process.env.SITE_PREVIEW === 'true' ? 'https://ojobo-tech.github.io/website-preview' : 'https://ojoboagboeje.com'}/essay-${essay.id}/"`));
     assert.match(html, /Originally published in/);
     assert.match(html, /Related articles/);
   }

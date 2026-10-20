@@ -3,6 +3,8 @@ name: Build and deploy website
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '17 */6 * * *'
   push:
     branches: [main]
 
@@ -16,6 +18,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     env:
       SITE_PREVIEW: 'false'
     steps:
@@ -25,10 +29,26 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '24'
+      - name: Import new long-form Substack articles
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: python3 scripts/import-substack.py --sync-feed
       - name: Build public website
         run: node scripts/build-content.mjs
       - name: Check publishing workflow
         run: node --test --test-isolation=none tests/site.test.mjs
+      - name: Check Substack sync rules
+        run: python3 -m unittest discover -s tests -p 'test_substack_sync.py'
+      - name: Save imported articles to the repository
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          git add content/site-content.json content/site-content.js content/generated-pages.json assets
+          git add -A -- 'essay*.html'
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Sync long-form Substack articles"
+            git push origin HEAD:main
+          fi
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
       - name: Upload public files only

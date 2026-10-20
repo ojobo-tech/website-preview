@@ -135,7 +135,7 @@ const html = (title, description, page, main, headExtra = '') => `<!doctype html
 const articlePage = essay => {
   const file = fileForEssay(essay);
   const sourceUrl = safeUrl(essay.sourceUrl);
-  const canonical = sourceUrl || cleanPath(file);
+  const canonical = essay.canonicalPreference === 'website' ? cleanPath(file) : sourceUrl || cleanPath(file);
   const cover = image(essay, 'assets/editorial-ai-literacy.png');
   const publishedAt = /^\d{4}-\d{2}-\d{2}$/.test(essay.publishedAt || '') ? essay.publishedAt : '';
   const publishedLabel = publishedAt ? new Date(`${publishedAt}T12:00:00Z`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }) : '';
