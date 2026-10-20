@@ -199,6 +199,7 @@ try {
 } catch (error) { if (error.code !== 'ENOENT') throw error; }
 await mkdir(join(publishRoot, 'content'), { recursive: true });
 const cssVersion = createHash('sha256').update(await readFile(join(root, 'site.css'))).update(await readFile(join(root, 'site-conversion.css'))).digest('hex').slice(0, 10);
+const siteJsVersion = createHash('sha256').update(await readFile(join(root, 'site.js'))).digest('hex').slice(0, 10);
 for (const entry of await readdir(root, { withFileTypes: true })) {
   if (!entry.isFile()) continue;
   if (/\.css$/.test(entry.name)) await copyFile(join(root, entry.name), join(publishRoot, entry.name));
@@ -208,6 +209,7 @@ for (const entry of await readdir(root, { withFileTypes: true })) {
     const today = new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
     const ready = withCleanRoutes(withDiscoveryMetadata(renderListContent(withSiteSettings(edited), entry.name, content, today)
       .replace(/href="site\.css"/g, `href="site.css?v=${cssVersion}"`)
+      .replace(/src="site\.js"/g, `src="site.js?v=${siteJsVersion}"`)
       .replace(/href="index\.html(?=[#"])/g, 'href="./'), entry.name));
     await writeFile(join(publishRoot, entry.name), preview ? ready.replace(/<head>/i, '<head><meta name="robots" content="noindex,nofollow">') : withMeasurement(ready), 'utf8');
   }

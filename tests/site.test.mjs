@@ -97,6 +97,7 @@ test('search metadata distinguishes preview and production', async () => {
   const home = await read('dist/index.html');
   assert.match(home, /rel="canonical"/);
   assert.match(home, /property="og:description"/);
+  assert.match(home, /src="site\.js\?v=[a-f0-9]{10}"/);
   assert.match(home, /"@type":"ProfilePage"/);
   if (process.env.SITE_PREVIEW === 'true') {
     assert.match(home, /noindex,nofollow/);
