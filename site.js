@@ -11,7 +11,7 @@ const links = [
 ];
 const active = { biography:'about', leadership:'about', reading:'about', 'project-chedvi':'build', essay:'writing' }[page] || page;
 const header = document.querySelector('[data-header]');
-if (location.pathname.endsWith('/index.html')) history.replaceState(null, '', `${location.pathname.slice(0, -'index.html'.length)}${location.search}${location.hash}`);
+if (location.pathname.endsWith('.html')) history.replaceState(null, '', `${location.pathname.replace(/\/([a-z0-9-]+)\.html$/, (_, slug) => slug === 'index' ? '/' : `/${slug}/`)}${location.search}${location.hash}`);
 if (header) header.innerHTML = `<a class="wordmark" href="./">${cleanText(siteSettings.wordmark || 'Ojobo Agbo Eje')}</a><nav id="primary-nav" aria-label="Primary navigation">${links.map(([key,label,url]) => `<a href="${url}" ${active === key ? 'aria-current="page"' : ''}>${label}</a>`).join('')}</nav><div class="nav-tools"><a class="icon-link" href="search.html" aria-label="Search">⌕</a><a class="icon-link" href="contact.html" aria-label="Contact">✉</a><a class="nav-contact" href="work-with-me.html">${cleanText(siteSettings.contactButton || 'Work with me')}</a><button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">☰</button></div>`;
 const menu = document.querySelector('.menu-toggle');
 const topicMenus = {
@@ -30,7 +30,7 @@ if (header && topicMenus[page]) {
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) localLinks.forEach(link => link.classList.toggle('is-active', link.getAttribute('href') === `#${entry.target.id}`));
+        if (entry.isIntersecting) localLinks.forEach(link => link.classList.toggle('is-active', link.hash === `#${entry.target.id}`));
       });
     }, { rootMargin: '-115px 0px -65% 0px' });
     sections.forEach(section => observer.observe(section));
@@ -45,7 +45,34 @@ menu?.addEventListener('click', () => {
 const footer = document.querySelector('[data-footer]');
 if (footer) footer.innerHTML = `<div class="container"><div class="footer-grid"><div><h3>${cleanText(siteSettings.footerHeading || 'About me')}</h3><p>${cleanText(siteSettings.footerBio || 'I work across AI transformation, applied research, and platform development.')}</p><a href="about.html">Read about my work →</a></div><div><h4>Explore</h4><a href="work-with-me.html">Work with me</a><a href="framework.html">AI transformation</a><a href="build.html">Technical projects</a><a href="research.html">Research</a><a href="writing.html">Articles & audio</a><a href="training.html">Training & capability</a><a href="speaking.html">Speaking & events</a><a href="reading.html">Reading room</a></div><div><h4>Connect</h4><a href="contact.html">Start a conversation</a><a href="https://ojoboagboeje.substack.com/" target="_blank" rel="noopener noreferrer">The AI Catalyst Report ↗</a><a href="https://chedvi.onrender.com/" target="_blank" rel="noopener noreferrer">Explore CHEDVI ↗</a></div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} ${cleanText(siteSettings.wordmark || 'Ojobo Agbo Eje')}</span><span>${cleanText(siteSettings.footerTagline || 'AI transformation · Research · Applied technology')}</span><a href="#top">Back to top ↑</a></div></div>`;
 document.querySelector('[data-question-nav]')?.addEventListener('change', event => {
-  if (event.target.value) location.href = event.target.value;
+  if (event.target.value) location.href = new URL(event.target.value, document.baseURI).href;
+});
+const siteRoot = new URL(document.querySelector('base')?.href || './', location.href);
+const normalizeRoute = value => {
+  const page = /^([a-z0-9-]+)\.html(#[^\s]*)?$/i.exec(value);
+  if (page) return new URL(`${page[1] === 'index' ? '' : `${page[1]}/`}${page[2] || ''}`, siteRoot).pathname + (page[2] || '');
+  if (value.startsWith('#') && value.length > 1) return `${location.pathname}${value}`;
+  return value;
+};
+const normalizeLinks = root => {
+  const elements = root.matches?.('a[href], option[value]') ? [root, ...root.querySelectorAll('a[href], option[value]')] : root.querySelectorAll('a[href], option[value]');
+  for (const element of elements) {
+    const attribute = element.tagName === 'OPTION' ? 'value' : 'href';
+    const current = element.getAttribute(attribute);
+    if (current) {
+      const normalized = normalizeRoute(current);
+      if (normalized !== current) element.setAttribute(attribute, normalized);
+    }
+  }
+};
+document.addEventListener('DOMContentLoaded', () => {
+  normalizeLinks(document);
+  new MutationObserver(mutations => {
+    for (const mutation of mutations) {
+      if (mutation.type === 'attributes') normalizeLinks(mutation.target);
+      else for (const node of mutation.addedNodes) if (node.nodeType === 1) normalizeLinks(node);
+    }
+  }).observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ['href', 'value'] });
 });
 const siteEvents = Array.isArray(window.siteContent?.events) ? window.siteContent.events : (Array.isArray(window.siteEvents) ? window.siteEvents : []);
 const now = new Date();

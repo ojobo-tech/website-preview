@@ -25,6 +25,11 @@ try {
 const siteSettingsScript = siteSettings ? `<script>window.siteSettings=${JSON.stringify(siteSettings).replace(/</g, '\\u003c').replace(/>/g, '\\u003e')};</script>` : '';
 const withSiteSettings = markup => siteSettingsScript ? markup.replace(/<script src="site\.js" defer><\/script>/i, `${siteSettingsScript}<script src="site.js" defer></script>`) : markup;
 const publicBase = preview ? 'https://ojobo-tech.github.io/website-preview/' : 'https://ojoboagboeje.com/';
+const sitePath = preview ? '/website-preview/' : '/';
+const cleanPath = filename => filename === 'index.html' ? publicBase : `${publicBase}${filename.replace(/\.html$/, '')}/`;
+const withCleanRoutes = markup => markup
+  .replace(/<head>/i, `<head><base href="${sitePath}">`)
+  .replace(/\b(href|value)="([a-z0-9-]+)\.html(#[^"]*)?"/gi, (_, attribute, slug, fragment = '') => `${attribute}="${sitePath}${slug === 'index' ? '' : `${slug}/`}${fragment}"`);
 const withMeasurement = markup => {
   if (preview) return markup;
   const verified = googleVerification ? markup.replace(/<\/head>/i, `<meta name="google-site-verification" content="${googleVerification}"></head>`) : markup;
@@ -34,7 +39,7 @@ const withDiscoveryMetadata = (markup, filename) => {
   if (markup.includes('rel="canonical"') || markup.includes('name="robots" content="noindex"')) return markup;
   const title = markup.match(/<title>([^<]*)<\/title>/i)?.[1] || 'Ojobo Agbo Eje';
   const description = markup.match(/<meta name="description" content="([^"]*)"/i)?.[1] || '';
-  const url = filename === 'index.html' ? publicBase : `${publicBase}${filename}`;
+  const url = cleanPath(filename);
   const imageUrl = `${publicBase}assets/ojobo-portrait-formal.jpg`;
   const person = {
     '@type': 'Person', '@id': `${publicBase}#ojobo-agbo-eje`, name: 'Ojobo Agbo Eje', url: publicBase,
@@ -130,7 +135,7 @@ const html = (title, description, page, main, headExtra = '') => `<!doctype html
 const articlePage = essay => {
   const file = fileForEssay(essay);
   const sourceUrl = safeUrl(essay.sourceUrl);
-  const canonical = sourceUrl || `https://ojoboagboeje.com/${file}`;
+  const canonical = sourceUrl || cleanPath(file);
   const cover = image(essay, 'assets/editorial-ai-literacy.png');
   const publishedAt = /^\d{4}-\d{2}-\d{2}$/.test(essay.publishedAt || '') ? essay.publishedAt : '';
   const publishedLabel = publishedAt ? new Date(`${publishedAt}T12:00:00Z`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }) : '';
@@ -201,20 +206,26 @@ for (const entry of await readdir(root, { withFileTypes: true })) {
     const markup = await readFile(join(root, entry.name), 'utf8');
     const edited = await renderEditablePage(root, entry.name, markup);
     const today = new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
-    const ready = withDiscoveryMetadata(renderListContent(withSiteSettings(edited), entry.name, content, today)
+    const ready = withCleanRoutes(withDiscoveryMetadata(renderListContent(withSiteSettings(edited), entry.name, content, today)
       .replace(/href="site\.css"/g, `href="site.css?v=${cssVersion}"`)
-      .replace(/href="index\.html(?=[#"])/g, 'href="./'), entry.name);
+      .replace(/href="index\.html(?=[#"])/g, 'href="./'), entry.name));
     await writeFile(join(publishRoot, entry.name), preview ? ready.replace(/<head>/i, '<head><meta name="robots" content="noindex,nofollow">') : withMeasurement(ready), 'utf8');
   }
 }
 for (const name of ['site.js', 'content-render.js', 'article.js']) await copyFile(join(root, name), join(publishRoot, name));
 await copyFile(join(root, 'content', 'site-content.js'), join(publishRoot, 'content', 'site-content.js'));
 await cp(join(root, 'assets'), join(publishRoot, 'assets'), { recursive: true });
+for (const entry of await readdir(publishRoot, { withFileTypes: true })) {
+  if (!entry.isFile() || !/^[a-z0-9-]+\.html$/.test(entry.name) || entry.name === 'index.html') continue;
+  const cleanDirectory = join(publishRoot, entry.name.slice(0, -'.html'.length));
+  await mkdir(cleanDirectory);
+  await copyFile(join(publishRoot, entry.name), join(cleanDirectory, 'index.html'));
+}
 const publicPages = ['index.html', 'about.html', 'biography.html', 'leadership.html', 'reading.html', 'framework.html', 'build.html', 'project-chedvi.html', 'research.html', 'writing.html', 'speaking.html', 'work-with-me.html', 'training.html', 'contact.html', ...expected.keys()];
 if (preview) {
   await writeFile(join(publishRoot, 'robots.txt'), 'User-agent: *\nDisallow: /\n', 'utf8');
 } else {
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${[...new Set(publicPages)].map(name => `  <url><loc>https://ojoboagboeje.com/${name === 'index.html' ? '' : esc(name)}</loc></url>`).join('\n')}\n</urlset>\n`;
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${[...new Set(publicPages)].map(name => `  <url><loc>${cleanPath(name)}</loc></url>`).join('\n')}\n</urlset>\n`;
   await writeFile(join(publishRoot, 'sitemap.xml'), sitemap, 'utf8');
   await writeFile(join(publishRoot, 'robots.txt'), 'User-agent: *\nAllow: /\nSitemap: https://ojoboagboeje.com/sitemap.xml\n', 'utf8');
 }

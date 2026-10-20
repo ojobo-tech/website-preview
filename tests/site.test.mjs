@@ -46,14 +46,14 @@ test('homepage latest writing shows exactly three article cards', async () => {
   assert.doesNotMatch(section, /href="framework\.html"|href="research\.html"/);
   for (const essay of data.essays.filter(item => item.status === 'published' && item.featured).slice(0, 3)) {
     const file = essay.id === 'how-ai-actually-works' ? 'essay.html' : `essay-${essay.id}.html`;
-    assert.ok(section.includes(`href="${file}"`));
+    assert.ok(section.includes(`href="${process.env.SITE_PREVIEW === 'true' ? '/website-preview/' : '/'}${file.replace(/\.html$/, '')}/"`));
   }
 });
 
 test('engagement paths lead to evidence and a specific enquiry', async () => {
   const home = await read('dist/index.html');
-  const routes = ['work-with-me.html#transformation', 'work-with-me.html#build', 'training.html', 'speaking.html'];
-  for (const route of routes) assert.ok(home.includes(`href="${route}"`));
+  const routes = ['work-with-me/#transformation', 'work-with-me/#build', 'training/', 'speaking/'];
+  for (const route of routes) assert.ok(home.includes(`href="${process.env.SITE_PREVIEW === 'true' ? '/website-preview/' : '/'}${route}"`));
   assert.ok(home.indexOf('id="work-with-me"') < home.indexOf('id="latest-writing"'));
   assert.ok(home.indexOf('Proof in practice') < home.indexOf('id="latest-writing"'));
   const work = await read('dist/work-with-me.html');
@@ -76,8 +76,9 @@ test('engagement paths lead to evidence and a specific enquiry', async () => {
 test('career proof and publications are visible with source links', async () => {
   const home = await read('dist/index.html');
   for (const page of ['research-state-ai-readiness.html', 'research-explainable-ai-healthcare-review.html', 'project-chedvi.html']) {
-    assert.ok(home.includes(`href="${page}"`));
+    assert.ok(home.includes(`href="${process.env.SITE_PREVIEW === 'true' ? '/website-preview/' : '/'}${page.replace(/\.html$/, '')}/"`));
     await access(join(root, 'dist', page));
+    await access(join(root, 'dist', page.replace(/\.html$/, ''), 'index.html'));
   }
   const bio = await read('dist/biography.html');
   for (const fact of ['MS in Data Science', 'Bachelor of Engineering', 'AAAS Annual Meeting', 'B0CCDYJF87', '10.3390/a19060488']) assert.ok(bio.includes(fact));
@@ -262,7 +263,7 @@ test('deployment package includes public pages but not source material or drafts
     assert.match(await read('dist/robots.txt'), /Disallow: \//);
     await assert.rejects(access(join(root, 'dist', 'sitemap.xml')));
   } else {
-    assert.match(await read('dist/sitemap.xml'), /https:\/\/ojoboagboeje\.com\/essay\.html/);
+    assert.match(await read('dist/sitemap.xml'), /https:\/\/ojoboagboeje\.com\/essay\//);
   }
   await assert.rejects(access(join(root, 'dist', 'sources')));
   await assert.rejects(access(join(root, 'dist', 'content', 'site-content.json')));
@@ -292,6 +293,8 @@ test('a sample publication builds its pages while a draft stays private', async 
     assert.match(sampleArticle, /Related articles/);
     assert.match(await readFile(join(fixture, 'dist', 'project-sample-build.html'), 'utf8'), /Sample Build/);
     assert.match(await readFile(join(fixture, 'dist', 'research-sample-research.html'), 'utf8'), /Sample Research/);
+    await access(join(fixture, 'dist', 'essay-sample-essay', 'index.html'));
+    await access(join(fixture, 'dist', 'project-sample-build', 'index.html'));
     await assert.rejects(access(join(fixture, 'dist', 'essay-private-draft.html')));
     assert.doesNotMatch(await readFile(join(fixture, 'dist', 'content', 'site-content.js'), 'utf8'), /Private Draft/);
     if (process.env.SITE_PREVIEW === 'true') {
@@ -299,7 +302,7 @@ test('a sample publication builds its pages while a draft stays private', async 
       await assert.rejects(access(join(fixture, 'dist', 'sitemap.xml')));
     } else {
       const sitemap = await readFile(join(fixture, 'dist', 'sitemap.xml'), 'utf8');
-      assert.match(sitemap, /essay-sample-essay\.html/);
+      assert.match(sitemap, /essay-sample-essay\//);
       assert.doesNotMatch(sitemap, /private-draft/);
     }
   } finally {
