@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 import unittest
 from unittest.mock import patch
+from urllib.error import HTTPError
 import xml.etree.ElementTree as ET
 
 
@@ -31,6 +32,21 @@ def item(slug, title, words, date="Wed, 21 Oct 2026 12:00:00 GMT"):
 
 
 class SubstackSyncTests(unittest.TestCase):
+    def test_reader_fallback_preserves_full_rss(self):
+        root = ET.Element("rss")
+        channel = ET.SubElement(root, "channel")
+        channel.append(item("long-essay", "Long essay", 1100))
+        payload = {"code": 200, "data": {"url": substack.FEED, "html": ET.tostring(root, encoding="unicode")}}
+        def open_feed(request, timeout):
+            if request.full_url == substack.FEED:
+                raise HTTPError(substack.FEED, 403, "Forbidden", {}, None)
+            self.assertEqual(request.full_url, substack.FEED_READER)
+            self.assertEqual(request.get_header("X-respond-with"), "html")
+            return BytesIO(json.dumps(payload).encode())
+        with patch.object(substack, "urlopen", side_effect=open_feed):
+            feed = substack.fetch_feed()
+        self.assertEqual(substack.article_from_feed(feed.find("./channel/item"))["id"], "long-essay")
+
     def test_longform_only_and_date_cutoff(self):
         longform = substack.article_from_feed(item("long-essay", "Long essay", 1100))
         self.assertEqual(longform["id"], "long-essay")

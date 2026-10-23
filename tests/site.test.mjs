@@ -198,7 +198,8 @@ test('reading and event entries are visible in built HTML and their images exist
     assert.ok(speaking.includes(item.title));
     if (item.image?.startsWith('assets/')) await access(join(root, item.image));
   }
-  assert.match(home, /The AI Revolution/);
+  if (new Date().toISOString().slice(0, 10) <= '2026-10-22') assert.match(home, /The AI Revolution/);
+  else assert.doesNotMatch(home, /The AI Revolution/);
   assert.match(home, /University Librarian’s Symposium Series/);
   assert.match(speaking, /Attending/);
   assert.match(speaking, /Ethical AI Transformation by Design/);

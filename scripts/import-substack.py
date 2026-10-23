@@ -11,6 +11,7 @@ import json
 from pathlib import Path
 import re
 import sys
+from urllib.error import HTTPError, URLError
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 import xml.etree.ElementTree as ET
@@ -20,6 +21,7 @@ ROOT = Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "content" / "site-content.json"
 BASE = "https://ojoboagboeje.substack.com"
 FEED = f"{BASE}/feed"
+FEED_READER = f"https://r.jina.ai/{FEED}"
 FIRST_SYNC_DATE = "2026-10-20"
 MIN_LONGFORM_WORDS = 1000
 ARTICLES = [
@@ -234,10 +236,24 @@ def save_cover(item, article):
         print(f"Cover image unavailable for {article['id']}: {error}; using the editorial fallback.")
 
 
-def sync_feed():
+def fetch_feed():
     request = Request(FEED, headers={"User-Agent": "OjoboWebsiteSync/1.0", "Accept": "application/rss+xml, application/xml"})
-    with urlopen(request, timeout=30) as response:
-        feed = ET.fromstring(response.read(5_000_000))
+    try:
+        with urlopen(request, timeout=30) as response:
+            return ET.fromstring(response.read(5_000_000))
+    except (HTTPError, URLError) as error:
+        print(f"Direct Substack feed unavailable ({error}); trying the public reader.")
+    reader_request = Request(FEED_READER, headers={"User-Agent": "OjoboWebsiteSync/1.0", "Accept": "application/json", "X-Respond-With": "html"})
+    with urlopen(reader_request, timeout=60) as response:
+        payload = json.load(response)
+    data = payload.get("data", {})
+    if payload.get("code") != 200 or data.get("url") != FEED or not isinstance(data.get("html"), str):
+        raise ValueError("The public reader did not return the expected Substack feed.")
+    return ET.fromstring(data["html"])
+
+
+def sync_feed():
+    feed = fetch_feed()
     items = feed.findall("./channel/item")
     if not items:
         raise ValueError("Substack feed had no posts; refusing to change the catalog.")
