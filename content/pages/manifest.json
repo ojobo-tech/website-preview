@@ -16,7 +16,7 @@
       },
       {
         "key": "heroImage",
-        "label": "Hero background image",
+        "label": "Hero portrait image",
         "widget": "image"
       },
       {

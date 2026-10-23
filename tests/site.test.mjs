@@ -155,6 +155,17 @@ test('personal photos are present on the intended pages and editable', async () 
   }
 });
 
+test('homepage preview puts portrait and project proof in the hero', async () => {
+  const html = await read('dist/index.html');
+  const hero = html.split('<section class="hero-home">')[1].split('</section>')[0];
+  assert.match(hero, /ojobo-portrait-formal\.jpg/);
+  assert.match(hero, /Portrait of Ojobo Agbo Eje/);
+  assert.match(hero, /Featured work/i);
+  assert.match(hero, /project-chedvi\//);
+  assert.match(html, /class="hero-wayfinder"/);
+  assert.equal((html.match(/id="start-here"/g) || []).length, 1);
+});
+
 test('published article pages are built and their images exist', async () => {
   for (const essay of data.essays.filter(item => item.status === 'published')) {
     const file = essay.id === 'how-ai-actually-works' ? 'essay.html' : `essay-${essay.id}.html`;
