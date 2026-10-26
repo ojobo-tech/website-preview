@@ -50,11 +50,81 @@ test('homepage latest writing shows exactly three article cards', async () => {
   }
 });
 
+test('navigation and search keep clear routes to enquiries on small screens', async () => {
+  const shell = await read('site.js');
+  const search = await read('search.html');
+  assert.match(shell, /class="mobile-nav-action" href="work-with-me\.html"/);
+  assert.match(shell, /class="mobile-nav-action" href="contact\.html"/);
+  assert.match(shell, /skip\.href = '#main-content'/);
+  assert.match(shell, /'Popular starting points'/);
+  assert.equal((search.match(/content\/site-content\.js/g) || []).length, 1);
+  assert.match(search, /data-search-status[^>]*role="status"/);
+});
+
+test('offer and sharing copy give visitors a clear next action', async () => {
+  const home = JSON.parse(await read('content/pages/home.json'));
+  const work = JSON.parse(await read('content/pages/work.json'));
+  const contact = JSON.parse(await read('content/pages/contact.json'));
+  const shell = await read('site.js');
+  assert.match(home.text_002, /AI ambition into measurable value.*redesigning work.*building solutions/s);
+  assert.match(work.text_007, /scope, deliverables, and measures of success/);
+  assert.match(contact.text_003, /slowing your work down.*right starting point.*build a solution/s);
+  assert.match(shell, /Copy this page link/);
+  assert.match(shell, /navigator\.clipboard\.writeText/);
+});
+
+test('15-question starting-point assessment provides five scores and a gated report', async () => {
+  const home = await read('dist/index.html');
+  const start = await read('dist/start-here.html');
+  const script = await read('dist/start-here.js');
+  const sitemap = await read('dist/sitemap.xml');
+  const manifest = JSON.parse(await read('content/pages/manifest.json'));
+  assert.match(home, /href="\/start-here\/"/);
+  assert.match(start, /data-guide-root/);
+  assert.match(start, /15 questions across five parts/);
+  assert.match(start, /30, 60, and 90 days/);
+  assert.doesNotMatch(start, /A quick orientation|What progress could look like|Your answers stay in this browser/);
+  assert.match(start, /not a validated diagnostic/);
+  assert.equal((script.match(/\['(?:awareness|understanding|evaluation|adoption|optimization)', 'How /g) || []).length, 15);
+  for (const part of ['Awareness', 'Understanding', 'Evaluation', 'Adoption', 'Optimization']) assert.match(script, new RegExp(part));
+  assert.match(script, /data-report-form/);
+  assert.match(script, /data-print/);
+  assert.match(script, /fetch\(endpoint/);
+  assert.match(script, /response\.ok/);
+  assert.doesNotMatch(script, /data-copy|clipboard\.writeText/);
+  assert.match(sitemap, /\/start-here\//);
+  assert.ok(manifest.some(page => page.filename === 'start-here.html'));
+});
+
+test('assessment percentages follow the disclosed 15-question, five-part scoring', async () => {
+  const script = await read('start-here.js');
+  const { questions, calculate, reportMarkup } = runInNewContext(`${script}\n;({ questions, calculate, reportMarkup })`, {
+    document: { querySelector: () => null },
+    window: { siteSettings: { contactFormEndpoint: 'https://formspree.io/f/xvkkkojw' } }
+  });
+  assert.equal(questions.length, 15);
+  assert.deepEqual([...new Set(questions.map(question => question.part))], ['awareness', 'understanding', 'evaluation', 'adoption', 'optimization']);
+  assert.equal(calculate(Array(15).fill(0)).overall, 0);
+  assert.equal(calculate(Array(15).fill(2)).overall, 50);
+  assert.equal(calculate(Array(15).fill(4)).overall, 100);
+  const mixed = calculate([...Array(3).fill(4), ...Array(12).fill(0)]);
+  assert.equal(mixed.scores.awareness, 100);
+  assert.equal(mixed.scores.understanding, 0);
+  assert.equal(mixed.overall, 20);
+  const report = reportMarkup(mixed, '<Visitor>', 'Independent professional');
+  assert.match(report, /Your AI action report/);
+  assert.match(report, /First 30 days/);
+  assert.match(report, /By 60 days/);
+  assert.match(report, /By 90 days/);
+  assert.match(report, /&lt;Visitor&gt;/);
+  assert.doesNotMatch(report, /<Visitor>/);
+});
+
 test('engagement paths lead to evidence and a specific enquiry', async () => {
   const home = await read('dist/index.html');
   const routes = ['work-with-me/#transformation', 'work-with-me/#build', 'training/', 'speaking/'];
   for (const route of routes) assert.ok(home.includes(`href="${process.env.SITE_PREVIEW === 'true' ? '/website-preview/' : '/'}${route}"`));
-  assert.ok(home.indexOf('id="work-with-me"') < home.indexOf('id="latest-writing"'));
+  assert.ok(home.indexOf('id="ways-to-work"') < home.indexOf('id="latest-writing"'));
   assert.ok(home.indexOf('Proof in practice') < home.indexOf('id="latest-writing"'));
   const work = await read('dist/work-with-me.html');
   for (const id of ['transformation', 'build', 'training', 'speaking']) assert.ok(work.includes(`id="${id}"`));
@@ -62,11 +132,22 @@ test('engagement paths lead to evidence and a specific enquiry', async () => {
   const training = await read('dist/training.html');
   assert.match(training, /Leadership briefing/);
   assert.match(training, /Team workshop/);
+  for (const tool of ['ChatGPT', 'Claude', 'Gemini', 'Microsoft 365 Copilot']) assert.ok(training.includes(tool));
+  for (const skill of ['Check and improve outputs', 'Apply AI to a workflow']) assert.ok(training.includes(skill));
+  const solutions = await read('dist/build.html');
+  for (const outcome of ['Give time back', 'Serve customers better', 'Make information useful', 'Grow capacity and revenue']) assert.ok(solutions.includes(outcome));
   const speaking = await read('dist/speaking.html');
   assert.match(speaking, /For event organizers/);
   assert.match(speaking, /Short speaker biography/);
   const contact = await read('dist/contact.html');
-  for (const subject of ['AI%20transformation%20enquiry', 'Platform%20build%20enquiry', 'AI%20training%20enquiry', 'Speaking%20invitation']) assert.ok(contact.includes(subject));
+  assert.match(contact, /data-contact-form/);
+  assert.match(contact, /name="topic"/);
+  assert.match(contact, /name="message"/);
+  assert.match(contact, /mailto:agboojobo@gmail.com/);
+  assert.match(await read('dist/contact.js'), /contactFormEndpoint/);
+  const siteSettings = JSON.parse(await read('content/site-settings.json'));
+  assert.equal(siteSettings.contactFormEndpoint, 'https://formspree.io/f/xvkkkojw');
+  assert.match(contact, /"contactFormEndpoint":"https:\/\/formspree\.io\/f\/xvkkkojw"/);
   for (const page of ['work-with-me.html', 'training.html']) {
     await access(join(root, 'dist', page));
     assert.match(await read(`dist/${page}`), /href="site\.css\?v=[a-f0-9]{10}"/);
@@ -76,7 +157,6 @@ test('engagement paths lead to evidence and a specific enquiry', async () => {
 test('career proof and publications are visible with source links', async () => {
   const home = await read('dist/index.html');
   for (const page of ['research-state-ai-readiness.html', 'research-explainable-ai-healthcare-review.html', 'project-chedvi.html']) {
-    assert.ok(home.includes(`href="${process.env.SITE_PREVIEW === 'true' ? '/website-preview/' : '/'}${page.replace(/\.html$/, '')}/"`));
     await access(join(root, 'dist', page));
     await access(join(root, 'dist', page.replace(/\.html$/, ''), 'index.html'));
   }
@@ -84,7 +164,7 @@ test('career proof and publications are visible with source links', async () => 
   for (const fact of ['MS in Data Science', 'Bachelor of Engineering', 'AAAS Annual Meeting', 'B0CCDYJF87', '10.3390/a19060488']) assert.ok(bio.includes(fact));
   assert.doesNotMatch(bio, /working draft/i);
   const research = await read('dist/research.html');
-  assert.match(research, /Published research/);
+  assert.match(research, /Selected publications/);
   assert.match(research, /The State AI Preparedness Project/);
   assert.match(research, /Explainable AI Applications in Healthcare/);
   const speaking = await read('dist/speaking.html');
@@ -160,10 +240,45 @@ test('homepage preview keeps the opening focused on the person and offer', async
   const hero = html.split('<section class="hero-home">')[1].split('</section>')[0];
   assert.match(hero, /ojobo-portrait-formal\.jpg/);
   assert.match(hero, /Portrait of Ojobo Agbo Eje/);
-  assert.match(hero, /Explore my work/);
+  assert.match(hero, /Explore ways to work together/);
   assert.doesNotMatch(hero, /CHEDVI|Rutgers|research-state-ai-readiness|project-chedvi/i);
   assert.match(html, /class="hero-wayfinder"/);
-  assert.equal((html.match(/id="start-here"/g) || []).length, 1);
+  assert.match(html, /href="\/start-here\/"/);
+});
+
+test('homepage motion preview keeps service imagery editable and motion optional', async () => {
+  const source = await read('index.html');
+  const html = await read('dist/index.html');
+  const css = await read('dist/site.css');
+  const js = await read('dist/site.js');
+  const manifest = JSON.parse(await read('content/pages/manifest.json'));
+  const homeFields = manifest.find(page => page.slug === 'home')?.fields || [];
+  for (const id of [11, 12, 13, 14]) {
+    const key = `image_${String(id).padStart(3, '0')}`;
+    assert.ok(source.includes(`data-edit-image="${key}"`));
+    assert.ok(homeFields.some(field => field.key === key && field.widget === 'image'));
+    assert.ok(html.includes(`data-edit-image="${key}"`));
+  }
+  assert.match(html, /class="section home-proof"/);
+  assert.match(css, /prefers-reduced-motion:reduce/);
+  assert.match(js, /revealObserver\.unobserve/);
+});
+
+test('inner pages share subtle motion without delaying article text', async () => {
+  const css = await read('dist/site.css');
+  const js = await read('dist/site.js');
+  for (const selector of ['.service-detail', '.project-list .card', '.editorial-grid .editorial-card', '.contact-route-grid > a', '.essay-related-card', '.case-feature-list > *']) {
+    assert.ok(js.includes(selector), `${selector} is missing from sitewide reveal targets`);
+  }
+  assert.match(js, /page === 'essay'/);
+  assert.match(js, /reading-progress/);
+  assert.match(css, /\.site-motion-target\.is-visible/);
+  assert.match(css, /prefers-reduced-motion:reduce/);
+  for (const page of ['about.html', 'work-with-me.html', 'build.html', 'training.html', 'speaking.html', 'writing.html', 'reading.html', 'contact.html', 'project-chedvi.html', 'essay-five-stages-ai-maturity.html']) {
+    const html = await read(`dist/${page}`);
+    assert.match(html, /src="site\.js\?v=[a-f0-9]{10}"/, `${page} is missing the shared interaction script`);
+    assert.match(html, /href="site\.css\?v=[a-f0-9]{10}"/, `${page} is missing the shared visual styles`);
+  }
 });
 
 test('published article pages are built and their images exist', async () => {
@@ -286,7 +401,7 @@ test('a sample publication builds its pages while a draft stays private', async 
   const fixture = await mkdtemp(join(tmpdir(), 'ojobo-publish-test-'));
   try {
     for (const folder of ['scripts', 'content', 'assets']) await mkdir(join(fixture, folder));
-    for (const file of ['scripts/build-content.mjs', 'scripts/render-page-content.mjs', 'scripts/render-list-content.mjs', 'site.css', 'site-conversion.css', 'site.js', 'content-render.js', 'article.js']) {
+    for (const file of ['scripts/build-content.mjs', 'scripts/render-page-content.mjs', 'scripts/render-list-content.mjs', 'site.css', 'site-conversion.css', 'site.js', 'content-render.js', 'article.js', 'start-here.js', 'contact.js']) {
       await copyFile(join(root, file), join(fixture, file));
     }
     await copyFile(join(root, 'content', 'analytics.json'), join(fixture, 'content', 'analytics.json'));

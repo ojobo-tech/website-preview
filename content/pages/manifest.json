@@ -1,5 +1,57 @@
 [
   {
+    "filename": "start-here.html",
+    "slug": "start",
+    "label": "Start here",
+    "fields": [
+      {
+        "key": "seoTitle",
+        "label": "Browser and search title",
+        "widget": "string"
+      },
+      {
+        "key": "seoDescription",
+        "label": "Search description",
+        "widget": "text"
+      },
+      {
+        "key": "text_001",
+        "label": "Eyebrow",
+        "widget": "string"
+      },
+      {
+        "key": "text_002",
+        "label": "Heading",
+        "widget": "string"
+      },
+      {
+        "key": "text_003",
+        "label": "Introduction",
+        "widget": "text"
+      },
+      {
+        "key": "text_004",
+        "label": "Approach heading",
+        "widget": "string"
+      },
+      {
+        "key": "text_005",
+        "label": "Approach introduction",
+        "widget": "text"
+      },
+      {
+        "key": "text_006",
+        "label": "Approach second paragraph",
+        "widget": "text"
+      },
+      {
+        "key": "text_007",
+        "label": "Approach closing line",
+        "widget": "string"
+      }
+    ]
+  },
+  {
     "filename": "index.html",
     "slug": "home",
     "label": "Homepage",
@@ -55,221 +107,6 @@
         "widget": "text"
       },
       {
-        "key": "text_008",
-        "label": "Section label — The AI transformation framework",
-        "widget": "text"
-      },
-      {
-        "key": "text_009",
-        "label": "H2 heading — Start with the work. Then decide what AI should do.",
-        "widget": "string"
-      },
-      {
-        "key": "text_010",
-        "label": "Text — A practical sequence for finding real value: define the problem, under",
-        "widget": "text"
-      },
-      {
-        "key": "text_011",
-        "label": "Link text — Explore the framework →",
-        "widget": "text"
-      },
-      {
-        "key": "image_001",
-        "label": "Start with the work. Then decide what AI should do. — image 1",
-        "widget": "image"
-      },
-      {
-        "key": "image_001_alt",
-        "label": "Start with the work. Then decide what AI should do. — image description",
-        "widget": "string"
-      },
-      {
-        "key": "text_012",
-        "label": "Section label — For decision-makers",
-        "widget": "text"
-      },
-      {
-        "key": "text_013",
-        "label": "H2 heading — Where should we begin?",
-        "widget": "string"
-      },
-      {
-        "key": "text_014",
-        "label": "Text — Three practical routes into the questions leaders ask when moving from",
-        "widget": "text"
-      },
-      {
-        "key": "image_002",
-        "label": "Where should we begin? — image 2",
-        "widget": "image"
-      },
-      {
-        "key": "image_002_alt",
-        "label": "Where should we begin? — image description",
-        "widget": "string"
-      },
-      {
-        "key": "text_015",
-        "label": "Section label — The problem",
-        "widget": "text"
-      },
-      {
-        "key": "text_016",
-        "label": "H3 heading — What are we trying to improve?",
-        "widget": "string"
-      },
-      {
-        "key": "text_017",
-        "label": "Text — Frame the outcome before choosing technology.",
-        "widget": "text"
-      },
-      {
-        "key": "image_003",
-        "label": "What are we trying to improve? — image 3",
-        "widget": "image"
-      },
-      {
-        "key": "image_003_alt",
-        "label": "What are we trying to improve? — image description",
-        "widget": "string"
-      },
-      {
-        "key": "text_018",
-        "label": "Section label — The use case",
-        "widget": "text"
-      },
-      {
-        "key": "text_019",
-        "label": "H3 heading — Where can AI actually help?",
-        "widget": "string"
-      },
-      {
-        "key": "text_020",
-        "label": "Text — Connect a specific application to a real process.",
-        "widget": "text"
-      },
-      {
-        "key": "image_004",
-        "label": "Where can AI actually help? — image 4",
-        "widget": "image"
-      },
-      {
-        "key": "image_004_alt",
-        "label": "Where can AI actually help? — image description",
-        "widget": "string"
-      },
-      {
-        "key": "text_021",
-        "label": "Section label — The build",
-        "widget": "text"
-      },
-      {
-        "key": "text_022",
-        "label": "H3 heading — What needs to be built?",
-        "widget": "string"
-      },
-      {
-        "key": "text_023",
-        "label": "Text — Move from analysis to a working platform.",
-        "widget": "text"
-      },
-      {
-        "key": "text_024",
-        "label": "Section label — Selected works",
-        "widget": "text"
-      },
-      {
-        "key": "text_025",
-        "label": "H2 heading — Platforms, analysis, and applied ideas",
-        "widget": "string"
-      },
-      {
-        "key": "text_026",
-        "label": "Text — My work includes developing technical solutions, not just advising on ",
-        "widget": "text"
-      },
-      {
-        "key": "text_027",
-        "label": "Link text — View all builds →",
-        "widget": "text"
-      },
-      {
-        "key": "text_028",
-        "label": "Section label — Research & perspectives",
-        "widget": "text"
-      },
-      {
-        "key": "text_029",
-        "label": "H2 heading — The deeper questions behind adoption",
-        "widget": "string"
-      },
-      {
-        "key": "text_030",
-        "label": "Text — Research and practice meet in questions of readiness, equity, learning",
-        "widget": "text"
-      },
-      {
-        "key": "image_005",
-        "label": "The deeper questions behind adoption — image 5",
-        "widget": "image"
-      },
-      {
-        "key": "image_005_alt",
-        "label": "The deeper questions behind adoption — image description",
-        "widget": "string"
-      },
-      {
-        "key": "text_031",
-        "label": "Section label — Research",
-        "widget": "text"
-      },
-      {
-        "key": "text_032",
-        "label": "H3 heading — AI readiness is more than access to tools",
-        "widget": "string"
-      },
-      {
-        "key": "text_033",
-        "label": "Text — Organizations need the data, governance, workforce capability, infrast",
-        "widget": "text"
-      },
-      {
-        "key": "text_034",
-        "label": "Link text — Explore the research →",
-        "widget": "text"
-      },
-      {
-        "key": "image_006",
-        "label": "AI readiness is more than access to tools — image 6",
-        "widget": "image"
-      },
-      {
-        "key": "image_006_alt",
-        "label": "AI readiness is more than access to tools — image description",
-        "widget": "string"
-      },
-      {
-        "key": "text_035",
-        "label": "Section label — Working thesis",
-        "widget": "text"
-      },
-      {
-        "key": "text_036",
-        "label": "H3 heading — Redesign work before automating it",
-        "widget": "string"
-      },
-      {
-        "key": "text_037",
-        "label": "Text — Automation can make the wrong process faster. Transformation asks what",
-        "widget": "text"
-      },
-      {
-        "key": "text_038",
-        "label": "Link text — Read the framework →",
-        "widget": "text"
-      },
-      {
         "key": "text_039",
         "label": "Section label — Speaking & events",
         "widget": "text"
@@ -287,171 +124,6 @@
       {
         "key": "text_042",
         "label": "Link text — View speaking & events →",
-        "widget": "text"
-      },
-      {
-        "key": "text_043",
-        "label": "Section label — A working thesis",
-        "widget": "text"
-      },
-      {
-        "key": "text_044",
-        "label": "Quotation — “Most organizations are adopting AI without transforming. The work beg",
-        "widget": "text"
-      },
-      {
-        "key": "text_045",
-        "label": "Section label — Signals",
-        "widget": "text"
-      },
-      {
-        "key": "text_046",
-        "label": "H2 heading — What I am watching",
-        "widget": "string"
-      },
-      {
-        "key": "text_047",
-        "label": "Text — Shorter observations on the technologies, skills, and institutions sha",
-        "widget": "text"
-      },
-      {
-        "key": "text_048",
-        "label": "Section label — Work",
-        "widget": "text"
-      },
-      {
-        "key": "text_049",
-        "label": "H3 heading — Human judgment",
-        "widget": "string"
-      },
-      {
-        "key": "text_050",
-        "label": "Text — What should remain a human decision when capability is delegated to AI",
-        "widget": "text"
-      },
-      {
-        "key": "text_051",
-        "label": "Section label — Capability",
-        "widget": "text"
-      },
-      {
-        "key": "text_052",
-        "label": "H3 heading — AI literacy",
-        "widget": "string"
-      },
-      {
-        "key": "text_053",
-        "label": "Text — How do teams gain the confidence to use AI critically, not just freque",
-        "widget": "text"
-      },
-      {
-        "key": "text_054",
-        "label": "Section label — Systems",
-        "widget": "text"
-      },
-      {
-        "key": "text_055",
-        "label": "H3 heading — Platform thinking",
-        "widget": "string"
-      },
-      {
-        "key": "text_056",
-        "label": "Text — When should an idea become a reusable product rather than another pilo",
-        "widget": "text"
-      },
-      {
-        "key": "text_057",
-        "label": "Section label — Newsletter",
-        "widget": "text"
-      },
-      {
-        "key": "text_058",
-        "label": "H2 heading — The AI Catalyst Report",
-        "widget": "string"
-      },
-      {
-        "key": "text_059",
-        "label": "Text — Thoughts on understanding, adopting, and using AI responsibly and prof",
-        "widget": "text"
-      },
-      {
-        "key": "text_060",
-        "label": "Link text — Read on Substack ↗",
-        "widget": "text"
-      },
-      {
-        "key": "text_061",
-        "label": "Section label — Audio",
-        "widget": "text"
-      },
-      {
-        "key": "text_062",
-        "label": "H2 heading — Listen to the ideas",
-        "widget": "string"
-      },
-      {
-        "key": "text_063",
-        "label": "Text — Articles can have an audio edition alongside the written version. The ",
-        "widget": "text"
-      },
-      {
-        "key": "text_064",
-        "label": "Link text — See an article →",
-        "widget": "text"
-      },
-      {
-        "key": "text_065",
-        "label": "Section label — Concepts",
-        "widget": "text"
-      },
-      {
-        "key": "text_066",
-        "label": "H2 heading — The ideas that underpin my work",
-        "widget": "string"
-      },
-      {
-        "key": "text_067",
-        "label": "Text — These are the questions I return to across strategy, research, and bui",
-        "widget": "text"
-      },
-      {
-        "key": "image_007",
-        "label": "The ideas that underpin my work — image 7",
-        "widget": "image"
-      },
-      {
-        "key": "image_007_alt",
-        "label": "The ideas that underpin my work — image description",
-        "widget": "string"
-      },
-      {
-        "key": "text_068",
-        "label": "H3 heading — Problem before platform",
-        "widget": "string"
-      },
-      {
-        "key": "text_069",
-        "label": "Text — What are we trying to solve, improve, or make possible?",
-        "widget": "text"
-      },
-      {
-        "key": "image_008",
-        "label": "Problem before platform — image 8",
-        "widget": "image"
-      },
-      {
-        "key": "image_008_alt",
-        "label": "Problem before platform — image description",
-        "widget": "string"
-      },
-      {
-        "key": "text_070",
-        "label": "H3 heading — Capability before scale",
-        "widget": "string"
-      },
-      {
-        "key": "text_071",
-        "label": "Text — Do people and institutions understand, trust, and sustain the change?",
         "widget": "text"
       },
       {
@@ -602,6 +274,46 @@
       {
         "key": "image_010_alt",
         "label": "CHEDVI proof image description",
+        "widget": "string"
+      },
+      {
+        "key": "image_011",
+        "label": "Transform service image",
+        "widget": "image"
+      },
+      {
+        "key": "image_011_alt",
+        "label": "Transform service image description",
+        "widget": "string"
+      },
+      {
+        "key": "image_012",
+        "label": "Build service image",
+        "widget": "image"
+      },
+      {
+        "key": "image_012_alt",
+        "label": "Build service image description",
+        "widget": "string"
+      },
+      {
+        "key": "image_013",
+        "label": "Train service image",
+        "widget": "image"
+      },
+      {
+        "key": "image_013_alt",
+        "label": "Train service image description",
+        "widget": "string"
+      },
+      {
+        "key": "image_014",
+        "label": "Speak service image",
+        "widget": "image"
+      },
+      {
+        "key": "image_014_alt",
+        "label": "Speak service image description",
         "widget": "string"
       }
     ]
@@ -1686,82 +1398,17 @@
       },
       {
         "key": "text_006",
-        "label": "Link text — Email Ojobo ↗",
+        "label": "Link text — agboojobo@gmail.com ↗",
         "widget": "text"
       },
       {
         "key": "text_007",
-        "label": "H2 heading — Areas of interest",
+        "label": "H3 heading — Other ways to collaborate",
         "widget": "string"
       },
       {
         "key": "text_008",
         "label": "Text — AI transformation strategy, work redesign, platform development, data ",
-        "widget": "text"
-      },
-      {
-        "key": "text_009",
-        "label": "Text — Choose the conversation",
-        "widget": "text"
-      },
-      {
-        "key": "text_010",
-        "label": "Text — Transform",
-        "widget": "text"
-      },
-      {
-        "key": "text_011",
-        "label": "Text — Tell me about the work you want to redesign and the outcome you ne",
-        "widget": "text"
-      },
-      {
-        "key": "text_012",
-        "label": "Text — Discuss transformation →",
-        "widget": "text"
-      },
-      {
-        "key": "text_013",
-        "label": "Text — Build",
-        "widget": "text"
-      },
-      {
-        "key": "text_014",
-        "label": "Text — Share the problem, intended users, data, and what a useful solutio",
-        "widget": "text"
-      },
-      {
-        "key": "text_015",
-        "label": "Text — Discuss a build →",
-        "widget": "text"
-      },
-      {
-        "key": "text_016",
-        "label": "Text — Train",
-        "widget": "text"
-      },
-      {
-        "key": "text_017",
-        "label": "Text — Tell me who the learners are and what they should be able to do di",
-        "widget": "text"
-      },
-      {
-        "key": "text_018",
-        "label": "Text — Discuss training →",
-        "widget": "text"
-      },
-      {
-        "key": "text_019",
-        "label": "Text — Speak",
-        "widget": "text"
-      },
-      {
-        "key": "text_020",
-        "label": "Text — Include the event, audience, date, format, and the question you wa",
-        "widget": "text"
-      },
-      {
-        "key": "text_021",
-        "label": "Text — Send a speaking invitation →",
         "widget": "text"
       }
     ]

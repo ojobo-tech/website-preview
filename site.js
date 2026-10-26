@@ -2,27 +2,39 @@ const page = document.body.dataset.page || 'home';
 const siteSettings = window.siteSettings || {};
 const cleanText = value => String(value ?? '').replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
 const links = [
-  ['about', 'About', 'about.html'],
+  ['start', 'Start here', 'start-here.html'],
   ['framework', 'Transformation', 'framework.html'],
-  ['build', 'Build', 'build.html'],
-  ['research', 'Research', 'research.html'],
+  ['build', 'AI solutions', 'build.html'],
+  ['training', 'AI training', 'training.html'],
+  ['speaking', 'Speaking', 'speaking.html'],
   ['writing', 'Writing', 'writing.html'],
-  ['speaking', 'Speaking', 'speaking.html']
+  ['about', 'About', 'about.html']
 ];
 const active = { biography:'about', leadership:'about', reading:'about', 'project-chedvi':'build', essay:'writing' }[page] || page;
+const main = document.querySelector('main');
+if (main) {
+  main.id ||= 'main-content';
+  main.setAttribute('tabindex', '-1');
+  const skip = document.createElement('a');
+  skip.className = 'skip-link';
+  skip.href = '#main-content';
+  skip.textContent = 'Skip to main content';
+  document.body.prepend(skip);
+}
 const header = document.querySelector('[data-header]');
 if (location.pathname.endsWith('.html')) history.replaceState(null, '', `${location.pathname.replace(/\/([a-z0-9-]+)\.html$/, (_, slug) => slug === 'index' ? '/' : `/${slug}/`)}${location.search}${location.hash}`);
-if (header) header.innerHTML = `<a class="wordmark" href="./">${cleanText(siteSettings.wordmark || 'Ojobo Agbo Eje')}</a><nav id="primary-nav" aria-label="Primary navigation">${links.map(([key,label,url]) => `<a href="${url}" ${active === key ? 'aria-current="page"' : ''}>${label}</a>`).join('')}</nav><div class="nav-tools"><a class="icon-link" href="search.html" aria-label="Search">⌕</a><a class="icon-link" href="contact.html" aria-label="Contact">✉</a><a class="nav-contact" href="work-with-me.html">${cleanText(siteSettings.contactButton || 'Work with me')}</a><button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">☰</button></div>`;
+if (header) header.innerHTML = `<a class="wordmark" href="./">${cleanText(siteSettings.wordmark || 'Ojobo Agbo Eje')}</a><nav id="primary-nav" aria-label="Primary navigation">${links.map(([key,label,url]) => `<a href="${url}" ${active === key ? 'aria-current="page"' : ''}>${label}</a>`).join('')}<a class="mobile-nav-action" href="work-with-me.html" ${page === 'work' ? 'aria-current="page"' : ''}>Work with me</a><a class="mobile-nav-action" href="contact.html" ${page === 'contact' ? 'aria-current="page"' : ''}>Contact</a></nav><div class="nav-tools"><a class="icon-link" href="search.html" aria-label="Search">⌕</a><a class="icon-link" href="contact.html" aria-label="Contact">✉</a><a class="nav-contact" href="work-with-me.html" ${page === 'work' ? 'aria-current="page"' : ''}>${cleanText(siteSettings.contactButton || 'Work with me')}</a><button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">☰</button></div>`;
 const menu = document.querySelector('.menu-toggle');
 const topicMenus = {
   framework: [['My take','#my-take'],['Framework','#sequence'],['Use cases','#use-cases'],['Selected work','build.html'],['Questions','#questions']],
-  build: [['My take','#my-take'],['Projects','#projects'],['How I build','#approach'],['Research','research.html'],['Questions','#questions']],
-  research: [['My take','#my-take'],['Themes','#themes'],['Applied work','#translation'],['Writing','writing.html'],['Questions','#questions']]
+  build: [['Solutions','build.html'],['Selected work','#projects'],['Questions','#questions'],['Discuss a solution','contact.html']],
+  research: [['Why evidence matters','#my-take'],['Themes','#themes'],['Applied work','#translation'],['Writing','writing.html'],['Questions','#questions']],
+  work: [['Transformation','#transformation'],['Build','#build'],['Training','#training'],['Speaking','#speaking'],['Get in touch','contact.html#choose-a-conversation']]
 };
 if (header && topicMenus[page]) {
   const topicNav = document.createElement('nav');
   topicNav.className = 'topic-nav';
-  topicNav.setAttribute('aria-label', `${page === 'framework' ? 'Transformation' : page === 'build' ? 'Build' : 'Research'} sections`);
+  topicNav.setAttribute('aria-label', `${page === 'framework' ? 'Transformation' : page === 'build' ? 'Build' : page === 'research' ? 'Evidence' : 'Work with me'} sections`);
   topicNav.innerHTML = `<div class="container topic-nav-inner"><span class="topic-nav-label">Explore this topic</span>${topicMenus[page].map(([label,url]) => `<a href="${url}">${label}</a>`).join('')}</div>`;
   header.after(topicNav);
   const localLinks = [...topicNav.querySelectorAll('a[href^="#"]')];
@@ -42,8 +54,31 @@ menu?.addEventListener('click', () => {
   menu.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   menu.textContent = open ? '×' : '☰';
 });
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && document.querySelector('#primary-nav')?.classList.contains('open')) menu?.click();
+});
 const footer = document.querySelector('[data-footer]');
-if (footer) footer.innerHTML = `<div class="container"><div class="footer-grid"><div><h3>${cleanText(siteSettings.footerHeading || 'About me')}</h3><p>${cleanText(siteSettings.footerBio || 'I work across AI transformation, applied research, and platform development.')}</p><a href="about.html">Read about my work →</a></div><div><h4>Explore</h4><a href="work-with-me.html">Work with me</a><a href="framework.html">AI transformation</a><a href="build.html">Technical projects</a><a href="research.html">Research</a><a href="writing.html">Articles & audio</a><a href="training.html">Training & capability</a><a href="speaking.html">Speaking & events</a><a href="reading.html">Reading room</a></div><div><h4>Connect</h4><a href="contact.html">Start a conversation</a><a href="https://ojoboagboeje.substack.com/" target="_blank" rel="noopener noreferrer">The AI Catalyst Report ↗</a><a href="https://chedvi.onrender.com/" target="_blank" rel="noopener noreferrer">Explore CHEDVI ↗</a></div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} ${cleanText(siteSettings.wordmark || 'Ojobo Agbo Eje')}</span><span>${cleanText(siteSettings.footerTagline || 'AI transformation · Research · Applied technology')}</span><a href="#top">Back to top ↑</a></div></div>`;
+if (footer) footer.innerHTML = `<div class="container"><div class="footer-grid"><div><h3>${cleanText(siteSettings.footerHeading || 'What I do')}</h3><p>${cleanText(siteSettings.footerBio || 'I help organizations find valuable AI use cases, redesign work, implement solutions, and train teams.')}</p><a href="about.html">Read about my work →</a></div><div><h4>Explore</h4><a href="start-here.html">Find your AI starting point</a><a href="work-with-me.html">Work with me</a><a href="framework.html">AI transformation</a><a href="build.html">AI solutions</a><a href="training.html">AI training</a><a href="speaking.html">Speaking & events</a><a href="writing.html">Articles & audio</a><a href="research.html">Evidence & publications</a><a href="reading.html">Reading room</a></div><div><h4>Connect</h4><a href="contact.html">Start a conversation</a><a href="https://ojoboagboeje.substack.com/" target="_blank" rel="noopener noreferrer">The AI Catalyst Report ↗</a><a href="https://chedvi.onrender.com/" target="_blank" rel="noopener noreferrer">Explore CHEDVI ↗</a></div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} ${cleanText(siteSettings.wordmark || 'Ojobo Agbo Eje')}</span><span>${cleanText(siteSettings.footerTagline || 'AI transformation · Implementation · Training')}</span><a href="#top">Back to top ↑</a></div></div>`;
+if (footer) {
+  const connect = footer.querySelector('.footer-grid > div:last-child');
+  const share = document.createElement('button');
+  share.type = 'button';
+  share.className = 'footer-share';
+  share.textContent = 'Copy this page link ↗';
+  const status = document.createElement('span');
+  status.className = 'footer-share-status';
+  status.setAttribute('role', 'status');
+  status.setAttribute('aria-live', 'polite');
+  connect?.append(share, status);
+  share.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(new URL(location.pathname, location.origin).href);
+      status.textContent = 'Link copied. You can share it anywhere.';
+    } catch {
+      status.textContent = 'Copy the link from your browser address bar.';
+    }
+  });
+}
 document.querySelector('[data-question-nav]')?.addEventListener('change', event => {
   if (event.target.value) location.href = new URL(event.target.value, document.baseURI).href;
 });
@@ -185,13 +220,14 @@ for (const status of ['upcoming','past']) {
 const search = document.querySelector('[data-search]');
 if (search) {
   const items = [
+    ['Start here', 'start-here.html', 'Find your AI starting point and a practical path to value'],
     ['About Ojobo', 'about.html', 'Biography and approach'],
     ['Work with me', 'work-with-me.html', 'AI transformation, building, training and speaking'],
     ['AI training & capability', 'training.html', 'AI literacy, use cases and team workshops'],
     ['AI Transformation Framework', 'framework.html', 'Problem, process, use case, skills, technology, culture'],
     ['Selected builds', 'build.html', 'Platforms and technical portfolio'],
     ['CHEDVI', 'project-chedvi.html', 'Camden Health Equity Data Visualization Initiative'],
-    ['Research', 'research.html', 'AI readiness, healthcare, public interest'],
+    ['Evidence & publications', 'research.html', 'AI readiness, healthcare, public interest'],
     ['Writing', 'writing.html', 'Articles, briefings and audio'],
     ['Reading room', 'reading.html', 'Books, papers and ideas'],
     ['Speaking & events', 'speaking.html', 'Upcoming appearances and speaking topics'],
@@ -213,9 +249,11 @@ if (search) {
   const results = document.querySelector('[data-results]');
   const render = () => {
     const q = search.value.trim().toLowerCase();
-    const matched = items.filter(i => i.join(' ').toLowerCase().includes(q));
+    const matched = q ? items.filter(i => i.join(' ').toLowerCase().includes(q)) : items.slice(0, 6);
     results.replaceChildren();
-    if (!matched.length) { addText(results, 'p', '', 'No matching pages yet.'); return; }
+    const status = document.querySelector('[data-search-status]');
+    if (status) status.textContent = q ? `${matched.length} ${matched.length === 1 ? 'result' : 'results'} for “${search.value.trim()}”` : 'Popular starting points';
+    if (!matched.length) { addText(results, 'p', '', 'No matches. Try a broader term such as AI, training, research, or speaking.'); return; }
     for (const [title, url, desc] of matched) {
       const row = document.createElement('a');
       row.className = 'article-row';
@@ -230,4 +268,48 @@ if (search) {
   };
   search.addEventListener('input', render);
   render();
+}
+
+// Reveal structural highlights across the site, never the paragraphs of an article.
+// With JavaScript disabled, unsupported observers, or reduced motion, content stays visible.
+if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const homeTargets = '.home-offers .section-heading, .home-offers .offer-card, .project-showcase .section-heading, .project-showcase .card';
+  const innerTargets = '.service-detail, .project-list .card, .editorial-grid .editorial-card, .speaking-topic-grid article, .event-list-card, .reading-list .reading-item, .contact-route-grid > a, .training-format-grid > *, .training-principle-grid > *, .essay-related-card, .evidence-card, .inner-layout > .article-content > h2, .inner-layout > .article-content > .lead, .article-content > .inline-editorial, .article-content > .topic-cta, .article-content > .contact-card, .case-facts > *, .case-feature-list > *';
+  const revealTargets = document.querySelectorAll(page === 'home' ? homeTargets : innerTargets);
+  const revealObserver = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      entry.target.classList.add('is-visible');
+      revealObserver.unobserve(entry.target);
+    }
+  }, { threshold: 0.12, rootMargin: '0px 0px -35px 0px' });
+  revealTargets.forEach((target, index) => {
+    if (page !== 'home') {
+      target.classList.add('site-motion-target');
+      target.style.setProperty('--reveal-delay', `${Math.min(index % 4, 3) * 65}ms`);
+    }
+    revealObserver.observe(target);
+  });
+}
+
+// A small page-progress indicator helps readers orient themselves in long essays.
+if (page === 'essay') {
+  const progress = document.createElement('div');
+  progress.className = 'reading-progress';
+  progress.setAttribute('aria-hidden', 'true');
+  document.body.append(progress);
+  let progressQueued = false;
+  const updateProgress = () => {
+    const total = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    progress.style.transform = `scaleX(${Math.min(1, Math.max(0, window.scrollY / total))})`;
+    progressQueued = false;
+  };
+  const queueProgress = () => {
+    if (progressQueued) return;
+    progressQueued = true;
+    requestAnimationFrame(updateProgress);
+  };
+  window.addEventListener('scroll', queueProgress, { passive: true });
+  window.addEventListener('resize', queueProgress);
+  queueProgress();
 }

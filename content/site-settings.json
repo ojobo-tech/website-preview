@@ -1,7 +1,8 @@
 {
   "wordmark": "Ojobo Agbo Eje",
   "contactButton": "Work with me",
-  "footerHeading": "About me",
-  "footerBio": "I work across AI transformation, adoption, and literacy. My work creates solutions that help businesses and organizations rethink and redesign work, business, people, and processes to leverage the possibilities of AI.",
-  "footerTagline": "AI transformation · Research · Applied technology"
+  "footerHeading": "What I do",
+  "footerBio": "I help professionals, businesses, institutions, and organizations turn AI ambition into measurable value by finding opportunities, redesigning work, building solutions, and developing the capability to sustain change.",
+  "footerTagline": "AI consulting · Implementation · Training",
+  "contactFormEndpoint": "https://formspree.io/f/xvkkkojw"
 }

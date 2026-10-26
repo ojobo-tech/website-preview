@@ -43,7 +43,7 @@ const withDiscoveryMetadata = (markup, filename) => {
   const imageUrl = `${publicBase}assets/ojobo-portrait-formal.jpg`;
   const person = {
     '@type': 'Person', '@id': `${publicBase}#ojobo-agbo-eje`, name: 'Ojobo Agbo Eje', url: publicBase,
-    image: imageUrl, description: 'AI transformation and adoption practitioner, data scientist, researcher, and platform builder.',
+    image: imageUrl, description: 'AI transformation consultant, implementation partner, platform builder, and trainer helping organizations find value and redesign work.',
     knowsAbout: ['AI transformation', 'AI adoption', 'AI literacy', 'work redesign', 'data science', 'explainable AI', 'AI readiness'],
     alumniOf: { '@type': 'CollegeOrUniversity', name: 'Rutgers University' },
     sameAs: ['https://ojoboagboeje.substack.com/', 'https://policylab.rutgers.edu/publication/the-state-ai-preparedness-project/', 'https://www.mdpi.com/1999-4893/19/6/488']
@@ -214,7 +214,7 @@ for (const entry of await readdir(root, { withFileTypes: true })) {
     await writeFile(join(publishRoot, entry.name), preview ? ready.replace(/<head>/i, '<head><meta name="robots" content="noindex,nofollow">') : withMeasurement(ready), 'utf8');
   }
 }
-for (const name of ['site.js', 'content-render.js', 'article.js']) await copyFile(join(root, name), join(publishRoot, name));
+for (const name of ['site.js', 'content-render.js', 'article.js', 'start-here.js', 'contact.js']) await copyFile(join(root, name), join(publishRoot, name));
 await copyFile(join(root, 'content', 'site-content.js'), join(publishRoot, 'content', 'site-content.js'));
 await cp(join(root, 'assets'), join(publishRoot, 'assets'), { recursive: true });
 for (const entry of await readdir(publishRoot, { withFileTypes: true })) {
@@ -223,7 +223,7 @@ for (const entry of await readdir(publishRoot, { withFileTypes: true })) {
   await mkdir(cleanDirectory);
   await copyFile(join(publishRoot, entry.name), join(cleanDirectory, 'index.html'));
 }
-const publicPages = ['index.html', 'about.html', 'biography.html', 'leadership.html', 'reading.html', 'framework.html', 'build.html', 'project-chedvi.html', 'research.html', 'writing.html', 'speaking.html', 'work-with-me.html', 'training.html', 'contact.html', ...expected.keys()];
+const publicPages = ['index.html', 'start-here.html', 'about.html', 'biography.html', 'leadership.html', 'reading.html', 'framework.html', 'build.html', 'project-chedvi.html', 'research.html', 'writing.html', 'speaking.html', 'work-with-me.html', 'training.html', 'contact.html', ...expected.keys()];
 if (preview) {
   await writeFile(join(publishRoot, 'robots.txt'), 'User-agent: *\nDisallow: /\n', 'utf8');
 } else {
