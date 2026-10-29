@@ -315,6 +315,11 @@
         "key": "image_014_alt",
         "label": "Speak service image description",
         "widget": "string"
+      },
+      {
+        "key": "text_098",
+        "label": "Link text — Watch the podcast conversation",
+        "widget": "text"
       }
     ]
   },
@@ -1306,6 +1311,31 @@
         "key": "image_004_alt",
         "label": "Speaking theme image description",
         "widget": "string"
+      },
+      {
+        "key": "text_030",
+        "label": "Section label — Featured podcast conversation",
+        "widget": "text"
+      },
+      {
+        "key": "text_031",
+        "label": "H2 heading — Podcast episode title",
+        "widget": "string"
+      },
+      {
+        "key": "text_032",
+        "label": "Podcast series, host, and date",
+        "widget": "string"
+      },
+      {
+        "key": "text_033",
+        "label": "Podcast conversation summary",
+        "widget": "text"
+      },
+      {
+        "key": "text_034",
+        "label": "Link text — Watch on YouTube",
+        "widget": "text"
       }
     ]
   },

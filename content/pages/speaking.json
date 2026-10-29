@@ -1,6 +1,6 @@
 {
   "seoTitle": "Speaking & events — Ojobo Agbo Eje",
-  "seoDescription": "Invite Ojobo Agbo Eje to speak on AI transformation, adoption, ethical AI, work redesign, and AI literacy. See Rutgers, AAAS, and other appearances.",
+  "seoDescription": "Invite Ojobo Agbo Eje to speak on AI transformation, implementation, and work redesign. Watch his Getting Started podcast conversation on the five stages of AI adoption.",
   "image_001": "assets/editorial-speaking-stage.png",
   "image_001_alt": "Illustrative image of an empty conference stage",
   "text_001": "Speaking & events",
@@ -37,5 +37,10 @@
   "text_027": "What to include in an invitation",
   "text_028": "Your audience, event purpose, proposed date, format, theme, and what you want people to leave thinking or doing.",
   "image_004": "assets/editorial-ai-literacy.png",
-  "image_004_alt": "Illustrative image of colleagues learning together"
+  "image_004_alt": "Illustrative image of colleagues learning together",
+  "text_030": "Featured podcast conversation",
+  "text_031": "The five stages of AI adoption and the mistake businesses make",
+  "text_032": "Getting Started podcast · Genuine Technologies · October 26, 2026",
+  "text_033": "Host Dan Pace and I discuss how businesses can move from chatbot experiments to meaningful AI transformation. We cover when to build or buy, why AI investments miss their return, and why redesigning work and supporting people matter.",
+  "text_034": "Watch the full conversation on YouTube ↗"
 }
