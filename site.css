@@ -525,6 +525,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,su
 .starting-point{padding-top:56px}
 .starting-point .section-heading{margin-bottom:25px}
 .starting-guide{max-width:850px;min-height:340px;padding:28px;background:#f4f6fa;border-top:3px solid var(--blue)}
+.guide-intro>p{max-width:65ch}
+.guide-route-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:24px 0 12px}
+.guide-route-fields label{display:block;font-weight:700;color:var(--navy);margin-bottom:8px}
+.guide-route-fields select{width:100%;min-height:52px;padding:12px 34px 12px 14px;border:1px solid #aab6c6;border-radius:4px;background:#fff;color:var(--navy);font:inherit}
+.guide-route-fields select:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.guide-intro-note{font-size:14px;color:var(--muted);margin:12px 0 22px}
 .guide-progress{display:flex;align-items:center;justify-content:space-between;gap:20px;color:var(--muted);font-size:13px;font-weight:700;margin-bottom:22px}
 .guide-progress>div{display:flex;gap:5px;width:min(50%,240px)}
 .guide-progress i{height:5px;flex:1;background:#cfd7e8;border-radius:3px}
@@ -544,7 +550,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,su
 .guide-experiment{padding:20px;background:#e8edff}
 .guide-experiment p:last-child{margin-bottom:0}
 .guide-copy-status{margin:12px 0 0;min-height:1em;font-size:14px}
-@media(max-width:700px){.start-hero{padding:85px 0 42px}.starting-point{padding-top:43px}.starting-guide{padding:20px;min-height:0}.guide-options,.guide-plan{grid-template-columns:1fr}.guide-progress{display:block}.guide-progress>div{width:100%;margin-top:10px}.guide-result-actions{align-items:flex-start;flex-direction:column}}
+@media(max-width:700px){.start-hero{padding:85px 0 42px}.starting-point{padding-top:43px}.starting-guide{padding:20px;min-height:0}.guide-route-fields,.guide-options,.guide-plan{grid-template-columns:1fr}.guide-progress{display:block}.guide-progress>div{width:100%;margin-top:10px}.guide-result-actions{align-items:flex-start;flex-direction:column}}
 /* Contact: a clear primary enquiry path with an email fallback. */
 .contact-layout{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1fr);gap:clamp(32px,6vw,90px);align-items:start;padding-block:70px 110px}
 .contact-intro h2{font-size:clamp(34px,3.3vw,49px);margin:14px 0 23px}

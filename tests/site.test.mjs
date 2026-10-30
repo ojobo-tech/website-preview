@@ -81,11 +81,12 @@ test('15-question starting-point assessment provides five scores and a gated rep
   const manifest = JSON.parse(await read('content/pages/manifest.json'));
   assert.match(home, /href="\/start-here\/"/);
   assert.match(start, /data-guide-root/);
-  assert.match(start, /15 questions across five parts/);
+  assert.match(start, /15 questions suited to your situation across five parts/);
   assert.match(start, /30, 60, and 90 days/);
   assert.doesNotMatch(start, /A quick orientation|What progress could look like|Your answers stay in this browser/);
   assert.match(start, /not a validated diagnostic/);
-  assert.equal((script.match(/\['(?:awareness|understanding|evaluation|adoption|optimization)', 'How /g) || []).length, 15);
+  assert.match(script, /data-route-form/);
+  assert.match(script, /primary_goal/);
   for (const part of ['Awareness', 'Understanding', 'Evaluation', 'Adoption', 'Optimization']) assert.match(script, new RegExp(part));
   assert.match(script, /data-report-form/);
   assert.match(script, /data-print/);
@@ -96,14 +97,24 @@ test('15-question starting-point assessment provides five scores and a gated rep
   assert.ok(manifest.some(page => page.filename === 'start-here.html'));
 });
 
-test('assessment percentages follow the disclosed 15-question, five-part scoring', async () => {
+test('each audience gets 15 distinct questions and a tailored report with consistent scoring', async () => {
   const script = await read('start-here.js');
-  const { questions, calculate, reportMarkup } = runInNewContext(`${script}\n;({ questions, calculate, reportMarkup })`, {
+  const { routes, goals, calculate, reportMarkup, optionsFor, setQuestions } = runInNewContext(`${script}\n;({ routes, goals, calculate, reportMarkup, optionsFor, setQuestions: value => { questions = value; } })`, {
     document: { querySelector: () => null },
     window: { siteSettings: { contactFormEndpoint: 'https://formspree.io/f/xvkkkojw' } }
   });
-  assert.equal(questions.length, 15);
-  assert.deepEqual([...new Set(questions.map(question => question.part))], ['awareness', 'understanding', 'evaluation', 'adoption', 'optimization']);
+  assert.equal(routes.length, 6);
+  assert.equal(new Set(routes.flatMap(route => route.prompts)).size, 90);
+  for (const route of routes) {
+    assert.equal(route.prompts.length, 15, route.id);
+    assert.equal(route.plan.length, 3, route.id);
+    const answerSets = route.prompts.map((_, index) => optionsFor(route, index));
+    assert.equal(new Set(answerSets.map(options => options.join('|'))).size, 15, route.id);
+    assert.ok(answerSets.every(options => options.length === 5 && new Set(options).size === 5), route.id);
+  }
+  assert.notEqual(optionsFor(routes[0], 2)[1], optionsFor(routes[1], 2)[1]);
+  assert.notEqual(optionsFor(routes[0], 4)[1], optionsFor(routes[5], 4)[1]);
+  setQuestions(routes[0].prompts.map((title, index) => ({ part: ['awareness', 'understanding', 'evaluation', 'adoption', 'optimization'][Math.floor(index / 3)], title })));
   assert.equal(calculate(Array(15).fill(0)).overall, 0);
   assert.equal(calculate(Array(15).fill(2)).overall, 50);
   assert.equal(calculate(Array(15).fill(4)).overall, 100);
@@ -111,8 +122,10 @@ test('assessment percentages follow the disclosed 15-question, five-part scoring
   assert.equal(mixed.scores.awareness, 100);
   assert.equal(mixed.scores.understanding, 0);
   assert.equal(mixed.overall, 20);
-  const report = reportMarkup(mixed, '<Visitor>', 'Independent professional');
+  const report = reportMarkup(mixed, '<Visitor>', routes[0], goals[0]);
   assert.match(report, /Your AI action report/);
+  assert.match(report, /Individual, solopreneur, or professional/);
+  assert.match(report, /Save time and improve productivity/);
   assert.match(report, /First 30 days/);
   assert.match(report, /By 60 days/);
   assert.match(report, /By 90 days/);
