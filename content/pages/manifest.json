@@ -103,7 +103,7 @@
       },
       {
         "key": "text_007",
-        "label": "Link text — View all writing →",
+        "label": "Link text — View all writing",
         "widget": "text"
       },
       {
@@ -123,7 +123,7 @@
       },
       {
         "key": "text_042",
-        "label": "Link text — View speaking & events →",
+        "label": "Link text — View speaking & events",
         "widget": "text"
       },
       {
@@ -143,7 +143,7 @@
       },
       {
         "key": "text_075",
-        "label": "Link text — More about me →",
+        "label": "Link text — More about me",
         "widget": "text"
       },
       {
@@ -163,12 +163,12 @@
       },
       {
         "key": "text_077",
-        "label": "Text — Explore ways to work together →",
+        "label": "Text — Explore ways to work together",
         "widget": "text"
       },
       {
         "key": "text_078",
-        "label": "Text — Explore my work →",
+        "label": "Text — Explore my work",
         "widget": "text"
       },
       {
@@ -198,7 +198,7 @@
       },
       {
         "key": "text_084",
-        "label": "Text — Explore transformation →",
+        "label": "Text — Explore transformation",
         "widget": "text"
       },
       {
@@ -213,7 +213,7 @@
       },
       {
         "key": "text_087",
-        "label": "Text — Explore building →",
+        "label": "Text — Explore building",
         "widget": "text"
       },
       {
@@ -228,7 +228,7 @@
       },
       {
         "key": "text_090",
-        "label": "Text — Explore training →",
+        "label": "Text — Explore training",
         "widget": "text"
       },
       {
@@ -243,7 +243,7 @@
       },
       {
         "key": "text_093",
-        "label": "Text — Explore speaking →",
+        "label": "Text — Explore speaking",
         "widget": "text"
       },
       {
@@ -263,7 +263,7 @@
       },
       {
         "key": "text_097",
-        "label": "Text — See the CHEDVI case study →",
+        "label": "Text — See the CHEDVI case study",
         "widget": "text"
       },
       {
@@ -599,7 +599,7 @@
       },
       {
         "key": "text_010",
-        "label": "Link text — Start a conversation about a specific problem →",
+        "label": "Link text — Start a conversation about a specific problem",
         "widget": "text"
       }
     ]
@@ -801,7 +801,7 @@
       },
       {
         "key": "text_034",
-        "label": "Link text — Get in touch →",
+        "label": "Link text — Get in touch",
         "widget": "text"
       }
     ]
@@ -893,7 +893,7 @@
       },
       {
         "key": "text_015",
-        "label": "Link text — View CHEDVI →",
+        "label": "Link text — View CHEDVI",
         "widget": "text"
       }
     ]
@@ -1055,7 +1055,7 @@
       },
       {
         "key": "text_027",
-        "label": "Link text — View the case study →",
+        "label": "Link text — View the case study",
         "widget": "text"
       }
     ]
@@ -1102,7 +1102,7 @@
       },
       {
         "key": "text_006",
-        "label": "Link text — Substack ↗",
+        "label": "Link text — Substack",
         "widget": "text"
       },
       {
@@ -1239,7 +1239,7 @@
       },
       {
         "key": "text_017",
-        "label": "Link text — Start a speaking conversation →",
+        "label": "Link text — Start a speaking conversation",
         "widget": "text"
       },
       {
@@ -1299,7 +1299,7 @@
       },
       {
         "key": "text_029",
-        "label": "Text — Invite me to speak →",
+        "label": "Text — Invite me to speak",
         "widget": "text"
       },
       {
@@ -1428,7 +1428,7 @@
       },
       {
         "key": "text_006",
-        "label": "Link text — agboojobo@gmail.com ↗",
+        "label": "Link text — agboojobo@gmail.com",
         "widget": "text"
       },
       {
@@ -1480,12 +1480,12 @@
       },
       {
         "key": "text_005",
-        "label": "Link text — Explore the live platform ↗",
+        "label": "Link text — Explore the live platform",
         "widget": "text"
       },
       {
         "key": "text_006",
-        "label": "Link text — Read the case study ↓",
+        "label": "Link text — Read the case study",
         "widget": "text"
       },
       {
@@ -1525,7 +1525,7 @@
       },
       {
         "key": "text_012",
-        "label": "Link text — Try the interactive dashboard ↗",
+        "label": "Link text — Try the interactive dashboard",
         "widget": "text"
       },
       {
@@ -1575,7 +1575,7 @@
       },
       {
         "key": "text_022",
-        "label": "Link text — Start a conversation →",
+        "label": "Link text — Start a conversation",
         "widget": "text"
       }
     ]
@@ -1644,7 +1644,7 @@
       },
       {
         "key": "text_004",
-        "label": "Text — Start a conversation →",
+        "label": "Text — Start a conversation",
         "widget": "text"
       },
       {
@@ -1694,7 +1694,7 @@
       },
       {
         "key": "text_014",
-        "label": "Text — Discuss transformation →",
+        "label": "Text — Discuss transformation",
         "widget": "text"
       },
       {
@@ -1729,12 +1729,12 @@
       },
       {
         "key": "text_021",
-        "label": "Text — Explore the CHEDVI case study →",
+        "label": "Text — Explore the CHEDVI case study",
         "widget": "text"
       },
       {
         "key": "text_022",
-        "label": "Text — Discuss a build →",
+        "label": "Text — Discuss a build",
         "widget": "text"
       },
       {
@@ -1759,7 +1759,7 @@
       },
       {
         "key": "text_027",
-        "label": "Text — Explore training →",
+        "label": "Text — Explore training",
         "widget": "text"
       },
       {
@@ -1779,7 +1779,7 @@
       },
       {
         "key": "text_031",
-        "label": "Text — Explore speaking →",
+        "label": "Text — Explore speaking",
         "widget": "text"
       },
       {
@@ -1799,7 +1799,7 @@
       },
       {
         "key": "text_035",
-        "label": "Text — Choose a conversation →",
+        "label": "Text — Choose a conversation",
         "widget": "text"
       },
       {
@@ -1846,7 +1846,7 @@
       },
       {
         "key": "text_004",
-        "label": "Text — Discuss training →",
+        "label": "Text — Discuss training",
         "widget": "text"
       },
       {
@@ -1971,7 +1971,7 @@
       },
       {
         "key": "text_029",
-        "label": "Text — Explore the transformation framework →",
+        "label": "Text — Explore the transformation framework",
         "widget": "text"
       },
       {
@@ -1991,7 +1991,7 @@
       },
       {
         "key": "text_033",
-        "label": "Text — Enquire about training →",
+        "label": "Text — Enquire about training",
         "widget": "text"
       },
       {

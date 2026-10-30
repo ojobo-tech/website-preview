@@ -24,7 +24,7 @@ const essayCard = item => {
   add(copy, 'span', 'kicker', item.category || 'Article');
   add(copy, 'h3', '', item.title);
   add(copy, 'p', '', item.summary || '');
-  add(copy, 'span', 'editorial-card-action', 'Read article →');
+  add(copy, 'span', 'editorial-card-action', 'Read article');
   return card;
 };
 const projectCard = (item, home = false) => {
@@ -41,7 +41,7 @@ const projectCard = (item, home = false) => {
   add(copy, 'span', 'card-type', item.category || 'Project');
   add(copy, 'h3', '', item.title);
   add(copy, 'p', '', item.summary || '');
-  if (href) add(copy, 'span', 'arrow-link', 'View project →');
+  if (href) add(copy, 'span', 'arrow-link', 'View project');
   else add(copy, 'span', 'project-status', 'Exploratory work');
   return card;
 };
@@ -80,7 +80,7 @@ for (const container of document.querySelectorAll('[data-content-list]')) {
       add(copy, 'h3', '', featured.title);
       if (featured.author) add(copy, 'p', 'book-author', featured.author);
       if (featured.summary) add(copy, 'p', '', featured.summary);
-      if (safePage(featured.link)) { const link = add(copy, 'a', 'arrow-link', 'Explore reference ↗'); link.href = featured.link; if (link.href.startsWith('https://')) { link.target = '_blank'; link.rel = 'noopener noreferrer'; } }
+      if (safePage(featured.link)) { const link = add(copy, 'a', 'arrow-link', 'Explore reference'); link.href = featured.link; if (link.href.startsWith('https://')) { link.target = '_blank'; link.rel = 'noopener noreferrer'; } }
     }
     for (const item of items.filter(item => item !== featured)) {
       const entry = add(container, 'div', 'book-entry');
@@ -91,7 +91,7 @@ for (const container of document.querySelectorAll('[data-content-list]')) {
       add(entry, 'h3', '', item.title);
       if (item.author) add(entry, 'p', 'book-author', item.author);
       if (item.summary) add(entry, 'p', '', item.summary);
-      if (safePage(item.link)) { const link = add(entry, 'a', 'arrow-link', 'Explore reference ↗'); link.href = item.link; if (link.href.startsWith('https://')) { link.target = '_blank'; link.rel = 'noopener noreferrer'; } }
+      if (safePage(item.link)) { const link = add(entry, 'a', 'arrow-link', 'Explore reference'); link.href = item.link; if (link.href.startsWith('https://')) { link.target = '_blank'; link.rel = 'noopener noreferrer'; } }
     }
   }
 }
@@ -111,7 +111,7 @@ if (themes && researchItems.length && !document.querySelector('[data-research-ou
       add(card, 'span', 'kicker', item.category || 'Research');
       add(card, 'h3', '', item.title);
       add(card, 'p', '', item.summary || '');
-      if (href) { const link = add(card, 'a', 'arrow-link', 'Read more →'); link.href = href; }
+      if (href) { const link = add(card, 'a', 'arrow-link', 'Read more'); link.href = href; }
     }
     list.after(section);
   }

@@ -5,8 +5,8 @@
   "text_002": "CHEDVI",
   "text_003": "Camden Health Equity Data Visualization Initiative",
   "text_004": "I conceived and led this public-interest platform to make neighborhood health patterns and the conditions around them easier to explore.",
-  "text_005": "Explore the live platform ↗",
-  "text_006": "Read the case study ↓",
+  "text_005": "Explore the live platform",
+  "text_006": "Read the case study",
   "image_001": "assets/chedvi-home-screenshot.png",
   "image_001_alt": "Screenshot of the live CHEDVI homepage with its blue project introduction and family image",
   "text_007": "Health equity is not just a set of figures. It is a question of how conditions differ from one neighborhood to another—and how people can examine those differences. CHEDVI turns dispersed public data into an explorable platform for Camden.",
@@ -14,7 +14,7 @@
   "text_009": "Health outcomes and the social conditions that shape them are often reported separately. That makes it harder for residents, researchers, and decision-makers to see where disparities appear and to ask useful questions about their context. CHEDVI brings those views together at the neighborhood level.",
   "text_010": "What the platform makes possible",
   "text_011": "The live site gives visitors several routes into the data rather than a single static report:",
-  "text_012": "Try the interactive dashboard ↗",
+  "text_012": "Try the interactive dashboard",
   "text_013": "Data and approach",
   "text_014": "The platform identifies the 2022 US Census Bureau and CDC PLACES datasets as its sources. It presents neighborhood comparisons across measures such as income, poverty, food access, diabetes, asthma, and other health outcomes. The design connects a place, a health measure, and a social condition so a visitor can explore a question instead of receiving only a headline statistic.",
   "text_015": "My contribution",
@@ -24,5 +24,5 @@
   "text_019": "From question to platform",
   "text_020": "Have a problem that needs a usable tool?",
   "text_021": "I work across problem framing, applied research, and technical implementation.",
-  "text_022": "Start a conversation →"
+  "text_022": "Start a conversation"
 }

@@ -23,7 +23,7 @@ if (main) {
 }
 const header = document.querySelector('[data-header]');
 if (location.pathname.endsWith('.html')) history.replaceState(null, '', `${location.pathname.replace(/\/([a-z0-9-]+)\.html$/, (_, slug) => slug === 'index' ? '/' : `/${slug}/`)}${location.search}${location.hash}`);
-if (header) header.innerHTML = `<a class="wordmark" href="./">${cleanText(siteSettings.wordmark || 'Ojobo Agbo Eje')}</a><nav id="primary-nav" aria-label="Primary navigation">${links.map(([key,label,url]) => `<a href="${url}" ${active === key ? 'aria-current="page"' : ''}>${label}</a>`).join('')}<a class="mobile-nav-action" href="work-with-me.html" ${page === 'work' ? 'aria-current="page"' : ''}>Work with me</a><a class="mobile-nav-action" href="contact.html" ${page === 'contact' ? 'aria-current="page"' : ''}>Contact</a></nav><div class="nav-tools"><a class="icon-link" href="search.html" aria-label="Search">⌕</a><a class="icon-link" href="contact.html" aria-label="Contact">✉</a><a class="nav-contact" href="work-with-me.html" ${page === 'work' ? 'aria-current="page"' : ''}>${cleanText(siteSettings.contactButton || 'Work with me')}</a><button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">☰</button></div>`;
+if (header) header.innerHTML = `<a class="wordmark" href="./">${cleanText(siteSettings.wordmark || 'Ojobo Agbo Eje')}</a><nav id="primary-nav" aria-label="Primary navigation">${links.map(([key,label,url]) => `<a href="${url}" ${active === key ? 'aria-current="page"' : ''}>${label}</a>`).join('')}<a class="mobile-nav-action" href="work-with-me.html" ${page === 'work' ? 'aria-current="page"' : ''}>Work with me</a><a class="mobile-nav-action" href="contact.html" ${page === 'contact' ? 'aria-current="page"' : ''}>Contact</a></nav><div class="nav-tools"><a class="nav-search" href="search.html" ${page === 'search' ? 'aria-current="page"' : ''}><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg>Search</a><a class="nav-contact" href="work-with-me.html" ${page === 'work' ? 'aria-current="page"' : ''}>${cleanText(siteSettings.contactButton || 'Work with me')}</a><button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">☰</button></div>`;
 const menu = document.querySelector('.menu-toggle');
 const topicMenus = {
   framework: [['My take','#my-take'],['Framework','#sequence'],['Use cases','#use-cases'],['Selected work','build.html'],['Questions','#questions']],
@@ -35,7 +35,7 @@ if (header && topicMenus[page]) {
   const topicNav = document.createElement('nav');
   topicNav.className = 'topic-nav';
   topicNav.setAttribute('aria-label', `${page === 'framework' ? 'Transformation' : page === 'build' ? 'Build' : page === 'research' ? 'Evidence' : 'Work with me'} sections`);
-  topicNav.innerHTML = `<div class="container topic-nav-inner"><span class="topic-nav-label">Explore this topic</span>${topicMenus[page].map(([label,url]) => `<a href="${url}">${label}</a>`).join('')}</div>`;
+  topicNav.innerHTML = `<div class="container topic-nav-inner"><span class="topic-nav-label">Explore this topic</span>${topicMenus[page].map(([label,url]) => `<a href="${url}">${label}</a>`).join('')}</div><span class="topic-nav-hint" aria-hidden="true">Swipe for more sections</span>`;
   header.after(topicNav);
   const localLinks = [...topicNav.querySelectorAll('a[href^="#"]')];
   const sections = localLinks.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
@@ -58,13 +58,13 @@ document.addEventListener('keydown', event => {
   if (event.key === 'Escape' && document.querySelector('#primary-nav')?.classList.contains('open')) menu?.click();
 });
 const footer = document.querySelector('[data-footer]');
-if (footer) footer.innerHTML = `<div class="container"><div class="footer-grid"><div><h3>${cleanText(siteSettings.footerHeading || 'What I do')}</h3><p>${cleanText(siteSettings.footerBio || 'I help organizations find valuable AI use cases, redesign work, implement solutions, and train teams.')}</p><a href="about.html">Read about my work →</a></div><div><h4>Explore</h4><a href="start-here.html">Find your AI starting point</a><a href="work-with-me.html">Work with me</a><a href="framework.html">AI transformation</a><a href="build.html">AI solutions</a><a href="training.html">AI training</a><a href="speaking.html">Speaking & events</a><a href="writing.html">Articles & audio</a><a href="research.html">Evidence & publications</a><a href="reading.html">Reading room</a></div><div><h4>Connect</h4><a href="contact.html">Start a conversation</a><a href="https://ojoboagboeje.substack.com/" target="_blank" rel="noopener noreferrer">The AI Catalyst Report ↗</a><a href="https://chedvi.onrender.com/" target="_blank" rel="noopener noreferrer">Explore CHEDVI ↗</a></div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} ${cleanText(siteSettings.wordmark || 'Ojobo Agbo Eje')}</span><span>${cleanText(siteSettings.footerTagline || 'AI transformation · Implementation · Training')}</span><a href="#top">Back to top ↑</a></div></div>`;
+if (footer) footer.innerHTML = `<div class="container"><div class="footer-grid"><div><h3>${cleanText(siteSettings.footerHeading || 'What I do')}</h3><p>${cleanText(siteSettings.footerBio || 'I help organizations find valuable AI use cases, redesign work, implement solutions, and train teams.')}</p><a href="about.html">Read about my work</a></div><div><h4>Explore</h4><a href="start-here.html">Find your AI starting point</a><a href="work-with-me.html">Work with me</a><a href="framework.html">AI transformation</a><a href="build.html">AI solutions</a><a href="training.html">AI training</a><a href="speaking.html">Speaking & events</a><a href="writing.html">Articles & audio</a><a href="research.html">Evidence & publications</a><a href="reading.html">Reading room</a></div><div><h4>Connect</h4><a href="contact.html">Start a conversation</a><a href="https://ojoboagboeje.substack.com/" target="_blank" rel="noopener noreferrer">The AI Catalyst Report</a><a href="https://chedvi.onrender.com/" target="_blank" rel="noopener noreferrer">Explore CHEDVI</a></div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} ${cleanText(siteSettings.wordmark || 'Ojobo Agbo Eje')}</span><span>${cleanText(siteSettings.footerTagline || 'AI transformation · Implementation · Training')}</span><a href="#top">Back to top</a></div></div>`;
 if (footer) {
   const connect = footer.querySelector('.footer-grid > div:last-child');
   const share = document.createElement('button');
   share.type = 'button';
   share.className = 'footer-share';
-  share.textContent = 'Copy this page link ↗';
+  share.textContent = 'Copy this page link';
   const status = document.createElement('span');
   status.className = 'footer-share-status';
   status.setAttribute('role', 'status');
@@ -154,7 +154,7 @@ const makeEventSlide = event => {
   addText(copy, 'h3', '', event.title);
   addText(copy, 'p', 'event-meta', [eventDateRange(event), event.event, event.place].filter(Boolean).join(' · '));
   if (event.description) addText(copy, 'p', '', event.description);
-  const link = addText(copy, 'a', 'arrow-link', event.url ? 'Event details →' : 'Speaking & events →');
+  const link = addText(copy, 'a', 'arrow-link', event.url ? 'Event details' : 'Speaking & events');
   link.href = eventUrl(event.url);
   if (event.url && link.href !== location.href && link.href.startsWith('https://')) {
     link.target = '_blank';
@@ -209,7 +209,7 @@ for (const status of ['upcoming','past']) {
     addText(copy, 'p', 'event-meta', [event.event, event.place].filter(Boolean).join(' · '));
     if (event.description) addText(copy, 'p', '', event.description);
     if (event.url) {
-      const link = addText(copy, 'a', 'arrow-link', 'Event details →');
+      const link = addText(copy, 'a', 'arrow-link', 'Event details');
       link.href = eventUrl(event.url);
       if (link.href.startsWith('https://')) { link.target = '_blank'; link.rel = 'noopener noreferrer'; }
     }
@@ -225,7 +225,7 @@ if (search) {
     ['Work with me', 'work-with-me.html', 'AI transformation, building, training and speaking'],
     ['AI training & capability', 'training.html', 'AI literacy, use cases and team workshops'],
     ['AI Transformation Framework', 'framework.html', 'Problem, process, use case, skills, technology, culture'],
-    ['Selected builds', 'build.html', 'Platforms and technical portfolio'],
+    ['AI solutions', 'build.html', 'Practical solutions, implementation, and selected work'],
     ['CHEDVI', 'project-chedvi.html', 'Camden Health Equity Data Visualization Initiative'],
     ['Evidence & publications', 'research.html', 'AI readiness, healthcare, public interest'],
     ['Writing', 'writing.html', 'Articles, briefings and audio'],
@@ -262,7 +262,7 @@ if (search) {
       addText(copy, 'h3', '', title);
       addText(copy, 'p', '', desc);
       row.append(copy);
-      addText(row, 'span', 'meta', 'OPEN →');
+      addText(row, 'span', 'meta', 'OPEN');
       results.append(row);
     }
   };

@@ -1,8 +1,8 @@
 {
   "seoTitle": "Speaking & events — Ojobo Agbo Eje",
   "seoDescription": "Invite Ojobo Agbo Eje to speak on AI transformation, implementation, and work redesign. Watch his Getting Started podcast conversation on the five stages of AI adoption.",
-  "image_001": "assets/editorial-speaking-stage.png",
-  "image_001_alt": "Illustrative image of an empty conference stage",
+  "image_001": "assets/ojobo-innovate-100.jpg",
+  "image_001_alt": "Ojobo Agbo Eje at Innovate 100",
   "text_001": "Speaking & events",
   "text_002": "Ideas worth discussing together",
   "text_003": "Invite me to help your audience move beyond AI hype and guesswork. I speak about finding valuable opportunities, redesigning work, building useful solutions, and helping people adopt change that lasts.",
@@ -23,7 +23,7 @@
   "text_014": "Formats",
   "text_015": "Talks, workshops, and roundtables",
   "text_016": "I can contribute a keynote or talk, facilitate a practical workshop, or join a focused leadership conversation.",
-  "text_017": "Start a speaking conversation →",
+  "text_017": "Start a speaking conversation",
   "text_018": "Archive",
   "text_019": "Past appearances",
   "text_020": "AI literacy & human judgment",
@@ -31,7 +31,7 @@
   "text_022": "For event organizers",
   "text_023": "A talk shaped for your audience",
   "text_024": "Tell me who will be in the room and what they need to understand or do differently. We can shape the topic, examples, and format around that outcome.",
-  "text_029": "Invite me to speak →",
+  "text_029": "Invite me to speak",
   "text_025": "Short speaker biography",
   "text_026": "Ojobo Agbo Eje is an AI transformation consultant, implementation partner, and trainer. He helps professionals, businesses, institutions, and organizations identify valuable use cases, redesign work, build practical solutions, and develop the capability to use them. His work includes a live public-interest platform and speaking engagements on AI and work.",
   "text_027": "What to include in an invitation",
@@ -42,5 +42,5 @@
   "text_031": "The five stages of AI adoption and the mistake businesses make",
   "text_032": "Getting Started podcast · Genuine Technologies · October 26, 2026",
   "text_033": "Host Dan Pace and I discuss how businesses can move from chatbot experiments to meaningful AI transformation. We cover when to build or buy, why AI investments miss their return, and why redesigning work and supporting people matter.",
-  "text_034": "Watch the full conversation on YouTube ↗"
+  "text_034": "Watch the full conversation on YouTube"
 }

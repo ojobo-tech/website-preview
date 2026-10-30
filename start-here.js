@@ -48,7 +48,7 @@ function renderQuestion() {
   guide.innerHTML = `<div class="guide-progress"><span>Question ${state.index + 1} of 15 · ${escapeHTML(parts.find(part => part.id === question.part).name)}</span><div aria-hidden="true">${questions.map((_, index) => `<i class="${index <= state.index ? 'active' : ''}"></i>`).join('')}</div></div>
     <h3 tabindex="-1" data-guide-heading>${escapeHTML(question.title)}</h3>
     <div class="guide-options guide-options-five" role="group" aria-label="${escapeHTML(question.title)}">${choices.map((label, score) => `<button type="button" data-answer="${score}" aria-pressed="${value === score}"><strong>${score}</strong><span>${escapeHTML(label)}</span></button>`).join('')}</div>
-    <div class="guide-controls"><button type="button" class="guide-back" data-back>${state.index ? '← Previous' : '← Back to introduction'}</button><button type="button" class="button" data-next ${value === null ? 'disabled' : ''}>${state.index === questions.length - 1 ? 'See my results →' : 'Next →'}</button></div>`;
+    <div class="guide-controls"><button type="button" class="guide-back" data-back>${state.index ? ' Previous' : ' Back to introduction'}</button><button type="button" class="button" data-next ${value === null ? 'disabled' : ''}>${state.index === questions.length - 1 ? 'See my results' : 'Next'}</button></div>`;
   guide.querySelector('[data-guide-heading]')?.focus({ preventScroll: true });
 }
 
@@ -68,8 +68,8 @@ function renderScores() {
         <div class="contact-field"><label for="report-organization">Business or organization (optional)</label><input id="report-organization" name="organization" autocomplete="organization"></div>
         <div class="contact-field"><label class="report-consent"><input type="checkbox" name="consent" required> I agree to share my name, email, and assessment results with Ojobo through Formspree so he can provide and discuss my report.</label></div>
         <p class="report-privacy">Your answers are submitted only when you request the report. Do not include sensitive or confidential information.</p>
-        <button class="button" type="submit" ${validEndpoint ? '' : 'disabled'} data-report-submit>Open my report →</button><p role="status" data-report-status>${validEndpoint ? '' : 'The report form is temporarily unavailable. You can contact Ojobo directly.'}</p>
-      </form></div><div class="guide-result-actions"><a class="arrow-link" href="contact.html#choose-a-conversation">Discuss this with Ojobo →</a><button type="button" class="guide-back" data-reset>Start again</button></div></div>`;
+        <button class="button" type="submit" ${validEndpoint ? '' : 'disabled'} data-report-submit>Open my report</button><p role="status" data-report-status>${validEndpoint ? '' : 'The report form is temporarily unavailable. You can contact Ojobo directly.'}</p>
+      </form></div><div class="guide-result-actions"><a class="arrow-link" href="contact.html#choose-a-conversation">Discuss this with Ojobo</a><button type="button" class="guide-back" data-reset>Start again</button></div></div>`;
   guide.querySelector('[data-guide-heading]')?.focus({ preventScroll: true });
 }
 
@@ -87,7 +87,7 @@ function reportMarkup(result, name, audience) {
 function showReport(name, audience) {
   state.submitted = true;
   const markup = reportMarkup(assessment, name, audience);
-  guide.innerHTML = `<div class="guide-result"><span class="eyebrow">Your one-page report is ready</span>${markup}<div class="guide-result-actions"><button type="button" class="button" data-print>Print or save as PDF →</button><a class="arrow-link" href="contact.html#choose-a-conversation">Discuss the next step →</a><button type="button" class="guide-back" data-reset>Start again</button></div></div>`;
+  guide.innerHTML = `<div class="guide-result"><span class="eyebrow">Your one-page report is ready</span>${markup}<div class="guide-result-actions"><button type="button" class="button" data-print>Print or save as PDF</button><a class="arrow-link" href="contact.html#choose-a-conversation">Discuss the next step</a><button type="button" class="guide-back" data-reset>Start again</button></div></div>`;
   document.querySelector('#ai-report-print')?.remove();
   const print = document.createElement('div'); print.id = 'ai-report-print'; print.innerHTML = markup; document.body.append(print);
   guide.scrollIntoView({ block: 'start' });
@@ -131,7 +131,7 @@ if (guide) {
         throw new Error(detail || (response.status === 429 ? 'Too many requests. Please wait and try again.' : 'The report could not be prepared. Please try again.'));
       }
       showReport(name, audience);
-    } catch (error) { status.textContent = error.message || 'The report could not be prepared. Please try again.'; button.disabled = false; button.textContent = 'Open my report →'; }
+    } catch (error) { status.textContent = error.message || 'The report could not be prepared. Please try again.'; button.disabled = false; button.textContent = 'Open my report'; }
   });
   renderQuestion();
 }
