@@ -68,7 +68,7 @@ test('offer and sharing copy give visitors a clear next action', async () => {
   const shell = await read('site.js');
   assert.match(home.text_002, /AI ambition into measurable value.*redesigning work.*building solutions/s);
   assert.match(work.text_007, /scope, deliverables, and measures of success/);
-  assert.match(contact.text_003, /slowing your work down.*right starting point.*build a solution/s);
+  assert.match(contact.text_003, /hiring for transformation or implementation.*exploring a collaboration/s);
   assert.match(shell, /Copy this page link/);
   assert.match(shell, /navigator\.clipboard\.writeText/);
 });
@@ -135,6 +135,10 @@ test('each audience gets 15 distinct questions and a tailored report with consis
 
 test('engagement paths lead to evidence and a specific enquiry', async () => {
   const home = await read('dist/index.html');
+  const routeBase = process.env.SITE_PREVIEW === 'true' ? '/website-preview/' : '/';
+  assert.match(home, /Speaking and events/);
+  assert.match(home, /View the CHEDVI case study/);
+  assert.match(home, /Discuss an opportunity/);
   const routes = ['work-with-me/#transformation', 'work-with-me/#build', 'training/', 'speaking/'];
   for (const route of routes) assert.ok(home.includes(`href="${process.env.SITE_PREVIEW === 'true' ? '/website-preview/' : '/'}${route}"`));
   assert.ok(home.indexOf('id="ways-to-work"') < home.indexOf('id="latest-writing"'));
@@ -154,10 +158,16 @@ test('engagement paths lead to evidence and a specific enquiry', async () => {
   assert.match(speaking, /Short speaker biography/);
   const contact = await read('dist/contact.html');
   assert.match(contact, /data-contact-form/);
+  assert.match(contact, /Employment opportunity \/ role/);
+  assert.match(contact, /hiring for transformation or implementation/);
   assert.match(contact, /name="topic"/);
   assert.match(contact, /name="message"/);
   assert.match(contact, /mailto:agboojobo@gmail.com/);
   assert.match(await read('dist/contact.js'), /contactFormEndpoint/);
+  assert.match(await read('dist/contact.js'), /routeTopics\[requestedTopic\]/);
+  for (const [file, topic] of [['training.html', 'training'], ['speaking.html', 'speaking'], ['build.html', 'build'], ['framework.html', 'transformation']]) {
+    assert.ok((await read(`dist/${file}`)).includes(`href="${routeBase}contact/?topic=${topic}#choose-a-conversation"`), file);
+  }
   const siteSettings = JSON.parse(await read('content/site-settings.json'));
   assert.equal(siteSettings.contactFormEndpoint, 'https://formspree.io/f/xvkkkojw');
   assert.match(contact, /"contactFormEndpoint":"https:\/\/formspree\.io\/f\/xvkkkojw"/);
@@ -253,7 +263,7 @@ test('homepage preview keeps the opening focused on the person and offer', async
   const hero = html.split('<section class="hero-home">')[1].split('</section>')[0];
   assert.match(hero, /ojobo-portrait-formal\.jpg/);
   assert.match(hero, /Portrait of Ojobo Agbo Eje/);
-  assert.match(hero, /Explore ways to work together/);
+  assert.match(hero, /See how I can contribute/);
   assert.doesNotMatch(hero, /CHEDVI|Rutgers|research-state-ai-readiness|project-chedvi/i);
   assert.match(html, /class="hero-wayfinder"/);
   assert.match(html, /href="\/start-here\/"/);
@@ -274,18 +284,15 @@ test('homepage motion preview keeps service imagery editable and motion optional
   }
   assert.match(html, /class="section home-proof"/);
   assert.match(css, /prefers-reduced-motion:reduce/);
-  assert.match(js, /revealObserver\.unobserve/);
+  assert.doesNotMatch(js, /revealObserver/);
 });
 
-test('inner pages share subtle motion without delaying article text', async () => {
+test('inner pages show content immediately and keep reading progress', async () => {
   const css = await read('dist/site.css');
   const js = await read('dist/site.js');
-  for (const selector of ['.service-detail', '.project-list .card', '.editorial-grid .editorial-card', '.contact-route-grid > a', '.essay-related-card', '.case-feature-list > *']) {
-    assert.ok(js.includes(selector), `${selector} is missing from sitewide reveal targets`);
-  }
+  assert.doesNotMatch(js, /revealObserver|site-motion-target/);
   assert.match(js, /page === 'essay'/);
   assert.match(js, /reading-progress/);
-  assert.match(css, /\.site-motion-target\.is-visible/);
   assert.match(css, /prefers-reduced-motion:reduce/);
   for (const page of ['about.html', 'work-with-me.html', 'build.html', 'training.html', 'speaking.html', 'writing.html', 'reading.html', 'contact.html', 'project-chedvi.html', 'essay-five-stages-ai-maturity.html']) {
     const html = await read(`dist/${page}`);

@@ -23,11 +23,11 @@ if (main) {
 }
 const header = document.querySelector('[data-header]');
 if (location.pathname.endsWith('.html')) history.replaceState(null, '', `${location.pathname.replace(/\/([a-z0-9-]+)\.html$/, (_, slug) => slug === 'index' ? '/' : `/${slug}/`)}${location.search}${location.hash}`);
-if (header) header.innerHTML = `<a class="wordmark" href="./">${cleanText(siteSettings.wordmark || 'Ojobo Agbo Eje')}</a><nav id="primary-nav" aria-label="Primary navigation">${links.map(([key,label,url]) => `<a href="${url}" ${active === key ? 'aria-current="page"' : ''}>${label}</a>`).join('')}<a class="mobile-nav-action" href="work-with-me.html" ${page === 'work' ? 'aria-current="page"' : ''}>Work with me</a><a class="mobile-nav-action" href="contact.html" ${page === 'contact' ? 'aria-current="page"' : ''}>Contact</a></nav><div class="nav-tools"><a class="nav-search" href="search.html" ${page === 'search' ? 'aria-current="page"' : ''}><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg>Search</a><a class="nav-contact" href="work-with-me.html" ${page === 'work' ? 'aria-current="page"' : ''}>${cleanText(siteSettings.contactButton || 'Work with me')}</a><button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">☰</button></div>`;
+if (header) header.innerHTML = `<a class="wordmark" href="./">${cleanText(siteSettings.wordmark || 'Ojobo Agbo Eje')}</a><nav id="primary-nav" aria-label="Primary navigation">${links.map(([key,label,url]) => `<a href="${url}" ${active === key ? 'aria-current="page"' : ''}>${label}</a>`).join('')}<a class="mobile-nav-action" href="work-with-me.html" ${page === 'work' ? 'aria-current="page"' : ''}>Work with me</a><a class="mobile-nav-action" href="contact.html" ${page === 'contact' ? 'aria-current="page"' : ''}>Contact</a></nav><div class="nav-tools"><a class="nav-search" href="search.html" ${page === 'search' ? 'aria-current="page"' : ''}><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg>Search</a><a class="nav-contact" href="contact.html" ${page === 'contact' ? 'aria-current="page"' : ''}>${cleanText(siteSettings.contactButton || 'Discuss an opportunity')}</a><button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">☰</button></div>`;
 const menu = document.querySelector('.menu-toggle');
 const topicMenus = {
   framework: [['My take','#my-take'],['Framework','#sequence'],['Use cases','#use-cases'],['Selected work','build.html'],['Questions','#questions']],
-  build: [['Solutions','build.html'],['Selected work','#projects'],['Questions','#questions'],['Discuss a solution','contact.html']],
+  build: [['Solutions','build.html'],['Selected work','#projects'],['Questions','#questions'],['Discuss a solution','contact.html?topic=build#choose-a-conversation']],
   research: [['Why evidence matters','#my-take'],['Themes','#themes'],['Applied work','#translation'],['Writing','writing.html'],['Questions','#questions']],
   work: [['Transformation','#transformation'],['Build','#build'],['Training','#training'],['Speaking','#speaking'],['Get in touch','contact.html#choose-a-conversation']]
 };
@@ -84,8 +84,8 @@ document.querySelector('[data-question-nav]')?.addEventListener('change', event 
 });
 const siteRoot = new URL(document.querySelector('base')?.href || './', location.href);
 const normalizeRoute = value => {
-  const page = /^([a-z0-9-]+)\.html(#[^\s]*)?$/i.exec(value);
-  if (page) return new URL(`${page[1] === 'index' ? '' : `${page[1]}/`}${page[2] || ''}`, siteRoot).pathname + (page[2] || '');
+  const page = /^([a-z0-9-]+)\.html(\?[^#\s]*)?(#[^\s]*)?$/i.exec(value);
+  if (page) return new URL(`${page[1] === 'index' ? '' : `${page[1]}/`}${page[2] || ''}${page[3] || ''}`, siteRoot).pathname + (page[2] || '') + (page[3] || '');
   if (value.startsWith('#') && value.length > 1) return `${location.pathname}${value}`;
   return value;
 };
@@ -268,28 +268,6 @@ if (search) {
   };
   search.addEventListener('input', render);
   render();
-}
-
-// Reveal structural highlights across the site, never the paragraphs of an article.
-// With JavaScript disabled, unsupported observers, or reduced motion, content stays visible.
-if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  const homeTargets = '.home-offers .section-heading, .home-offers .offer-card, .project-showcase .section-heading, .project-showcase .card';
-  const innerTargets = '.service-detail, .project-list .card, .editorial-grid .editorial-card, .speaking-topic-grid article, .event-list-card, .reading-list .reading-item, .contact-route-grid > a, .training-format-grid > *, .training-principle-grid > *, .essay-related-card, .evidence-card, .inner-layout > .article-content > h2, .inner-layout > .article-content > .lead, .article-content > .inline-editorial, .article-content > .topic-cta, .article-content > .contact-card, .case-facts > *, .case-feature-list > *';
-  const revealTargets = document.querySelectorAll(page === 'home' ? homeTargets : innerTargets);
-  const revealObserver = new IntersectionObserver(entries => {
-    for (const entry of entries) {
-      if (!entry.isIntersecting) continue;
-      entry.target.classList.add('is-visible');
-      revealObserver.unobserve(entry.target);
-    }
-  }, { threshold: 0.12, rootMargin: '0px 0px -35px 0px' });
-  revealTargets.forEach((target, index) => {
-    if (page !== 'home') {
-      target.classList.add('site-motion-target');
-      target.style.setProperty('--reveal-delay', `${Math.min(index % 4, 3) * 65}ms`);
-    }
-    revealObserver.observe(target);
-  });
 }
 
 // A small page-progress indicator helps readers orient themselves in long essays.

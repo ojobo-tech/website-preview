@@ -29,7 +29,7 @@ const sitePath = preview ? '/website-preview/' : '/';
 const cleanPath = filename => filename === 'index.html' ? publicBase : `${publicBase}${filename.replace(/\.html$/, '')}/`;
 const withCleanRoutes = markup => markup
   .replace(/<head>/i, `<head><base href="${sitePath}">`)
-  .replace(/\b(href|value)="([a-z0-9-]+)\.html(#[^"]*)?"/gi, (_, attribute, slug, fragment = '') => `${attribute}="${sitePath}${slug === 'index' ? '' : `${slug}/`}${fragment}"`);
+  .replace(/\b(href|value)="([a-z0-9-]+)\.html(\?[^"#]*)?(#[^"]*)?"/gi, (_, attribute, slug, query = '', fragment = '') => `${attribute}="${sitePath}${slug === 'index' ? '' : `${slug}/`}${query}${fragment}"`);
 const withMeasurement = markup => {
   if (preview) return markup;
   const verified = googleVerification ? markup.replace(/<\/head>/i, `<meta name="google-site-verification" content="${googleVerification}"></head>`) : markup;
