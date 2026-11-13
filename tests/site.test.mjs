@@ -346,9 +346,16 @@ test('reading and event entries are visible in built HTML and their images exist
   }
   if (new Date().toISOString().slice(0, 10) <= '2026-10-22') assert.match(home, /The AI Revolution/);
   else assert.doesNotMatch(home, /The AI Revolution/);
-  assert.match(home, /University Librarian’s Symposium Series/);
+  assert.match(home, /Ethical AI transformation at Rutgers/);
+  assert.match(home, /rutgers-ai-symposium-audience-2026.jpeg/);
   assert.match(speaking, /Attending/);
   assert.match(speaking, /Ethical AI Transformation by Design/);
+  assert.match(speaking, /Ethical AI Transformation: Designing the University We Want to Become/);
+  assert.match(speaking, /B20 USA Summit/);
+  assert.match(speaking, /Attendee/);
+  assert.match(speaking, /rutgers-ai-symposium-speaker-2026.jpeg/);
+  assert.match(speaking, /rutgers-ai-symposium-audience-2026.jpeg/);
+  assert.match(await read('dist/training.html'), /rutgers-ai-symposium-presentation-2026.jpeg/);
   assert.doesNotMatch(reading, /Example book|Personal reading note to add/);
   assert.doesNotMatch(home, /No dates announced yet/);
 });

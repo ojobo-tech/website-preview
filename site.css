@@ -775,3 +775,15 @@ body[data-page=home] .home-offers .offer-card:hover{transform:none;box-shadow:no
 @media(max-width:900px){body[data-page=home] .home-offers .offer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 0}}
 @media(max-width:700px){body[data-page=home] .home-proof-image{height:auto}body[data-page=home] .home-proof-caption{display:block}body[data-page=home] .home-proof-caption span{display:block;margin-top:4px}}
 @media(max-width:520px){body[data-page=home] .home-offers .offer-grid{grid-template-columns:1fr}body[data-page=home] .home-offers .offer-card:nth-child(n){padding:4px 0 20px 16px}}
+
+/* Documented speaking work and participation. */
+.rutgers-talk{display:grid;grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);gap:clamp(28px,5vw,72px);align-items:center}
+.rutgers-talk h2{font-size:clamp(32px,3.5vw,48px);line-height:1.12;margin:16px 0 22px}
+.rutgers-talk p{font-size:17px;line-height:1.65;color:var(--muted)}
+.rutgers-talk figure{margin:0}
+.rutgers-talk figure img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:35% center}
+.rutgers-talk figcaption{font:13px/1.5 var(--sans);color:var(--muted);padding-top:10px}
+.event-list-card--text{grid-template-columns:1fr}
+[data-upcoming-section][hidden]{display:none!important}
+body[data-page=training] .training-hero-grid img{object-position:28% center}
+@media(max-width:800px){.rutgers-talk{grid-template-columns:1fr}.rutgers-talk figure img{aspect-ratio:16/10}}

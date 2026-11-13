@@ -226,15 +226,27 @@ window.siteContent = {
     },
     {
       "id": "rutgers-librarian-symposium-2026",
-      "title": "University Librarian’s Symposium Series",
+      "title": "Ethical AI Transformation: Designing the University We Want to Become",
       "date": "2026-11-03",
-      "event": "Rutgers University Libraries",
+      "event": "Rutgers University Libraries · AI in Higher Education symposium",
       "place": "New Brunswick, NJ",
       "role": "Speaker",
-      "description": "Upcoming speaking appearance at Rutgers University–New Brunswick.",
-      "url": "",
-      "image": "assets/editorial-speaking-stage.png",
-      "imageAlt": "Illustrative image of a speaking stage",
+      "description": "Presented BELT (Build, Explore, Learn, Transform) as a framework for AI transformation and literacy in tools and ethics. Proposed a central AI office to coordinate governance, implementation, adoption, literacy, security, policy, and work redesign.",
+      "url": "https://academicaffairs.rutgers.edu/event/ai-higher-education-ethical-and-legal-considerations",
+      "image": "assets/rutgers-ai-symposium-podium-2026.jpeg",
+      "imageAlt": "Ojobo Agbo Eje speaking at the Rutgers University Libraries AI in Higher Education symposium",
+      "status": "published"
+    },
+    {
+      "id": "b20-usa-summit-2026",
+      "title": "B20 USA Summit",
+      "date": "2026-11-09",
+      "endDate": "2026-11-11",
+      "event": "U.S. Chamber of Commerce",
+      "place": "Washington, DC",
+      "role": "Attendee",
+      "description": "Attended the summit, with standout sessions on AI, nuclear energy, workforce transformation, and cross-border partnerships and collaboration.",
+      "url": "https://www.uschamber.com/major-initiative/b20-summit-2026/agenda",
       "status": "published"
     },
     {

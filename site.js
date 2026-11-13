@@ -193,16 +193,20 @@ if (carousel) {
 for (const status of ['upcoming','past']) {
   const list = document.querySelector(`[data-event-list="${status}"]`);
   const events = status === 'upcoming' ? upcomingEvents : pastEvents;
+  if (status === 'upcoming' && document.querySelector('[data-upcoming-section]')) document.querySelector('[data-upcoming-section]').hidden = !events.length;
   if (!list || !events.length) continue;
   if (status === 'past') document.querySelector('[data-past-section]').hidden = false;
   list.replaceChildren(...events.map(event => {
     const card = document.createElement('article');
-    card.className = 'event-list-card';
-    const img = document.createElement('img');
-    img.src = eventImage(event.image);
-    img.alt = event.imageAlt || 'Illustrative image for this speaking event';
-    img.loading = 'lazy';
-    if (event.imageFit === 'contain') img.className = 'event-image-contain';
+    card.className = `event-list-card${event.image ? '' : ' event-list-card--text'}`;
+    let img;
+    if (event.image) {
+      img = document.createElement('img');
+      img.src = eventImage(event.image);
+      img.alt = event.imageAlt || 'Illustrative image for this speaking event';
+      img.loading = 'lazy';
+      if (event.imageFit === 'contain') img.className = 'event-image-contain';
+    }
     const copy = document.createElement('div');
     addText(copy, 'span', 'kicker', [event.role || 'Appearance', eventDateRange(event)].join(' · '));
     addText(copy, 'h3', '', event.title);
@@ -213,7 +217,8 @@ for (const status of ['upcoming','past']) {
       link.href = eventUrl(event.url);
       if (link.href.startsWith('https://')) { link.target = '_blank'; link.rel = 'noopener noreferrer'; }
     }
-    card.append(img, copy);
+    if (img) card.append(img);
+    card.append(copy);
     return card;
   }));
 }
