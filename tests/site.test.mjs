@@ -355,6 +355,7 @@ test('reading and event entries are visible in built HTML and their images exist
   assert.match(speaking, /Attendee/);
   assert.match(speaking, /rutgers-ai-symposium-speaker-2026.jpeg/);
   assert.match(speaking, /rutgers-ai-symposium-audience-2026.jpeg/);
+  assert.match(speaking, /src="content\/site-content\.js\?v=[a-f0-9]{10}"/);
   assert.match(await read('dist/training.html'), /rutgers-ai-symposium-presentation-2026.jpeg/);
   assert.doesNotMatch(reading, /Example book|Personal reading note to add/);
   assert.doesNotMatch(home, /No dates announced yet/);
