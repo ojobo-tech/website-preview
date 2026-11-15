@@ -227,7 +227,7 @@ for (const entry of await readdir(publishRoot, { withFileTypes: true })) {
   await mkdir(cleanDirectory);
   await copyFile(join(publishRoot, entry.name), join(cleanDirectory, 'index.html'));
 }
-const publicPages = ['index.html', 'start-here.html', 'about.html', 'biography.html', 'leadership.html', 'reading.html', 'framework.html', 'build.html', 'project-chedvi.html', 'research.html', 'writing.html', 'speaking.html', 'work-with-me.html', 'training.html', 'contact.html', ...expected.keys()];
+const publicPages = ['index.html', 'start-here.html', 'about.html', 'biography.html', 'leadership.html', 'reading.html', 'resources.html', 'framework.html', 'build.html', 'project-chedvi.html', 'research.html', 'writing.html', 'speaking.html', 'work-with-me.html', 'training.html', 'contact.html', ...expected.keys()];
 if (preview) {
   await writeFile(join(publishRoot, 'robots.txt'), 'User-agent: *\nDisallow: /\n', 'utf8');
 } else {

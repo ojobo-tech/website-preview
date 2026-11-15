@@ -27,6 +27,23 @@ const essayCard = item => {
   add(copy, 'span', 'editorial-card-action', 'Read article');
   return card;
 };
+const essayRow = item => {
+  const row = document.createElement('a');
+  row.className = 'writing-row';
+  row.href = essayLink(item);
+  const meta = add(row, 'span', 'writing-row-meta');
+  if (/^\d{4}-\d{2}-\d{2}$/.test(item.publishedAt || '')) {
+    const date = add(meta, 'time', '', new Date(`${item.publishedAt}T12:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' }));
+    date.dateTime = item.publishedAt;
+  }
+  add(meta, 'span', '', item.category || 'Article');
+  if (item.readMinutes) add(meta, 'span', '', `${item.readMinutes} min read`);
+  const copy = add(row, 'span', 'writing-row-copy');
+  add(copy, 'strong', '', item.title);
+  add(copy, 'small', '', item.summary || '');
+  add(row, 'span', 'writing-row-action', 'Read article');
+  return row;
+};
 const projectCard = (item, home = false) => {
   const href = projectLink(item) || (home ? 'build.html' : '');
   const card = document.createElement(href ? 'a' : 'div');
@@ -50,9 +67,8 @@ const projectItems = live(siteContent.projects);
 for (const container of document.querySelectorAll('[data-content-list]')) {
   const type = container.dataset.contentList;
   if (type === 'essays-home' || type === 'essays') {
-    const evergreen = type === 'essays-home' ? [] : [...container.children].filter(child => child.matches('a[href="framework.html"],a[href="research.html"]'));
-    const selected = type === 'essays-home' ? essayItems.filter(item => item.featured).slice(0, 3) : essayItems;
-    container.replaceChildren(...selected.map(essayCard), ...evergreen);
+    const selected = type === 'essays-home' ? essayItems.filter(item => item.featured).slice(0, 3) : [...essayItems].sort((a, b) => (b.publishedAt || '').localeCompare(a.publishedAt || ''));
+    container.replaceChildren(...selected.map(type === 'essays-home' ? essayCard : essayRow));
   }
   if (type === 'projects-home' || type === 'projects') {
     const selected = type === 'projects-home' ? projectItems.filter(item => item.featured).slice(0, 3) : projectItems;

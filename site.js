@@ -4,9 +4,10 @@ const cleanText = value => String(value ?? '').replace(/[&<>"']/g, character => 
 const links = [
   ['start', 'Start here', 'start-here.html'],
   ['framework', 'Transformation', 'framework.html'],
-  ['build', 'AI solutions', 'build.html'],
-  ['training', 'AI training', 'training.html'],
+  ['build', 'Solutions', 'build.html'],
+  ['training', 'Training', 'training.html'],
   ['speaking', 'Speaking', 'speaking.html'],
+  ['resources', 'Resources', 'resources.html'],
   ['writing', 'Writing', 'writing.html'],
   ['about', 'About', 'about.html']
 ];
@@ -58,7 +59,7 @@ document.addEventListener('keydown', event => {
   if (event.key === 'Escape' && document.querySelector('#primary-nav')?.classList.contains('open')) menu?.click();
 });
 const footer = document.querySelector('[data-footer]');
-if (footer) footer.innerHTML = `<div class="container"><div class="footer-grid"><div><h3>${cleanText(siteSettings.footerHeading || 'What I do')}</h3><p>${cleanText(siteSettings.footerBio || 'I help organizations find valuable AI use cases, redesign work, implement solutions, and train teams.')}</p><a href="about.html">Read about my work</a></div><div><h4>Explore</h4><a href="start-here.html">Find your AI starting point</a><a href="work-with-me.html">Work with me</a><a href="framework.html">AI transformation</a><a href="build.html">AI solutions</a><a href="training.html">AI training</a><a href="speaking.html">Speaking & events</a><a href="writing.html">Articles & audio</a><a href="research.html">Evidence & publications</a><a href="reading.html">Reading room</a></div><div><h4>Connect</h4><a href="contact.html">Start a conversation</a><a href="https://ojoboagboeje.substack.com/" target="_blank" rel="noopener noreferrer">The AI Catalyst Report</a><a href="https://chedvi.onrender.com/" target="_blank" rel="noopener noreferrer">Explore CHEDVI</a></div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} ${cleanText(siteSettings.wordmark || 'Ojobo Agbo Eje')}</span><span>${cleanText(siteSettings.footerTagline || 'AI transformation · Implementation · Training')}</span><a href="#top">Back to top</a></div></div>`;
+if (footer) footer.innerHTML = `<div class="container"><div class="footer-grid"><div><h3>${cleanText(siteSettings.footerHeading || 'What I do')}</h3><p>${cleanText(siteSettings.footerBio || 'I help organizations find valuable AI use cases, redesign work, implement solutions, and train teams.')}</p><a href="about.html">Read about my work</a></div><div><h4>Explore</h4><a href="start-here.html">Find your AI starting point</a><a href="work-with-me.html">Work with me</a><a href="framework.html">AI transformation</a><a href="build.html">AI solutions</a><a href="training.html">AI training</a><a href="speaking.html">Speaking & events</a><a href="resources.html">Resources</a><a href="writing.html">Articles & audio</a><a href="research.html">Evidence & publications</a><a href="reading.html">Reading room</a></div><div><h4>Connect</h4><a href="contact.html">Start a conversation</a><a href="https://ojoboagboeje.substack.com/" target="_blank" rel="noopener noreferrer">The AI Catalyst Report</a><a href="https://chedvi.onrender.com/" target="_blank" rel="noopener noreferrer">Explore CHEDVI</a></div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} ${cleanText(siteSettings.wordmark || 'Ojobo Agbo Eje')}</span><span>${cleanText(siteSettings.footerTagline || 'AI transformation · Implementation · Training')}</span><a href="#top">Back to top</a></div></div>`;
 if (footer) {
   const connect = footer.querySelector('.footer-grid > div:last-child');
   const share = document.createElement('button');
@@ -234,6 +235,7 @@ if (search) {
     ['CHEDVI', 'project-chedvi.html', 'Camden Health Equity Data Visualization Initiative'],
     ['Evidence & publications', 'research.html', 'AI readiness, healthcare, public interest'],
     ['Writing', 'writing.html', 'Articles, briefings and audio'],
+    ['Resources', 'resources.html', 'AI starting point, transformation framework, and practical guides'],
     ['Reading room', 'reading.html', 'Books, papers and ideas'],
     ['Speaking & events', 'speaking.html', 'Upcoming appearances and speaking topics'],
     ['Contact', 'contact.html', 'Work together']

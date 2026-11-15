@@ -50,6 +50,30 @@ test('homepage latest writing shows exactly three article cards', async () => {
   }
 });
 
+test('resources and writing provide real, navigable material', async () => {
+  const resources = await read('dist/resources.html');
+  const writing = await read('dist/writing.html');
+  const sitemap = await read('dist/sitemap.xml');
+  const shell = await read('site.js');
+  assert.match(resources, /Find your AI starting point/);
+  assert.match(resources, /The AI transformation framework/);
+  assert.match(resources, /Ideas worth reading/);
+  assert.match(sitemap, /\/resources\//);
+  assert.match(shell, /\['resources', 'Resources', 'resources\.html'\]/);
+  assert.equal((writing.match(/class="writing-row"/g) || []).length, data.essays.filter(item => item.status === 'published').length);
+  assert.match(writing, /<time datetime="\d{4}-\d{2}-\d{2}">/);
+  assert.match(writing, /Explore resources/);
+});
+
+test('contact questions follow the selected conversation', async () => {
+  const html = await read('dist/contact.html');
+  const script = await read('dist/contact.js');
+  assert.match(html, /data-topic-intro/);
+  assert.match(html, /data-message-label/);
+  for (const topic of ['Training and enablement', 'Speaking', 'Build a solution', 'Employment opportunity \/ role']) assert.ok(script.includes(topic));
+  assert.match(script, /topicSelect\?\.addEventListener\('change', updatePrompt\)/);
+});
+
 test('navigation and search keep clear routes to enquiries on small screens', async () => {
   const shell = await read('site.js');
   const search = await read('search.html');
@@ -66,7 +90,8 @@ test('offer and sharing copy give visitors a clear next action', async () => {
   const work = JSON.parse(await read('content/pages/work.json'));
   const contact = JSON.parse(await read('content/pages/contact.json'));
   const shell = await read('site.js');
-  assert.match(home.text_002, /AI ambition into measurable value.*redesigning work.*building solutions/s);
+  assert.match(home.text_001, /Turn AI ambition into measurable value/);
+  assert.match(home.text_002, /redesign work, build solutions, and develop the capability/);
   assert.match(work.text_007, /scope, deliverables, and measures of success/);
   assert.match(contact.text_003, /hiring for transformation or implementation.*exploring a collaboration/s);
   assert.match(shell, /Copy this page link/);
