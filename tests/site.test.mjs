@@ -50,6 +50,16 @@ test('homepage latest writing shows exactly three article cards', async () => {
   }
 });
 
+test('homepage organization strip labels each connection and offers motion control', async () => {
+  const html = await read('dist/index.html');
+  const strip = html.split('class="home-connections"')[1].split('class="section container transformation-path"')[0];
+  for (const name of ['Rutgers University', 'GIZ', 'World Bank', 'AAAS', 'NIPOST', 'Federal Ministry of Water Resources']) assert.ok(strip.includes(name));
+  assert.match(strip, /GIZ<\/span><span class="connection-role">Sponsored project reporting/);
+  assert.match(strip, /World Bank<\/span><span class="connection-role">Invited digital transformation delegate/);
+  assert.match(strip, /class="connection-set" aria-hidden="true"/);
+  assert.match(strip, /data-connection-toggle aria-pressed="false"/);
+});
+
 test('resources and writing provide real, navigable material', async () => {
   const resources = await read('dist/resources.html');
   const writing = await read('dist/writing.html');

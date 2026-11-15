@@ -277,6 +277,14 @@ if (search) {
   render();
 }
 
+const connectionToggle = document.querySelector('[data-connection-toggle]');
+if (connectionToggle) connectionToggle.addEventListener('click', () => {
+  const section = connectionToggle.closest('.home-connections');
+  const paused = section.classList.toggle('is-paused');
+  connectionToggle.setAttribute('aria-pressed', String(paused));
+  connectionToggle.textContent = paused ? 'Resume scrolling' : 'Pause scrolling';
+});
+
 // A small page-progress indicator helps readers orient themselves in long essays.
 if (page === 'essay') {
   const progress = document.createElement('div');
