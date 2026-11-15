@@ -20,7 +20,7 @@ if (contactForm) {
     'Find an AI opportunity': ['What work or decision would you most like to improve?', 'Describe the goal, the current process, the people involved, and where you think AI might help.'],
     'Transformation and implementation': ['What outcome should this change produce?', 'Describe the current workflow, what needs to change, who owns it, and how you would measure progress.'],
     'Build a solution': ['What should the solution make possible?', 'Describe the users, the work they need to do, the data or tools involved, and what success would look like.'],
-    'Training and enablement': ['What should people be able to do differently?', 'Describe the audience, tools they use today, skills they need, and the work they will practice on.'],
+    'Training and enablement': ['What should people be able to do differently?', 'Describe the audience and the outcome you want. Is the focus AI tools, finding value, workflow redesign, hands-on machine learning, or a combination?'],
     Speaking: ['What should your audience leave ready to do?', 'Share the event, audience, format, date, and the question you want us to explore.'],
     'Employment opportunity / role': ['What work would this role lead?', 'Share the role, team, goals, location or working arrangement, and the next step in your process.'],
     Collaboration: ['What would we build or explore together?', 'Describe the idea, the people involved, your role, the intended outcome, and any timing.']

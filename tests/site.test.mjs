@@ -50,12 +50,19 @@ test('homepage latest writing shows exactly three article cards', async () => {
   }
 });
 
-test('homepage organization strip labels each connection and offers motion control', async () => {
+test('homepage organization strip shows logos and names immediately before work with me', async () => {
   const html = await read('dist/index.html');
-  const strip = html.split('class="home-connections"')[1].split('class="section container transformation-path"')[0];
-  for (const name of ['Rutgers University', 'GIZ', 'World Bank', 'AAAS', 'NIPOST', 'Federal Ministry of Water Resources']) assert.ok(strip.includes(name));
-  assert.match(strip, /GIZ<\/span><span class="connection-role">Sponsored project reporting/);
-  assert.match(strip, /World Bank<\/span><span class="connection-role">Invited digital transformation delegate/);
+  const strip = html.split('class="home-connections"')[1].split('class="section container home-offers"')[0];
+  assert.ok(html.indexOf('class="section container transformation-path"') < html.indexOf('class="home-connections"'));
+  assert.ok(html.indexOf('class="home-connections"') < html.indexOf('class="section container home-offers"'));
+  assert.match(strip, /TEAMS I HAVE WORKED WITH/);
+  for (const name of ['Rutgers School of Business–Camden', 'Rutgers University Libraries', 'GIZ', 'World Bank', 'AAAS', 'NIPOST', 'Federal Ministry of Water Resources']) assert.ok(strip.includes(name));
+  for (const logo of ['rutgers-camden-business.png', 'rutgers-libraries.svg', 'giz.webp', 'world-bank.webp', 'aaas.webp', 'nipost.png', 'fmwr.webp']) {
+    assert.match(strip, new RegExp(`assets/logo-${logo.replace('.', '\\.')}`));
+    await access(join(root, 'dist/assets', `logo-${logo}`));
+  }
+  assert.doesNotMatch(strip, /logo-rutgers\.webp|<span class="connection-name">Rutgers University<\/span>/);
+  assert.doesNotMatch(strip, /connection-role|<a |Across my work|Organizations and forums|Project delivery|connection-note/);
   assert.match(strip, /class="connection-set" aria-hidden="true"/);
   assert.match(strip, /data-connection-toggle aria-pressed="false"/);
 });
@@ -172,12 +179,12 @@ test('engagement paths lead to evidence and a specific enquiry', async () => {
   const home = await read('dist/index.html');
   const routeBase = process.env.SITE_PREVIEW === 'true' ? '/website-preview/' : '/';
   assert.match(home, /Speaking and events/);
-  assert.match(home, /View the CHEDVI case study/);
+  assert.match(home, /TEAMS I HAVE WORKED WITH/);
   assert.match(home, /Discuss an opportunity/);
   const routes = ['work-with-me/#transformation', 'work-with-me/#build', 'training/', 'speaking/'];
   for (const route of routes) assert.ok(home.includes(`href="${process.env.SITE_PREVIEW === 'true' ? '/website-preview/' : '/'}${route}"`));
   assert.ok(home.indexOf('id="ways-to-work"') < home.indexOf('id="latest-writing"'));
-  assert.ok(home.indexOf('Proof in practice') < home.indexOf('id="latest-writing"'));
+  assert.doesNotMatch(home, /Proof in practice|Strategy matters when it changes what people can do/);
   const work = await read('dist/work-with-me.html');
   for (const id of ['transformation', 'build', 'training', 'speaking']) assert.ok(work.includes(`id="${id}"`));
   assert.match(work, /I conceived and led CHEDVI/);
@@ -185,7 +192,9 @@ test('engagement paths lead to evidence and a specific enquiry', async () => {
   assert.match(training, /Leadership briefing/);
   assert.match(training, /Team workshop/);
   for (const tool of ['ChatGPT', 'Claude', 'Gemini', 'Microsoft 365 Copilot']) assert.ok(training.includes(tool));
-  for (const skill of ['Check and improve outputs', 'Apply AI to a workflow']) assert.ok(training.includes(skill));
+  for (const area of ['AI tools and literacy', 'Find AI value', 'Workflow and process redesign', 'Hands-on machine learning']) assert.ok(training.includes(area));
+  assert.match(work, /Train people to make AI useful/);
+  assert.match(home, /Build skills in AI tools, finding value, redesigning workflows, and practical machine learning/);
   const solutions = await read('dist/build.html');
   for (const outcome of ['Give time back', 'Serve customers better', 'Make information useful', 'Grow capacity and revenue']) assert.ok(solutions.includes(outcome));
   const speaking = await read('dist/speaking.html');
@@ -317,7 +326,7 @@ test('homepage motion preview keeps service imagery editable and motion optional
     assert.ok(homeFields.some(field => field.key === key && field.widget === 'image'));
     assert.ok(html.includes(`data-edit-image="${key}"`));
   }
-  assert.match(html, /class="section home-proof"/);
+  assert.doesNotMatch(html, /class="section home-proof"|Proof in practice|Strategy matters when it changes what people can do/);
   assert.match(css, /prefers-reduced-motion:reduce/);
   assert.doesNotMatch(js, /revealObserver/);
 });

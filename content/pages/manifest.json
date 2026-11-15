@@ -247,34 +247,9 @@
         "widget": "text"
       },
       {
-        "key": "text_094",
-        "label": "Text — Proof in practice",
+        "key": "text_100",
+        "label": "Homepage logo strip heading",
         "widget": "text"
-      },
-      {
-        "key": "text_095",
-        "label": "Text — From a public-interest question to a live platform",
-        "widget": "text"
-      },
-      {
-        "key": "text_096",
-        "label": "Text — I conceived and led CHEDVI, a Camden health-equity data platform",
-        "widget": "text"
-      },
-      {
-        "key": "text_097",
-        "label": "Text — See the CHEDVI case study",
-        "widget": "text"
-      },
-      {
-        "key": "image_010",
-        "label": "CHEDVI proof image",
-        "widget": "image"
-      },
-      {
-        "key": "image_010_alt",
-        "label": "CHEDVI proof image description",
-        "widget": "string"
       },
       {
         "key": "image_011",

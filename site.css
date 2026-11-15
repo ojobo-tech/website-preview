@@ -865,3 +865,162 @@ a.connection-card:focus-visible{outline:3px solid var(--blue);outline-offset:3px
 @keyframes connections-scroll{to{transform:translateX(-50%)}}
 @media(max-width:700px){.home-connections{padding:55px 0 44px}.home-connections-heading{display:block;margin-bottom:24px}.home-connections-heading>p{margin-top:16px}.connection-card{width:235px;min-height:118px;padding:18px}.connection-name{font-size:24px}.connection-name-long{font-size:18px}.connection-meta{align-items:start;flex-direction:column;gap:8px}}
 @media(prefers-reduced-motion:reduce){.connection-track{animation:none}.connection-window{overflow-x:auto;mask-image:none;scroll-snap-type:x proximity}.connection-card{scroll-snap-align:start;transition:none}.connection-toggle{display:none}}
+
+/* Logo strip: one continuous row, with the brand name as the only caption. */
+.home-connections{padding:clamp(48px,6vw,72px) 0 40px}
+.home-connections-heading{margin-bottom:22px}
+.home-connections-heading h2{max-width:none;margin:0;font:700 clamp(13px,1.2vw,16px)/1.3 var(--sans);letter-spacing:.15em;color:var(--navy)}
+.connection-set{gap:14px;padding-bottom:22px}
+.connection-card{justify-content:center;align-items:center;gap:13px;width:228px;min-height:142px;padding:20px;border:1px solid #d8e9fa;border-radius:20px;background:linear-gradient(135deg,#fff 40%,#eef7ff);box-shadow:0 17px 36px -24px rgba(13,56,110,.35)}
+.connection-card img{width:168px;height:64px;object-fit:contain}
+.connection-card img[src$="logo-nipost.png"]{width:115px;object-fit:cover;object-position:left center}
+.connection-name,.connection-name-long{max-width:100%;font:700 13px/1.3 var(--sans);letter-spacing:0;text-align:center}
+.connection-meta{justify-content:flex-end;margin-top:0}
+@media(max-width:700px){.connection-card{width:195px;min-height:126px;padding:16px}.connection-card img{width:148px;height:54px}.connection-name,.connection-name-long{font-size:12px}.connection-meta{align-items:flex-end}}
+
+/* Carry the resource cards' lift and soft blue depth into discrete content panels. */
+body[data-page=build] .solution-grid article,
+body[data-page=build] .project-list .card,
+body[data-page=speaking] .speaking-topic-grid article,
+body[data-page=speaking] .event-list-card,
+body[data-page=reading] .reading-item,
+body[data-page=research] .card,
+body[data-page=about] .mini-card,
+body[data-page=work] .service-detail,
+body[data-page=start] .timeline-grid article{
+  border:1px solid #d4e5f7;
+  border-radius:20px;
+  background:linear-gradient(120deg,#fff 42%,#eef7ff);
+  box-shadow:inset 0 1px rgba(255,255,255,.9),0 20px 45px -27px rgba(13,56,110,.25);
+  overflow:hidden;
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+body[data-page=build] .solution-grid article:hover,
+body[data-page=build] .project-list .card:hover,
+body[data-page=speaking] .speaking-topic-grid article:hover,
+body[data-page=speaking] .event-list-card:hover,
+body[data-page=reading] .reading-item:hover,
+body[data-page=research] .card:hover,
+body[data-page=about] .mini-card:hover,
+body[data-page=work] .service-detail:hover,
+body[data-page=start] .timeline-grid article:hover{
+  transform:translateY(-4px);
+  border-color:#b8d8f5;
+  box-shadow:inset 0 1px rgba(255,255,255,.95),0 27px 52px -27px rgba(13,56,110,.35);
+}
+body[data-page=build] .solution-grid article:nth-child(n),
+body[data-page=training] .training-format-grid article:nth-child(n),
+body[data-page=framework] .article-content .mini-card:nth-child(n),
+body[data-page=start] .stage-explainer li:nth-child(n){border:1px solid #d4e5f7;border-radius:20px;background:linear-gradient(120deg,#fff 42%,#eef7ff);box-shadow:0 20px 45px -27px rgba(13,56,110,.25);transition:transform .25s ease,box-shadow .25s ease}
+body[data-page=training] .training-format-grid article:nth-child(n):hover,
+body[data-page=framework] .article-content .mini-card:nth-child(n):hover,
+body[data-page=start] .stage-explainer li:nth-child(n):hover{transform:translateY(-4px);box-shadow:0 27px 52px -27px rgba(13,56,110,.35)}
+body[data-page=training] .training-practice-grid article{border:1px solid rgba(160,204,255,.23);border-radius:18px;background:linear-gradient(135deg,rgba(54,100,160,.3),rgba(255,255,255,.06));box-shadow:0 18px 35px -25px rgba(0,0,0,.5)}
+body[data-page=speaking] .speaking-topic-grid article{background:linear-gradient(120deg,#fff 42%,#eef7ff)}
+body[data-page=speaking] .speaking-topic-grid img{border-radius:18px 18px 0 0}
+@media(prefers-reduced-motion:reduce){
+  body[data-page=build] .solution-grid article,body[data-page=build] .project-list .card,body[data-page=speaking] .speaking-topic-grid article,body[data-page=speaking] .event-list-card,body[data-page=reading] .reading-item,body[data-page=research] .card,body[data-page=about] .mini-card,body[data-page=work] .service-detail,body[data-page=start] .timeline-grid article{transition:none}
+  body[data-page=build] .solution-grid article:hover,body[data-page=build] .project-list .card:hover,body[data-page=speaking] .speaking-topic-grid article:hover,body[data-page=speaking] .event-list-card:hover,body[data-page=reading] .reading-item:hover,body[data-page=research] .card:hover,body[data-page=about] .mini-card:hover,body[data-page=work] .service-detail:hover,body[data-page=start] .timeline-grid article:hover{transform:none}
+  body[data-page=training] .training-format-grid article:nth-child(n),body[data-page=framework] .article-content .mini-card:nth-child(n),body[data-page=start] .stage-explainer li:nth-child(n){transition:none}
+  body[data-page=training] .training-format-grid article:nth-child(n):hover,body[data-page=framework] .article-content .mini-card:nth-child(n):hover,body[data-page=start] .stage-explainer li:nth-child(n):hover{transform:none}
+}
+
+/* Extend the Resources/Writing pop-out language across the site's useful units. */
+:root{--pop-border:#d4e5f7;--pop-surface:linear-gradient(120deg,#fff 42%,#eef7ff);--pop-shadow:inset 0 1px rgba(255,255,255,.95),0 20px 45px -25px rgba(13,56,110,.23);--pop-shadow-hover:inset 0 1px #fff,0 28px 54px -25px rgba(13,56,110,.34)}
+
+body[data-page=home] .home-choice-grid>a,
+#latest-writing .editorial-card,
+.essay-related-card,
+body[data-page=biography] .mini-card,
+body[data-page=biography] .reading-item,
+body[data-page=research] .reading-item,
+body[data-page=reading] .book-entry,
+body[data-page=about] .career-trajectory>*,
+body[data-page=build] .build-questions .question-list details,
+body[data-page=framework] .question-list details,
+body[data-page=research] .question-list details,
+.case-facts>div{
+  border:1px solid var(--pop-border);
+  border-radius:20px;
+  background:var(--pop-surface);
+  box-shadow:var(--pop-shadow);
+  overflow:hidden;
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+body[data-page=home] .home-choice-grid>a:hover,
+body[data-page=home] .home-choice-grid>a:focus-visible,
+#latest-writing .editorial-card:hover,
+#latest-writing .editorial-card:focus-visible,
+.essay-related-card:hover,
+.essay-related-card:focus-visible,
+body[data-page=build] .build-questions .question-list details:hover,
+body[data-page=framework] .question-list details:hover,
+body[data-page=research] .question-list details:hover{
+  transform:translateY(-4px);
+  border-color:#b8d8f5;
+  box-shadow:var(--pop-shadow-hover);
+}
+body[data-page=home] .home-choice-grid>a{border-radius:18px;min-height:142px}
+#latest-writing .editorial-card{border-radius:20px}
+#latest-writing .editorial-card img{border-radius:19px 19px 0 0}
+.essay-related-card img{border-radius:19px 19px 0 0}
+body[data-page=biography] .mini-card,body[data-page=biography] .reading-item{padding:24px}
+body[data-page=about] .career-trajectory>*{background:var(--pop-surface);border-radius:18px}
+body[data-page=about] .career-trajectory>*:nth-child(n){background:var(--pop-surface)}
+body[data-page=about] .career-trajectory>strong{background:linear-gradient(135deg,#10294a,#245a9b);color:#fff;border-color:#234c7d}
+body[data-page=reading] .book-entry{padding:17px}
+body[data-page=reading] .book-entry .book-cover{margin-inline:auto}
+body[data-page=reading] .book-shelf{gap:22px}
+.case-facts>div{padding:18px 20px}
+.question-list{display:grid;gap:12px;border:0}
+body[data-page=build] .build-questions .question-list details,
+body[data-page=framework] .question-list details,
+body[data-page=research] .question-list details{padding:18px 22px}
+
+.topic-cta,.essay-brief,body[data-page=reading] .shelf-feature,
+body[data-page=start] .starting-guide,body[data-page=work] .service-outcome,
+body[data-page=speaking] .speaker-details,
+body[data-page=contact] .contact-scope{
+  border:1px solid var(--pop-border);
+  border-radius:22px;
+  background:var(--pop-surface);
+  box-shadow:var(--pop-shadow);
+}
+.topic-cta,.essay-brief{border-left:1px solid var(--pop-border);border-top:1px solid var(--pop-border)}
+body[data-page=reading] .shelf-feature{padding:clamp(22px,3vw,38px)}
+body[data-page=start] .starting-guide{max-width:900px;background:var(--pop-surface)}
+body[data-page=work] .service-outcome{padding:24px 27px}
+body[data-page=speaking] .speaker-details{background:var(--pop-surface);border:1px solid var(--pop-border)!important;border-radius:20px}
+body[data-page=contact] .contact-scope{padding:22px 25px}
+
+body[data-page=speaking] .rutgers-talk,
+body[data-page=speaking] .podcast-feature,
+body[data-page=training] .training-practice,
+body[data-page=start] .start-close{
+  border:1px solid var(--pop-border);
+  border-radius:26px;
+  box-shadow:0 24px 58px -32px rgba(13,56,110,.27);
+}
+body[data-page=speaking] .rutgers-talk,body[data-page=speaking] .podcast-feature{padding:clamp(27px,4vw,52px);background:var(--pop-surface)}
+body[data-page=speaking] .rutgers-talk figure img{border-radius:18px}
+body[data-page=speaking] .podcast-video{overflow:hidden;border-radius:18px}
+body[data-page=training] .training-practice{border-color:#294d7a;box-shadow:0 25px 60px -31px rgba(4,19,40,.4)}
+body[data-page=training] .training-principle-grid{gap:18px}
+body[data-page=training] .training-principle-grid>div:nth-child(n){padding:25px;border:1px solid var(--pop-border);border-radius:20px;background:var(--pop-surface);box-shadow:var(--pop-shadow)}
+body[data-page=start] .start-close{padding:clamp(28px,5vw,60px);background:var(--pop-surface);margin-block:48px 80px}
+
+body[data-page=build] .build-process-steps li{border:1px solid rgba(170,208,255,.22);border-radius:18px;background:linear-gradient(130deg,rgba(75,128,194,.28),rgba(255,255,255,.06));box-shadow:0 18px 38px -26px rgba(0,0,0,.42)}
+body[data-page=home] .home-final-cta .container{padding:clamp(30px,5vw,58px);border:1px solid var(--pop-border);border-radius:24px;background:var(--pop-surface);box-shadow:var(--pop-shadow)}
+
+@media(max-width:700px){
+  .footer-bottom{display:grid;justify-content:start;gap:8px}
+  .footer-bottom a{display:block;width:max-content;margin:0}
+  body[data-page=speaking] .rutgers-talk,body[data-page=speaking] .podcast-feature{width:min(100% - 32px,1190px);padding:24px}
+  body[data-page=training] .training-principle-grid>div:nth-child(n){padding:22px}
+  body[data-page=reading] .book-entry{padding:12px}
+  body[data-page=start] .start-close{width:min(100% - 32px,1190px);margin-block:28px 60px}
+}
+@media(prefers-reduced-motion:reduce){
+  body[data-page=home] .home-choice-grid>a,#latest-writing .editorial-card,.essay-related-card,body[data-page=reading] .book-entry,.question-list details{transition:none}
+  body[data-page=home] .home-choice-grid>a:hover,body[data-page=home] .home-choice-grid>a:focus-visible,#latest-writing .editorial-card:hover,#latest-writing .editorial-card:focus-visible,.essay-related-card:hover,.essay-related-card:focus-visible,.question-list details:hover{transform:none}
+}
