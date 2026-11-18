@@ -31,6 +31,18 @@ test('generated browser feed contains published entries only', async () => {
   }
 });
 
+test('the same portrait appears in the header and as a crawlable site icon', async () => {
+  const rootPath = process.env.SITE_PREVIEW === 'true' ? '/website-preview/' : '/';
+  const icon = `${rootPath}assets/ojobo-mark.jpg`;
+  const shell = await read('site.js');
+  assert.match(shell, /class="wordmark-photo" src="assets\/ojobo-mark\.jpg" alt=""/);
+  await access(join(root, 'dist/assets/ojobo-mark.jpg'));
+  for (const file of ['index.html', 'training.html', 'essay-five-stages-ai-maturity.html']) {
+    assert.ok((await read(`dist/${file}`)).includes(`rel="icon" type="image/jpeg" sizes="512x512" href="${icon}"`), file);
+  }
+  assert.match(await read('dist/index.html'), /"image":"https:\/\/ojoboagboeje\.com\/assets\/ojobo-mark\.jpg"/);
+});
+
 test('all managed lists load the content renderer', async () => {
   for (const file of ['index.html', 'build.html', 'research.html', 'writing.html', 'reading.html']) {
     const html = await read(file);

@@ -26,6 +26,8 @@ const siteSettingsScript = siteSettings ? `<script>window.siteSettings=${JSON.st
 const withSiteSettings = markup => siteSettingsScript ? markup.replace(/<script src="site\.js" defer><\/script>/i, `${siteSettingsScript}<script src="site.js" defer></script>`) : markup;
 const publicBase = preview ? 'https://ojobo-tech.github.io/website-preview/' : 'https://ojoboagboeje.com/';
 const sitePath = preview ? '/website-preview/' : '/';
+const identityImagePath = 'assets/ojobo-mark.jpg';
+const withIdentityIcon = markup => markup.replace(/<\/head>/i, `<link rel="icon" type="image/jpeg" sizes="512x512" href="${sitePath}${identityImagePath}"></head>`);
 const cleanPath = filename => filename === 'index.html' ? publicBase : `${publicBase}${filename.replace(/\.html$/, '')}/`;
 const withCleanRoutes = markup => markup
   .replace(/<head>/i, `<head><base href="${sitePath}">`)
@@ -40,7 +42,7 @@ const withDiscoveryMetadata = (markup, filename) => {
   const title = markup.match(/<title>([^<]*)<\/title>/i)?.[1] || 'Ojobo Agbo Eje';
   const description = markup.match(/<meta name="description" content="([^"]*)"/i)?.[1] || '';
   const url = cleanPath(filename);
-  const imageUrl = `${publicBase}assets/ojobo-portrait-formal.jpg`;
+  const imageUrl = `${publicBase}${identityImagePath}`;
   const person = {
     '@type': 'Person', '@id': `${publicBase}#ojobo-agbo-eje`, name: 'Ojobo Agbo Eje', url: publicBase,
     image: imageUrl, description: 'AI transformation consultant, implementation partner, platform builder, and trainer helping organizations find value and redesign work.',
@@ -210,11 +212,11 @@ for (const entry of await readdir(root, { withFileTypes: true })) {
     const markup = await readFile(join(root, entry.name), 'utf8');
     const edited = await renderEditablePage(root, entry.name, markup);
     const today = new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
-    const ready = withCleanRoutes(withDiscoveryMetadata(renderListContent(withSiteSettings(edited), entry.name, content, today)
+    const ready = withIdentityIcon(withCleanRoutes(withDiscoveryMetadata(renderListContent(withSiteSettings(edited), entry.name, content, today)
       .replace(/href="site\.css"/g, `href="site.css?v=${cssVersion}"`)
       .replace(/src="site\.js"/g, `src="site.js?v=${siteJsVersion}"`)
       .replace(/src="content\/site-content\.js"/g, `src="content/site-content.js?v=${contentJsVersion}"`)
-      .replace(/href="index\.html(?=[#"])/g, 'href="./'), entry.name));
+      .replace(/href="index\.html(?=[#"])/g, 'href="./'), entry.name)));
     await writeFile(join(publishRoot, entry.name), preview ? ready.replace(/<head>/i, '<head><meta name="robots" content="noindex,nofollow">') : withMeasurement(ready), 'utf8');
   }
 }
