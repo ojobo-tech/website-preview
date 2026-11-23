@@ -204,6 +204,7 @@ try {
 await mkdir(join(publishRoot, 'content'), { recursive: true });
 const cssVersion = createHash('sha256').update(await readFile(join(root, 'site.css'))).update(await readFile(join(root, 'site-conversion.css'))).digest('hex').slice(0, 10);
 const siteJsVersion = createHash('sha256').update(await readFile(join(root, 'site.js'))).digest('hex').slice(0, 10);
+const contentRenderVersion = createHash('sha256').update(await readFile(join(root, 'content-render.js'))).digest('hex').slice(0, 10);
 const contentJsVersion = createHash('sha256').update(await readFile(join(root, 'content', 'site-content.js'))).digest('hex').slice(0, 10);
 for (const entry of await readdir(root, { withFileTypes: true })) {
   if (!entry.isFile()) continue;
@@ -215,6 +216,7 @@ for (const entry of await readdir(root, { withFileTypes: true })) {
     const ready = withIdentityIcon(withCleanRoutes(withDiscoveryMetadata(renderListContent(withSiteSettings(edited), entry.name, content, today)
       .replace(/href="site\.css"/g, `href="site.css?v=${cssVersion}"`)
       .replace(/src="site\.js"/g, `src="site.js?v=${siteJsVersion}"`)
+      .replace(/src="content-render\.js"/g, `src="content-render.js?v=${contentRenderVersion}"`)
       .replace(/src="content\/site-content\.js"/g, `src="content/site-content.js?v=${contentJsVersion}"`)
       .replace(/href="index\.html(?=[#"])/g, 'href="./'), entry.name)));
     await writeFile(join(publishRoot, entry.name), preview ? ready.replace(/<head>/i, '<head><meta name="robots" content="noindex,nofollow">') : withMeasurement(ready), 'utf8');

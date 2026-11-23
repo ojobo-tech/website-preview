@@ -438,6 +438,7 @@ test('the reading room uses the five supplied book covers', async () => {
 
 test('reading room separates current, finished, and watch-list books', async () => {
   const reading = await read('dist/reading.html');
+  assert.match(reading, /src="content-render\.js\?v=[a-f0-9]{10}"/);
   const current = reading.slice(reading.indexOf('id="current"'), reading.indexOf('id="shelf"'));
   const finished = reading.slice(reading.indexOf('id="shelf"'), reading.indexOf('id="watch-list"'));
   const watch = reading.slice(reading.indexOf('id="watch-list"'));
