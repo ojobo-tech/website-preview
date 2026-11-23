@@ -77,16 +77,18 @@ for (const container of document.querySelectorAll('[data-content-list]')) {
   if (type === 'reading') {
     const items = live(siteContent.reading);
     const feature = document.querySelector('[data-reading-feature]');
+    const watchList = document.querySelector('[data-content-list="reading-watch-list"]');
     const note = document.querySelector('.shelf-note');
     container.replaceChildren();
     feature?.replaceChildren();
+    watchList?.replaceChildren();
     if (!items.length) {
       if (note) note.textContent = 'Personal reading notes will appear here as they are published.';
       if (feature) add(feature, 'p', 'reading-empty', 'The first featured note is coming soon.');
       add(container, 'p', 'reading-empty', 'No reading-room entries have been published yet.');
       continue;
     }
-    const featured = items.find(item => item.featured) || items[0];
+    const featured = items.find(item => item.featured && item.category === 'Currently reading') || items.find(item => item.category === 'Currently reading');
     if (feature) {
       const cover = add(feature, 'div', 'book-cover cover-evidence');
       if (safeMedia(featured.image)) { const img = add(cover, 'img'); img.src = featured.image; img.alt = featured.imageAlt || `Cover for ${featured.title}`; }
@@ -98,8 +100,10 @@ for (const container of document.querySelectorAll('[data-content-list]')) {
       if (featured.summary) add(copy, 'p', '', featured.summary);
       if (safePage(featured.link)) { const link = add(copy, 'a', 'arrow-link', 'Explore reference'); link.href = featured.link; if (link.href.startsWith('https://')) { link.target = '_blank'; link.rel = 'noopener noreferrer'; } }
     }
-    for (const item of items.filter(item => item !== featured)) {
-      const entry = add(container, 'div', 'book-entry');
+    for (const item of items.filter(item => item.category.startsWith('Recently read') || item.category === 'Reading watch list')) {
+      const parent = item.category === 'Reading watch list' ? watchList : container;
+      if (!parent) continue;
+      const entry = add(parent, 'div', 'book-entry');
       const cover = add(entry, 'div', 'book-cover cover-evidence');
       if (safeMedia(item.image)) { const img = add(cover, 'img'); img.src = item.image; img.alt = item.imageAlt || `Cover for ${item.title}`; }
       else add(cover, 'span', '', item.coverText || item.title);

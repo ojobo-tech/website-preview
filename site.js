@@ -62,6 +62,18 @@ const footer = document.querySelector('[data-footer]');
 if (footer) footer.innerHTML = `<div class="container"><div class="footer-grid"><div><h3>${cleanText(siteSettings.footerHeading || 'What I do')}</h3><p>${cleanText(siteSettings.footerBio || 'I help organizations find valuable AI use cases, redesign work, implement solutions, and train teams.')}</p><a href="about.html">Read about my work</a></div><div><h4>Explore</h4><a href="start-here.html">Find your AI starting point</a><a href="work-with-me.html">Work with me</a><a href="framework.html">AI transformation</a><a href="build.html">AI solutions</a><a href="training.html">AI training</a><a href="speaking.html">Speaking & events</a><a href="resources.html">Resources</a><a href="writing.html">Articles & audio</a><a href="research.html">Evidence & publications</a><a href="reading.html">Reading room</a></div><div><h4>Connect</h4><a href="contact.html">Start a conversation</a><a href="https://ojoboagboeje.substack.com/" target="_blank" rel="noopener noreferrer">The AI Catalyst Report</a><a href="https://chedvi.onrender.com/" target="_blank" rel="noopener noreferrer">Explore CHEDVI</a></div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} ${cleanText(siteSettings.wordmark || 'Ojobo Agbo Eje')}</span><span>${cleanText(siteSettings.footerTagline || 'AI transformation · Implementation · Training')}</span><a href="#top">Back to top</a></div></div>`;
 if (footer) {
   const connect = footer.querySelector('.footer-grid > div:last-child');
+  for (const [label, url] of [
+    ['LinkedIn', 'https://www.linkedin.com/in/ojoboagbo'],
+    ['X / Twitter', 'https://x.com/agboojobo'],
+    ['Threads', 'https://www.threads.net/@ojobothebillionaire']
+  ]) {
+    const link = document.createElement('a');
+    link.href = url;
+    link.textContent = label;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    connect?.append(link);
+  }
   const share = document.createElement('button');
   share.type = 'button';
   share.className = 'footer-share';

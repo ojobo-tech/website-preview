@@ -436,6 +436,22 @@ test('the reading room uses the five supplied book covers', async () => {
   assert.equal(data.reading.find(entry => entry.id === 'culture-communication-delegation-triad')?.image, '');
 });
 
+test('reading room separates current, finished, and watch-list books', async () => {
+  const reading = await read('dist/reading.html');
+  const current = reading.slice(reading.indexOf('id="current"'), reading.indexOf('id="shelf"'));
+  const finished = reading.slice(reading.indexOf('id="shelf"'), reading.indexOf('id="watch-list"'));
+  const watch = reading.slice(reading.indexOf('id="watch-list"'));
+  assert.match(current, /Be Your Future Self Now/);
+  assert.doesNotMatch(current, /Prediction Machines/);
+  assert.match(finished, /Prediction Machines/);
+  assert.match(finished, /The Alignment Problem/);
+  assert.match(finished, /Human Compatible/);
+  assert.match(watch, /Co-Intelligence/);
+  assert.match(watch, /The Hundred-Year Marathon/);
+  assert.doesNotMatch(finished, /Co-Intelligence/);
+  for (const item of data.reading.filter(item => item.image)) await access(join(root, 'dist', item.image));
+});
+
 test('a two-day event stays upcoming through its final day', () => {
   const event = data.events.find(item => item.id === 'ai-revolution-2026');
   assert.equal(eventDateRange(event), 'October 21–22, 2026');

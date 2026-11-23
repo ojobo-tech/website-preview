@@ -32,8 +32,10 @@ export const renderListContent = (markup, filename, content, today) => {
   if (filename === 'writing.html') return replaceMarker(markup, 'writing-items', content.essays.filter(item => item.status === 'published').sort((a,b) => (b.publishedAt || '').localeCompare(a.publishedAt || '')).map(essayRow).join(''));
   if (filename === 'reading.html') {
     const items = content.reading.filter(item => item.status === 'published');
-    const featured = items.find(item => item.featured) || items[0];
-    return replaceMarker(replaceMarker(markup, 'reading-feature', readingFeature(featured)), 'reading-shelf', readingShelf(items.filter(item => item !== featured)));
+    const featured = items.find(item => item.featured && item.category === 'Currently reading') || items.find(item => item.category === 'Currently reading');
+    markup = replaceMarker(markup, 'reading-feature', readingFeature(featured));
+    markup = replaceMarker(markup, 'reading-shelf', readingShelf(items.filter(item => item.category.startsWith('Recently read'))));
+    return replaceMarker(markup, 'reading-watch-list', readingShelf(items.filter(item => item.category === 'Reading watch list')));
   }
   if (filename === 'research.html') {
     const items = content.research.filter(item => item.status === 'published');

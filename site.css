@@ -153,6 +153,12 @@ body[data-page=home] .speaking-band .section-more{display:flex;flex-wrap:wrap;ga
 @media(max-width:700px){.case-hero-grid{grid-template-columns:1fr;padding-top:48px;padding-bottom:42px}.case-hero-actions{gap:14px}.chedvi-shot-frame{height:225px}.chedvi-shot-frame img{width:125%;transform:translate(-2%,-17%)}.case-hero h1{font-size:54px}}
 .book-cover img{width:100%;height:100%;object-fit:contain}
 .book-cover:has(img){padding:0;border:0;background:#f5f5f3}
+body[data-page=reading] .reading-section-title{margin-top:64px}
+body[data-page=reading] #watch-list + p{margin:4px 0 26px;color:var(--muted)}
+.contact-social{margin:24px 0 32px}
+.contact-social strong{display:block;margin-bottom:12px}
+.contact-social div{display:flex;flex-wrap:wrap;gap:10px 20px}
+.contact-social a{color:var(--blue);font-weight:700;text-decoration:underline;text-underline-offset:4px}
 .reading-empty{font:16px/1.6 var(--sans);color:var(--muted)}
 .article-audio{margin:28px 0 36px;padding:18px 20px;background:var(--soft);border:1px solid var(--line)}
 .article-audio .kicker{display:block;margin-bottom:10px}
